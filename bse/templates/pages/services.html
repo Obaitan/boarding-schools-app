@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Boarding School Experts | Services
+{% endblock %}
+
+{% block body %}
+ <div id="services-hb">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mb-4 pr-lg-5 mt-5">
+            <p class="bold-text2 mb-2" data-aos="fade-right">
+              Our Services
+            </p>
+            <p
+              class="des-text2 mr-lg-5"
+              data-aos="fade-right"
+              data-aos-delay="550"
+            >
+              At Boarding Schools Experts, we offer a wide range of services
+              to students, parents/guardians, and schools alike. We have
+              professionals in all fields we cover, which results in
+              efficiency in all processes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="our-services">
+    <div class="container">     
+        <div class="col-xl-10 mx-auto p-0">                   
+          <div class="p-2 p-lg-3" data-aos="zoom-in">
+            <div class="chip">
+              <div class="row align-items-center">
+                <img
+                  src="{{ url_for('static', filename='images/svg/placement-icon.svg') }}"
+                  class="services-icon ml-3"
+                  alt="School placement graphic"
+                />
+                <p
+                  class="section-title ml-3"
+                  style="letter-spacing: 0.035em"
+                >
+                  Placement
+                </p>
+              </div>
+              <div class="mt-3">
+                <p
+                  class="bsb-text2"
+                  style="text-align: justify; font-weight: 400"
+                >
+                  With our counsellors, finding suitable schools for
+                  students from our premium boarding schools is quick and
+                  easy, archiving this is due to their years of experience
+                  working closely with both schools and students.<br /><br />
+                  Counsellors are also in constant interaction with schools
+                  to be abreast with any new information that will help in
+                  deciding the right schools for our students. They
+                  periodically visit our partner's schools to tour their
+                  facilities and interact with our students.
+                </p>
+              </div>
+            </div>
+          </div>
+        
+          <div class="p-2 p-lg-3" data-aos="zoom-in" data-aos-delay="700">
+            <div class="chip">
+              <div class="row align-items-center">
+                <img
+                  src="{{ url_for('static', filename='images/svg/support-icon.svg') }}"
+                  class="services-icon ml-3"
+                  alt="School placement graphic"
+                />
+                <p
+                  class="section-title ml-3"
+                  style="letter-spacing: 0.035em"
+                >
+                  Pre/Post Admission Support
+                </p>
+              </div>
+              <div class="mt-3">
+                <p
+                  class="bsb-text2"
+                  style="text-align: justify; font-weight: 400"
+                >
+                  As part of our pre-admission supporting process, we help
+                  interested families arrange school tours before making
+                  their choice. Also, families have the option of asking us
+                  to help communicate with our partner's schools for the
+                  academic progress of their children and feedback and
+                  advice if need be.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-2 p-lg-3" data-aos="zoom-in" data-aos-delay="1050">
+            <div class="chip">
+              <div class="row align-items-center">
+                <img
+                  src="{{ url_for('static', filename='images/svg/doc-processing-icon.svg') }}"
+                  class="services-icon ml-3"
+                  alt="School placement graphic"
+                />
+                <p
+                  class="section-title ml-3"
+                  style="letter-spacing: 0.035em"
+                >
+                  Documents Processing
+                </p>
+              </div>
+              <div class="mt-3">
+                <p
+                  class="bsb-text2"
+                  style="text-align: justify; font-weight: 400"
+                >
+                  We take the responsibility of screening and submission of
+                  our student's documents during the admission process. Such
+                  processes are taking from parents and students. It is
+                  handled by a professional.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-2 p-lg-3" data-aos="zoom-in" data-aos-delay="1400">
+            <div class="chip">
+              <div class="row align-items-center">
+                <img
+                  src="{{ url_for('static', filename='images/svg/visa-icon.svg') }}"
+                  class="services-icon ml-3"
+                  alt="School placement graphic"
+                />
+                <p
+                  class="section-title ml-3"
+                  style="letter-spacing: 0.035em"
+                >
+                  Visa Assistance
+                </p>
+              </div>
+              <div class="mt-3">
+                <p
+                  class="bsb-text2"
+                  style="text-align: justify; font-weight: 400"
+                >
+                  Our Immigration team is available to guide parents and
+                  students through their visa application period.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="p-2 p-lg-3"
+            data-aos="zoom-in"
+            data-aos-delay="1750"
+          >
+            <div class="chip">
+              <div class="row align-items-center">
+                <img
+                  src="{{ url_for('static', filename='images/svg/consultancy-icon.svg') }}"
+                  class="services-icon ml-3"
+                  alt="School placement graphic"
+                />
+                <p
+                  class="section-title ml-3"
+                  style="letter-spacing: 0.035em"
+                >
+                  Consultancy
+                </p>
+              </div>
+              <div class="mt-3">
+                <p
+                  class="bsb-text2"
+                  style="text-align: justify; font-weight: 400"
+                >
+                  With our knowledge of student recruitment in this part of
+                  the world, we consultancy services to schools looking to
+                  increase their recruitment numbers.
+                  Other added services we render are travel ticketing, hotel
+                  reservation. 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>     
+    </div>
+  </div>
+{% endblock %}    

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Boarding School Experts | About Us
+{% endblock %}
+
+{% block body %}    
+  <div id="about-hb">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="container">
+        <div class="row">
+          <div class="text-center w-100">
+            <p class="bold-text" data-aos="fade-up">About Us</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="about-us">
+    <div class="container d-flex justify-content-center flex-wrap">
+      <div class="col-lg-7 px-0 py-4 d-flex align-items-center">
+        <div class="pr-lg-5" data-aos="fade-right" data-aos-duration="1800">
+          <p class="mb-1 section-title">Boarding Schools Experts</p>
+          <p class="bsb-text" style="text-align: justify; font-weight: 400">
+            Attending a boarding school usually confers benefits in
+            academic, character, psychological, and overall development. For
+            this reason, a significant percentage of the premier schools and
+            colleges offer boarding facilities to students. Deciding on a
+            boarding school can sometimes be a daunting challenge for
+            parents. This is where we come in; We are the
+            <span class="show">Boarding Schools Experts</span>!<br /><br />
+
+            A one-stop-shop for helping parents discover their dream
+            boarding schools around the world for their children and wards.
+            We pride ourselves on our partnerships with some of the
+            top-rated boarding schools in countries around the world. Our
+            partners include some of the premier schools in the world, are
+            well-positioned to bring out the best in academics and overall
+            character development in their students.<br /><br />
+
+            We believe that every child has potential and hidden talents;
+            one of the primary focuses of our partners is to ensure that
+            these children reach their full academic potentials and discover
+            their hidden talents and skills. Our mandate, therefore, is to
+            link parents up with these institutions in a stress-free way,
+            and pocket-friendly manner too. We hold the keys to your wards’
+            academic success!<br /><br />
+
+            Come on board; let us take you on a tour of the world’s premier
+            boarding schools.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-5 px-0">
+        <img
+          src="{{ url_for('static', filename='images/boarding-room.jpg') }}"
+          alt="Boarding students studying in room."
+          class="w-100"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="offering">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-title" style="font-size: 1.5rem">What You Get</p>
+      </div>
+      <div class="row row-cols-1 row-cols-lg-2 mt-0 mt-md-2 mt-lg-4">
+        <div class="col sp">
+          <div
+            class="d-flex justify-content-center align-items-center align-items-lg-start"
+          >
+            <div class="col-5">
+              <img
+                src="{{ url_for('static', filename='images/svg/premium-schools.svg') }}"
+                class="w-100"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="col-7">
+              <p class="bsb-text3 mb-2">Top Boarding Schools</p>
+              <p class="bsb-text4" style="font-weight: 400">
+                Placement into top boarding schools.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col sp">
+          <div
+            class="d-flex justify-content-center align-items-center align-items-lg-start"
+          >
+            <div class="col-5">
+              <img
+                src="{{ url_for('static', filename='images/svg/consultancy.svg') }}"
+                class="w-100"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="col-7">
+              <p class="bsb-text3 mb-2">Educational Consultancy</p>
+              <p class="bsb-text4" style="font-weight: 400">
+                Consulting for schools looking to expanding their reach in
+                Sub-Sahara region.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col sp">
+          <div
+            class="d-flex justify-content-center align-items-center align-items-lg-start"
+          >
+            <div class="col-5">
+              <img
+                src="{{ url_for('static', filename='images/svg/documentation.svg') }}"
+                class="w-100"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="col-7">
+              <p class="bsb-text3 mb-2">Documents Processing</p>
+              <p class="bsb-text4" style="font-weight: 400">
+                Admission and travel documents processing for applicants.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col sp">
+          <div
+            class="d-flex justify-content-center align-items-center align-items-lg-start"
+          >
+            <div class="col-5">
+              <img
+                src="{{ url_for('static', filename='images/svg/support.svg') }}"
+                class="w-100"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="col-7">
+              <p class="bsb-text3 mb-2">Post-Admission Support</p>
+              <p class="bsb-text4" style="font-weight: 400">
+                Family and students support during studies. Monitoring
+                academic process and giving advicesand feedbacks where
+                necessary.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+   

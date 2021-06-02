@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PZC755D");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <meta
+      name="description"
+      content="We link parents and their wards with premium boarding institutions around the world. This is done in a stress-free and pocket-friendly manner. Come partner with us today."
+    />
+    <meta
+      name="keywords"
+      content="Boarding Schools, Educational Consultancy, Admission Processing, Visa Application"
+    />
+    <title>{% block title %}{% endblock %}</title>
+
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/site-logo.png') }}"
+      type="image/x-icon"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;200;700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Material Design Bootstrap -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Custom styles -->
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PZC755D"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Project-->
+    <div class="top-bar d-none d-md-block">
+      <div class="container d-flex justify-content-center h-100">
+        <div class="d-none d-xl-flex col-xl-3"></div>
+        <div class="col-xl-9 row align-items-center">
+          <div class="d-flex justify-content-end align-items-center col-md-4">
+            <i class="fas fa-phone-alt t-top mr-2"></i>
+            <p class="bar-text mb-0">+234 814 849 3618</p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center col-md-6 col-lg-5">
+            <i class="fas fa-envelope t-top mr-2"></i>
+            <p class="bar-text mb-0">-
+              <a href="mailto:info@boardingschoolsexperts.com" class="bar-text"
+                target="_blank">info@boardingschoolsexperts.com</a>
+            </p>
+            </p>
+          </div>       
+
+          <div class="col-3 d-none d-lg-flex justify-content-end">
+            <a href="https://web.facebook.com/Boarding-Schools-Experts-102632928407518" class="social-icon" target="_blank">
+              <i class="fab fa-facebook-f top-fab"></i>
+            </a>
+            <a href="https://twitter.com/BSchoolsExperts?s=09" class="social-icon" target="_blank">
+              <i class="fab fa-twitter top-fab"></i>
+            </a>
+            <a href="https://instagram.com/bschoolsexperts?igshid=hvslhw2xpi0m" class="social-icon" target="_blank">
+              <i class="fab fa-instagram top-fab"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/boarding-school-experts/" class="social-icon" target="_blank">
+              <i class="fab fa-linkedin-in top-fab"></i>
+            </a>
+          </div>
+        </div>        
+      </div>
+    </div>
+
+    <header class="header px-0" id="header">
+      <nav class="navbar navbar-expand-lg" id="navbar">
+        <div class="container">
+          <a href="{{ url_for('home') }}" class="navbar-brand">
+            <img
+              src="{{ url_for('static', filename='images/logo.png') }}"
+              class="logo"
+              id="logo"
+              alt="Logo"
+            />
+          </a>
+          <div class="ml-auto">
+            <div class="group navbar-toggler mt-3" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+              aria-expanded="false" aria-label="Toggle navigation" onclick="myFunction(this)">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </div>
+          </div>          
+
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0 mt-4 mt-md-5 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('services') }}"
+                  >Services</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('schools') }}">Schools</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('agents') }}">Agents</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('contact') }}"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+
+            <div class="my-md-3 ml-3">
+              <a
+                class="btn btn-school-light my-2 my-sm-0"
+                href="webforms/file-upload/upload-form.php"
+                target="_blank"
+              >
+                Submit Form
+              </a>
+            </div>
+          </div>
+          <!-- Collapsible wrapper -->
+        </div>
+      </nav>
+    </header>
+
+    <a class="btn up" type="button">
+      <span class="material-icons"> keyboard_arrow_up </span>
+    </a>
+
+    <main>{% block body %}{% endblock %}</main>
+
+    <footer class="text-white">
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <p class="footer-header">Why Boarding Schools Experts</p>
+            <ul class="mb-0 b-bullet">
+              <li class="mb-1">
+                We take the responsibility of searching, processing admission
+                and assist in securing study visa for all our students.
+              </li>
+              <li class="mb-1">
+                We help parents and students get the best options available in
+                term of academic and financial expectations.
+              </li>
+              <li class="mb-1">
+                We organize pre-departure briefing for all our students.
+              </li>
+              <li class="mb-1">
+                We assure parents of continuous assistance during the child
+                studies in our partners’ schools.
+              </li>
+              <li class="mb-1">
+                We also offer Family and student advisory services all through
+                the academic years of your children and wards.
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-4 mt-4 mt-lg-0 mb-4 mb-md-0 d-flex justify-content-lg-center"
+          >
+            <div>
+              <p class="footer-header">Navigation Links</p>
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="{{ url_for('home') }}" class="b-link">Home</a>
+                </li>
+                <li>
+                  <a href="{{ url_for('about') }}" class="b-link">About Us</a>
+                </li>
+                <li>
+                  <a href="{{ url_for('services') }}" class="b-link"
+                    >Services</a
+                  >
+                </li>
+                <li>
+                  <a href="{{ url_for('schools') }}" class="b-link">Schools</a>
+                </li>
+                <li>
+                  <a href="{{ url_for('agents') }}" class="b-link">Agents</a>
+                </li>
+                <li>
+                  <a href="{{ url_for('contact') }}" class="b-link"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-5 mb-4 mb-md-0 mt-4 mt-lg-0">
+            <p class="footer-header">Enquiries</p>
+            <div class="d-flex justify-content-start align-items-center mb-2">
+              <i class="fas fa-phone-alt mr-3"></i>
+              <p class="adf-text mb-0">+234 814 849 3618</p>
+            </div>
+            <div class="d-flex justify-content-start align-items-center mb-2">
+              <i class="fas fa-envelope mr-3"></i>
+              <p class="adf-text mb-0">info@boardingschoolsexperts.com</p>
+            </div>
+            <div class="d-flex justify-content-start align-items-start">
+              <i class="fas fa-map-marker-alt mr-3"></i>
+              <p class="adf-text mb-0">
+                7, Aje Street, Sabo-Yaba, Lagos, Nigeria
+              </p>
+            </div>
+
+            <div class="d-flex justify-content-start mt-4">
+              <a
+                href="https://web.facebook.com/Boarding-Schools-Experts-102632928407518"
+                class="icon-link"
+                target="_blank"
+              >
+                <div class="ring"><i class="fab fa-facebook-f"></i></div>
+              </a>
+              <a
+                href="https://twitter.com/BSchoolsExperts?s=09"
+                class="icon-link"
+                target="_blank"
+              >
+                <div class="ring"><i class="fab fa-twitter"></i></div>
+              </a>
+              <a
+                href="https://instagram.com/bschoolsexperts?igshid=hvslhw2xpi0m"
+                class="icon-link"
+                target="_blank"
+              >
+                <div class="ring"><i class="fab fa-instagram"></i></div>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/boarding-school-experts/"
+                class="icon-link"
+                target="_blank"
+              >
+                <div class="ring"><i class="fab fa-linkedin-in"></i></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--Grid row-->
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-base text-center small mt-4">
+        <!-- © 2020 Copyright
+        <a class="company-link ml-1" href="http://virtueconsult.com/"
+          >Virtue Consult Ltd</a
+        > -->
+        <p class="mb-0 ft-text">
+          Developed By<a
+            class="ml-1 company-link"
+            href="https://lumosstudio.tech/"
+            target="_blank"
+            >Lumos Studio</a
+          >
+        </p>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Project-->
+
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"
+    ></script>
+
+    <!-- Custom scripts -->
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename = 'js/script.js') }}"
+    ></script>
+  </body>
+</html>

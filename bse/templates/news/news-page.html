@@ -1,0 +1,47 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Boarding School Experts | News 
+{% endblock %} 
+
+{% block body %}
+<div id="news-hb">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="container">
+      <div class="row">
+        <div class="text-center w-100">
+          <p class="bold-text" data-aos="fade-up">News & Announcements</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="nl-wrap px-2">
+  <div class="container">
+    {% for item in news %}
+        <div class="row mtop">
+            <div class="col-md-3">
+                <a href="">
+                    <img src="{{ item.thumbnail }}" class="w-100" alt="News thumbnail" />
+                    <div class="date mt-3">{{ item.date.strftime('%Y-%m-%d') }}</div>
+                </a>
+            </div>
+            <div class="col-md-9 pl-xl-4">
+                <a href="">
+                    <div class="news-heading mb-2">
+                        {{ item.title }}
+                    </div>
+                    <div class="date2 mb-4">By: {{ item.author }}</div>
+                    <p class="news-text">
+                        {{ item.excerpt }}...
+                    </p>
+                </a>
+            </div>
+            <div class="col-12 my-0">
+                <hr class="bse-line" />
+            </div>
+        </div>
+    {% endfor %}    
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base-dashboard.html' %}
+
+{% block title %}
+Boarding School Experts | Admin Dasboard
+{% endblock %}
+
+{% block style %}{% endblock %}
+
+{% block body %}  
+  <div class="container">
+    <div class="col-xl-10 my-4 mx-auto px-0">
+      <div class="text-md-center mb-4">
+        <p class="form-bold mb-0 px-3">Create News Article</p>
+      </div>
+      <form action="/upload_article" method="POST" enctype=multipart/form-data id="create-article">
+        <div class="row pt-2">
+          <div class="col-md-6 mt-2">
+            <div class="form-outline">                
+              <input type="text" id="title" name="title" class="form-control"  />
+              <label class="form-label" for="title">Article Title</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2">
+            <div class="form-outline">                
+              <input type="text" id="author" name="author" class="form-control"/>
+              <label class="form-label" for="author">Author Name</label>
+            </div>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-6 mt-4">
+            <div>
+              <label for="thumbnail" class="form-label">Upload Thumbnail Image for Article</label>
+              <input type="file" class="form-control" id="thumbnail" name="thumbnail" />    
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-outline my-4">                
+              <textarea name="excerpt" rows="5" class="form-control"
+                placeholder="Enter excerpt here..."></textarea>
+                <label class="form-label" for="excerpt">Article Excerpt</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-outline mb-4">                
+              <textarea name="article" rows="10" class="form-control"
+                placeholder="Enter article here..."></textarea>
+                <label class="form-label" for="article">Article</label>
+            </div>
+          </div>      
+          <div class="px-2 col-12">
+            <input type="submit" class="btn btn-school" value="publish article" />
+          </div>
+        </div>
+      </form>
+    </div>    
+  </div>  
+{% endblock %}

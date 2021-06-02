@@ -1,0 +1,124 @@
+
+  {% extends 'base.html' %}
+  
+  {% block title %}
+  Boarding School Experts | Contact Us
+  {% endblock %}
+  
+  {% block body %}
+  <section id="c-hb">
+    <hr class="section-bar">
+    <div class="row px-xl-6">
+      <div class="col-md-4 a-box">
+        <div class="mb-0">
+          <i class="fas fa-phone-alt fa-2x"></i>
+        </div>
+        <p class="ca-title">call us</p>
+        <p class="ca-text">+234 814 849 3618</p>
+      </div>
+      <div class="col-md-4 a-box">
+        <div class="mb-0">
+          <i class="fas fa-envelope fa-2x"></i>
+        </div>
+        <p class="ca-title">email</p>
+        <p class="ca-text"><a href="mailto:info@boardingschoolsexperts.com" target="_blank">info@boardingschoolsexperts.com</a></p>
+      </div>
+      <div class="col-md-4 a-box">
+        <div class="mb-0">
+          <i class="fas fa-map-marker-alt fa-2x"></i>
+        </div>
+        <p class="ca-title">address</p>
+        <p class="ca-text">7, Aje Street, Sabo-Yaba, Lagos, Nigeria</p>
+      </div>
+    </div>
+    <div class="container pt-5">
+      <div class="my-5 text-center">
+        <p class="section-title">Contact Us</p>
+        <p class="mb-0" style="font-weight: 400">
+          Reach us through any of our channels. We will be happy to engage
+          with you.
+        </p>
+      </div>   
+      <div
+        class="col-lg-10 col-xl-7 mx-auto px-0 contact-form">
+        <form id="contact-form" method="POST" action="contact-form.php">          
+          <div class="row pt-3">
+            <div class="col-md-12">
+              <div class="md-form mb-0">
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  class="form-control fullname"
+                />
+                <label for="fullname" class="">Name</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="md-form mb-0">
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  class="form-control email"
+                />
+                <label for="email" class="">Email</label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="md-form mb-0">
+                <input
+                  name="phone"
+                  id="phone"
+                  type="tel"
+                  class="form-control phone"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="md-form">
+                <textarea
+                  type="text"
+                  id="message"
+                  name="message"
+                  rows="4"
+                  class="form-control md-textarea message"
+                ></textarea>
+                <label for="message">Message</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="errors"></div>
+
+          <div class="text-md-left">
+            <button
+              class="btn btn-school ml-0"
+              id="submit"
+              type="submit"
+              name="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <!-- <div id="msg_submitting" class="text-center">
+          <h2>Submitting...</h2>
+        </div>
+        <div id="msg_submitted" class="text-center">
+          <h2>
+            Thank you!<br />
+            The form was submitted Successfully.
+          </h2>
+        </div> -->
+      </div>
+    </div>
+  </section>
+{% endblock %}
+   

@@ -1,0 +1,359 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Boarding School Experts | Services
+{% endblock %} 
+
+{% block body %}
+<div id="schools-hb">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="container">
+      <div class="row intro">
+        <div class="mt-5 mb-4 text-md-center w-100 px-2">
+          <p class="bold-text2" data-aos="fade-up">Our Schools</p>
+        </div>
+        <div class="col-md-6 mt-2" data-aos="fade-right" data-aos-delay="750">
+          <div class="col-md-10 px-0">
+            <p class="des-text2">
+              We are proud to be partners with premium schools around the world.
+            </p>
+            <div class="col-md-9 px-0">
+              <a href="#countries" class="btn btn-school-light btn-lg btn-block"
+                >Find a school</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-md-6 mt-5 mt-md-2"
+          data-aos="fade-left"
+          data-aos-delay="750"
+        >
+          <div class="col-md-12 col-xl-10 px-0 ml-auto">
+            <p class="des-text2">
+              Want to increase your reach?<br />Take some time to reach out to
+              us today!
+            </p>
+            <div class="col-md-9 px-0">
+              <a
+                href="webforms/schools-form/schools-form.php"
+                class="btn btn-school btn-lg btn-block"
+              >
+                Partner With Us</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="mb-0 mt-5 my-md-5 text-md-center">
+    <p class="section-title" style="letter-spacing: normal">
+      Complete Admission Process With
+      <span class="our-site"><em>boardingschoolsexperts.com</em></span>
+    </p>
+  </div>
+  <div class="mt-2 mt-md-4">
+    <div class="row justify-content-center">
+      <div class="col-md-4 text-center mt-3 mt-md-0" data-aos="zoom-in">
+        <div class="outline">
+          <img
+            src="{{ url_for('static', filename='images/svg/find-school.svg') }}"
+            class="outline-image"
+            alt="Application process graphic"
+          />
+        </div>
+        <div>
+          <div
+            class="row align-items-center mx-auto mb-2"
+            style="width: fit-content"
+          >
+            <div class="num mr-2">1</div>
+            <div class="num-title">Find A School</div>
+          </div>
+          <div class="mx-auto">
+            <p class="num-text">
+              Take time to go through our premium schools. Select a school and
+              download the application form.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-none d-md-flex col-md-4 row align-items-center"
+        data-aos="zoom-in"
+        data-aos-delay="450"
+      >
+        <img
+          src="{{ url_for('static', filename='images/svg/arrow.svg') }}"
+          class="l-r"
+          alt="Application process arrow"
+        />
+      </div>
+      <div
+        class="d-md-none col-md-4 row mt-3 mt-md-0 justify-content-center"
+        data-aos="zoom-in"
+        data-aos-delay="450"
+      >
+        <img
+          src="{{ url_for('static', filename='images/svg/arrow2.svg') }}"
+          class="t-b"
+          alt="Application process arrow"
+        />
+      </div>
+      <div
+        class="col-md-4 text-center mt-3 mt-md-0"
+        data-aos="zoom-in"
+        data-aos-delay="900"
+      >
+        <div class="outline">
+          <img
+            src="{{ url_for('static', filename='images/svg/apply.svg') }}"
+            class="outline-image"
+            alt="Application process graphic"
+          />
+        </div>
+        <div>
+          <div
+            class="row align-items-center mx-auto mb-2"
+            S
+            style="width: fit-content"
+          >
+            <div class="num mr-2">2</div>
+            <div class="num-title">Apply To A School</div>
+          </div>
+          <div class="mx-auto">
+            <p class="num-text">
+              Send back the downloaded application form filled with supporting
+              documents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="d-none d-md-flex col-md-4"></div>
+      <div class="d-none d-md-flex col-md-4"></div>
+      <div
+        class="col-md-4 row justify-content-center mt-3 mt-md-0"
+        data-aos="zoom-in"
+        data-aos-delay="1250"
+      >
+        <img
+          src="{{ url_for('static', filename='images/svg/arrow2.svg') }}"
+          class="t-b"
+          alt="Application process arrow"
+        />
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div
+        class="col-md-4 text-center mt-3 mt-md-0 order-3 order-md-1"
+        data-aos="zoom-in"
+        data-aos-delay="2600"
+      >
+        <div class="outline">
+          <img
+            src="{{ url_for('static', filename='images/svg/receive-visa.svg') }}"
+            class="outline-image"
+            alt="Application process graphic"
+          />
+        </div>
+        <div>
+          <div
+            class="row align-items-center mx-auto mb-2"
+            style="width: fit-content"
+          >
+            <div class="num mr-2">4</div>
+            <div class="num-title">Visa Process</div>
+          </div>
+          <div class="mx-auto">
+            <p class="num-text">
+              The Visa process is started after the financial obligation to the
+              school has been completed and the required documents for visa
+              processing have been received from the school.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-none d-md-flex col-md-4 row align-items-center order-2"
+        data-aos="zoom-in"
+        data-aos-delay="2150"
+      >
+        <img
+          src="{{ url_for('static', filename='images/svg/arrow3.svg') }}"
+          class="l-r"
+          alt="Application process arrow"
+        />
+      </div>
+      <div
+        class="d-md-none col-md-4 mt-3 mt-md-0 row justify-content-center order-2"
+        data-aos="zoom-in"
+        data-aos-delay="2150"
+      >
+        <img
+          src="{{ url_for('static', filename='images/svg/arrow2.svg') }}"
+          class="t-b"
+          alt="Application process arrow"
+        />
+      </div>
+      <div
+        class="col-md-4 text-center mt-3 mt-md-0 order-1 order-md-3"
+        data-aos="zoom-in"
+        data-aos-delay="1700"
+      >
+        <div class="outline">
+          <img
+            src="{{ url_for('static', filename='images/svg/receive-offer.svg') }}"
+            class="outline-image"
+            alt="Application process graphic"
+          />
+        </div>
+        <div>
+          <div
+            class="row align-items-center mx-auto mb-2"
+            S
+            style="width: fit-content"
+          >
+            <div class="num mr-2">3</div>
+            <div class="num-title">Receive An Offer Letter</div>
+          </div>
+          <div class="mx-auto">
+            <p class="num-text">
+              The application is submitted and reviewed. A decision is made. An
+              offer letter is sent for a successful application.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-5 section-title text-center"
+      style="letter-spacing: normal; color: #022c18"
+    >
+      Total support by
+      <span style="color: #9fbe49">Boarding Schools Experts</span> during the
+      entire process.
+    </div>
+  </div>
+  <div id="countries">
+    <hr />
+  </div>
+  <div class="row justify-content-center mb-3 mb-md-5">
+    <div class="col-md-4 px-5 py-3 p-md-4 px-lg-5 pt-lg-5 pb-lg-2">
+      <a
+        href="#"
+        class="sl-text"
+        role="button"
+        data-toggle="modal"
+        data-target="#irish-link"
+      >
+        <div class="text-center">
+          <img
+            src="{{ url_for('static', filename='images/ireland-flag.png') }}"
+            class="w-100 ib"
+            alt="Country flag"
+          />
+          <p class="mt-3">Irish Schools</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-4 px-5 py-3 p-md-4 px-lg-5 pt-lg-5 pb-lg-2">
+      <a href="schools-display-uk.html" class="sl-text">
+        <div class="text-center">
+          <img
+            src="{{ url_for('static', filename='images/uk-flag.png') }}"
+            class="w-100 ib"
+            alt="Country flag"
+          />
+          <p class="mt-3">UK Schools</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="irish-link"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header text-center mb-4">
+        <h4
+          class="modal-title white-text font-weight-bold w-100 py-2 px-5"
+          id="modal-title"
+        >
+          Our Irish Partner Schools
+        </h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-2 mx-lg-5">
+        <div class="row align-items-center">
+          <div class="col-md-1 col-lg-2"></div>
+          <div class="col-6 col-md-5 col-lg-4 text-center">
+            <img
+              src="{{ url_for('static', filename='images/site-logo2.png') }}"
+              class="w-75"
+              alt=""
+            />
+          </div>
+          <div class="col-6 col-md-5 col-lg-4 text-center">
+            <img
+              src="{{ url_for('static', filename='images/birchwater-logo.png') }}"
+              class="w-75"
+              alt=""
+            />
+          </div>
+          <div class="col-md-1 col-lg-2"></div>
+        </div>
+        <div class="mt-4 text-center">
+          <h4 id="partnership-text" style="font-weight: 400; line-height: 1.3">
+            <span class="show" style="color: #004a29"
+              >Boarding Schools Experts</span
+            >
+            is in partnership with
+            <span class="show" style="color: #0f6c6d"
+              >Birchwater Education</span
+            >
+            in recruiting students for Irish Schools
+          </h4>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a
+          class="btn btn-school-light waves-effect"
+          href="https://www.bwe.ie/irishhighschools/"
+          target="_blank"
+          role="button"
+          rel="noopener noreferrer"
+          >Continue to irish schools page</a
+        >
+        <button type="button" class="btn btn-dark" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

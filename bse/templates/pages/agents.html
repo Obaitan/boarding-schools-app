@@ -1,0 +1,152 @@
+
+  {% extends 'base.html' %}
+  
+  {% block title %}
+  Boarding School Experts | Agents
+  {% endblock %}
+  
+  {% block body %}
+  <div id="agent-hb">
+    <div
+      class="mask rgba-black-light d-flex justify-content-center align-items-center h-100"
+    >
+      <div class="container">
+        <div class="row intro">
+          <div class="col-lg-10 mb-4 pr-lg-5 mt-5">
+            <p class="bold-text2 mb-2" data-aos="fade-right">
+              Let's Help Place Your Students
+            </p>
+            <p
+              class="des-text2 mr-lg-5"
+              data-aos="fade-right"
+              data-aos-delay="550"
+            >
+              Give your students the opportunity to study at premium
+              boarding schools. Application processing, visa processing,
+              pre-departure briefing and arrival all made easy.
+            </p>
+            <a
+              href="webforms/agents-form/agents-form.php"
+              class="btn btn-white btn-lg ml-0"
+              data-aos="fade-up"
+              data-aos-delay="1000"
+              >Work With Us</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="benefits">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-title">Benefits of Working With Us</p>
+      </div>
+      <div class="d-flex justify-content-center flex-wrap mt-4">
+        <div
+          class="col-md-4 p-3 p-lg-5 pb-0 pb-md-2 mt-3 mt-md-2 mt-lg-0"
+          data-aos="fade-up"
+        >
+          <div class="text-center">
+            <div class="icon-wrap">
+              <img
+                src="{{ url_for('static', filename='images/svg/access.svg') }}"
+                class="ab-icon"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="news-title mt-3">
+              <p class="bsb-text">Opportunity To Access Premium Schools</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 p-3 p-lg-5 pb-0 pb-md-2 mt-3 mt-md-2 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div class="text-center">
+            <div class="icon-wrap">
+              <img
+                src="{{ url_for('static', filename='images/svg/timely.svg') }}"
+                class="ab-icon"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="news-title mt-3">
+              <p class="bsb-text">
+                Quick Turnaround time For Application Processing
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 p-3 p-lg-5 pb-0 pb-md-2 mt-3 mt-md-2 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <div class="text-center">
+            <div class="icon-wrap">
+              <img
+                src="{{ url_for('static', filename='images/svg/consultancy.svg') }}"
+                class="ab-icon"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="news-title mt-3">
+              <p class="bsb-text">
+                Work With Experienced Boarding School Councellors
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 p-3 p-lg-5 pb-0 pb-md-2 mt-3 mt-md-2 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="900"
+        >
+          <div class="text-center">
+            <div class="icon-wrap">
+              <img
+                src="{{ url_for('static', filename='images/svg/visa.svg') }}"
+                class="ab-icon"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="news-title mt-3">
+              <p class="bsb-text">
+                Visa Processing Advice With Immigration Experts
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-md-4 p-3 p-lg-5 pb-0 pb-md-2 mt-3 mt-md-2 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="1200"
+        >
+          <div class="text-center">
+            <div class="icon-wrap">
+              <img
+                src="{{ url_for('static', filename='images/svg/commission.svg') }}"
+                class="ab-icon"
+                alt="Boarding school benefits icon."
+              />
+            </div>
+            <div class="news-title mt-3">
+              <p class="bsb-text">
+                Earn A Good Commision For Every Student You Place With Us
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+    

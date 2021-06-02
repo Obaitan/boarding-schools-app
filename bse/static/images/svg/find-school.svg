@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="25.664583mm"
+   height="22.600681mm"
+   viewBox="0 0 25.664583 22.600682"
+   version="1.1"
+   id="svg3624"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="find-school.svg">
+  <defs
+     id="defs3618" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="60.45153"
+     inkscape:cy="37.006428"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3621">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-88.465323,-129.91562)">
+    <g
+       id="g4204">
+      <g
+         style="fill:#ff0000"
+         inkscape:label="Layer 1"
+         id="layer1-0"
+         transform="translate(-10.175717,56.693509)">
+        <g
+           style="fill:#ff0000"
+           id="g838"
+           transform="matrix(0.26458333,0,0,0.26458333,97.795384,65.290012)">
+          <g
+             id="g819"
+             transform="matrix(1.0777778,0,0,1.0517529,-2.1927084,9.8911171)"
+             style="fill:#ff0000;fill-opacity:1">
+            <polygon
+               id="polygon815"
+               points="49.5,37.3 49.5,42.1 53.5,44.8 54,44 50.5,41.6 50.5,37.3 "
+               style="fill:#ff0000;fill-opacity:1" />
+            <path
+               id="path817"
+               d="M 93.8,75.4 V 46.2 h -15 v -3.3 l -28.1,-14 v -3.4 h 7.7 v -6.4 h -7.7 v 0 h -1 v 9.7 L 21.2,43.3 v 2.9 H 6.2 V 75.4 H 5 V 79 H 95 V 75.4 Z M 50,35.1 c 3.4,0 6.2,2.8 6.2,6.2 0,3.4 -2.8,6.2 -6.2,6.2 -3.4,0 -6.2,-2.8 -6.2,-6.2 0,-3.4 2.8,-6.2 6.2,-6.2 z M 15.2,71 h -4.5 v -6.4 h 4.5 z m 0,-8.2 h -4.5 v -6.4 h 4.5 z m 6.6,8.2 h -4.5 v -6.4 h 4.5 z m 0,-8.2 h -4.5 v -6.4 h 4.5 z M 49,74.3 H 42.9 V 60 c 0,-1.6 1.3,-3 3,-3 H 49 Z m 8.4,0 H 51 V 57.1 h 3.4 c 1.6,0 3,1.3 3,3 z m 19.8,1.1 H 63.1 V 72.6 H 67 V 54 H 33 v 18.6 h 4 v 2.8 H 22.9 v -2.8 h 3.7 V 54 h -5.4 v -3.1 h 5.4 6.4 34 6.4 5.5 V 54 h -5.5 v 18.6 h 3.8 z M 82.6,71 h -4.5 v -6.4 h 4.5 z m 0,-8.2 h -4.5 v -6.4 h 4.5 z m 6.7,8.2 h -4.5 v -6.4 h 4.5 z m 0,-8.2 h -4.5 v -6.4 h 4.5 z"
+               inkscape:connector-curvature="0"
+               style="fill:#ff0000;fill-opacity:1" />
+          </g>
+        </g>
+      </g>
+      <g
+         style="fill:#000080"
+         inkscape:label="Layer 1"
+         id="layer1-8"
+         transform="matrix(1.1767732,0,0,1.1767732,-90.775572,-117.88223)">
+        <g
+           style="fill:#000080"
+           id="g835"
+           transform="matrix(0.26458333,0,0,0.26458333,158.66135,216.55055)">
+          <g
+             style="fill:#000080"
+             id="g817">
+            <path
+               style="fill:#000080"
+               id="path815"
+               d="M 48.479,41.134 34.166,26.821 c 3.729,-6.889 2.689,-15.674 -3.134,-21.496 -7.099,-7.1 -18.606,-7.1 -25.708,0 -7.099,7.1 -7.099,18.61 0,25.708 5.823,5.824 14.608,6.863 21.497,3.134 l 14.313,14.311 c 2.026,2.029 5.315,2.029 7.345,0 2.029,-2.028 2.029,-5.316 0,-7.344 z M 8.538,27.819 c -5.322,-5.322 -5.322,-13.955 0,-19.283 5.324,-5.322 13.955,-5.322 19.282,0 5.324,5.327 5.324,13.96 0,19.283 -5.327,5.327 -13.958,5.327 -19.282,0 z"
+               inkscape:connector-curvature="0" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

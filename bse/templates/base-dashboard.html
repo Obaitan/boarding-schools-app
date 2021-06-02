@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <title>{% block title %}{% endblock %}</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='images/site-logo.png') }}" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+  <!-- Custom styles -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="sidenav" id="sidenav">
+    <!-- Toggle button -->
+    <div class="group navbar-toggler d-block d-lg-none" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+      aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation" onclick="myFunction(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+
+    <div id="content-wrap">
+      <div class="text-center">
+        <p class="lb-text">Admin Dashboard</p>
+      </div>
+
+      <ul class="menu" id="menu">
+        <li class="side-item">
+          <a href="{{ url_for('dashboard') }}" class="fix ripple active" aria-current="true">
+            <span class="material-icons md-20"> dashboard </span>
+            <span class="mi">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="side-item">
+          <a href="{{ url_for('new_article') }}" class="fix ripple">
+            <span class="material-icons md-20">
+              description
+            </span>
+            <span class="mi">New Article</span>
+          </a>
+        </li>
+        <li class="side-item">
+          <a href="{{ url_for('dashboard_news') }}" class="fix ripple">
+            <span class="material-icons md-20">
+              post_add
+            </span>
+            <span class="mi">Edit/Delete Article</span>
+          </a>
+        </li>
+        <li class="side-item">
+          <a href="ca-pages/devices.html" class="fix ripple">
+            <span class="material-icons md-20">
+              maps_home_work
+            </span>
+            <span class="mi">Add School</span>
+          </a>
+        </li>
+        <li class="side-item">
+          <a href="ca-pages/devices.html" class="fix ripple">
+            <span class="material-icons md-20">
+              maps_home_work
+            </span>
+            <span class="mi">Edit/Delete School</span>
+          </a>
+        </li>
+        <li class="side-item">
+          <a href="{{ url_for('home') }}" class="fix ripple">
+            <span class="material-icons md-20">
+              person
+            </span>
+            <span class="mi">Admin Account</span>
+          </a>
+        </li>
+        <li class="side-item">
+          <a href="{{ url_for('home') }}" class="fix ripple">
+            <span class="material-icons md-20">
+              logout
+            </span>
+            <span class="mi">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="main" class="p-0">
+    <header>
+      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <!-- Container wrapper -->
+        <div class="container">
+          <div class="col pl d-none d-md-block">
+            <a href="#!">
+              <img src="../../static/images/logo.png" class="dash-logo" alt="Logo text" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row">
+          <!-- Icon -->
+          <li class="nav-item">
+            <a class="nav-link me-3 me-lg-0" href="#">
+              <i class="fas fa-cog fa-lg"></i>
+            </a>
+          </li>
+          <!-- Icon -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+              <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="25"
+                alt="" loading="lazy" />
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">My Account</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+    </header>
+
+    <div class="main-content px-2 px-md-4">
+      {% block body %}{% endblock %}
+    </div>
+
+    <footer class="py-4 text-center">
+      <p class="mb-0">
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Virtue Consult. All rights reserved.
+      </p>
+    </footer>
+  </main>
+
+  <!-- JQuery -->
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- Custom scripts -->
+  <script type="text/javascript" src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+</body>
+
+</html>

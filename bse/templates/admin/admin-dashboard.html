@@ -1,0 +1,69 @@
+{% extends 'base-dashboard.html' %}
+
+{% block title %}
+Boarding School Experts | Admin Dasboard
+{% endblock %}
+
+{% block style %}{% endblock %}
+
+{% block body %}
+  <div class="col-xl-9 mx-auto">
+    <div class="row">
+      <div class="col-md-6 py-2 px-3 p-md-3">
+        <a href="{{ url_for('new_article') }}">
+          <div class="palette">
+            <p class="palette-title">New Article</p>
+            <p class="details">Provide New Article Details</p>
+            <div class="text-end">
+              <span class="material-icons md-72 cap-green">
+                description
+              </span>                    
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 py-2 px-3 p-md-3">
+        <a href="{{ url_for('dashboard_news') }}">
+          <div class="palette">
+            <p class="palette-title">Edit/Delete Articles</p>
+            <p class="details">Modify/Delete Existing Articles</p>
+            <div class="text-end">
+              <span class="material-icons md-72 cap-green">
+                post_add
+              </span>                    
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 py-2 px-3 p-md-3">
+        <a href="{{ url_for('new_article') }}">
+          <div class="palette">
+            <p class="palette-title">Add New School</p>
+            <p class="details">Provide Details For New School</p>
+            <div class="text-end">
+              <span class="material-icons md-72 cap-green">
+                maps_home_work
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 py-2 px-3 p-md-3">
+        <a href="{{ url_for('new_article') }}">
+          <div class="palette">
+            <p class="palette-title">Edit/Delete School</p>
+            <p class="details">Modify/Delete School Information</p>
+            <div class="text-end">
+              <span class="material-icons md-72 cap-green">
+                maps_home_work
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>           
+    </div>
+  </div>
+{% endblock %}

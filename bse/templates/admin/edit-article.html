@@ -1,0 +1,34 @@
+{% extends 'base-dashboard.html' %} 
+
+{% block title %} 
+Boarding School Experts | Admin dashboard 
+{% endblock %} 
+
+{% block body %}
+<div class="col-xl-10 my-4 mx-auto px-2">
+  {% for item in news %}
+  <div class="row mtop">
+    <div class="col-md-3">
+      <a href="">
+        <img src="{{ item.thumbnail }}" class="w-100" alt="News thumbnail" />
+        <div class="date mt-3">{{ item.date.strftime('%Y-%m-%d') }}</div>
+      </a>
+    </div>
+    <div class="col-md-9 pl-xl-4">
+      <a href="">
+        <div class="news-heading mb-2">{{ item.title }}</div>
+        <div class="date2 mb-4">By: {{ item.author }}</div>
+        <p class="news-text">{{ item.excerpt }}...</p>
+      </a>
+      <div>
+        <a class="btn btn-school-mellow my-2" href="/admin/dashboard/news/edit/{{ item.id }}"> Edit Article </a>
+        <a class="btn btn-danger my-2" id="del" href="/admin/dashboard/news/delete/{{ item.id }}"> delete Article </a>
+      </div>
+    </div>
+    <div class="col-12 my-0">
+      <hr class="bse-line" />
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
