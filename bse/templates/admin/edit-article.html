@@ -1,34 +1,54 @@
-{% extends 'base-dashboard.html' %} 
+{% extends 'base-dashboard.html' %}
 
-{% block title %} 
-Boarding School Experts | Admin dashboard 
-{% endblock %} 
+{% block title %}
+Boarding School Experts | Admin Dasboard
+{% endblock %}
 
-{% block body %}
-<div class="col-xl-10 my-4 mx-auto px-2">
-  {% for item in news %}
-  <div class="row mtop">
-    <div class="col-md-3">
-      <a href="">
-        <img src="{{ item.thumbnail }}" class="w-100" alt="News thumbnail" />
-        <div class="date mt-3">{{ item.date.strftime('%Y-%m-%d') }}</div>
-      </a>
-    </div>
-    <div class="col-md-9 pl-xl-4">
-      <a href="">
-        <div class="news-heading mb-2">{{ item.title }}</div>
-        <div class="date2 mb-4">By: {{ item.author }}</div>
-        <p class="news-text">{{ item.excerpt }}...</p>
-      </a>
-      <div>
-        <a class="btn btn-school-mellow my-2" href="/admin/dashboard/news/edit/{{ item.id }}"> Edit Article </a>
-        <a class="btn btn-danger my-2" id="del" href="/admin/dashboard/news/delete/{{ item.id }}"> delete Article </a>
+{% block body %}  
+  <div class="container">
+    <div class="col-xl-10 my-4 mx-auto px-0">
+      <div class="text-md-center mb-4">
+        <p class="form-bold mb-0 px-3">Edit News Article</p>
       </div>
-    </div>
-    <div class="col-12 my-0">
-      <hr class="bse-line" />
-    </div>
-  </div>
-  {% endfor %}
-</div>
+      <form action="/admin/dashboard/news/edit/{{ news.id }}" method="POST" enctype=multipart/form-data id="create-article">
+        <div class="row pt-2">
+          <div class="col-md-6 mt-2">
+            <div class="form-outline">                
+              <input type="text" id="title" name="title" class="form-control" value="{{ news.title }}"  />
+              <label class="form-label" for="title">Article Title</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2">
+            <div class="form-outline">                
+              <input type="text" id="author" name="author" class="form-control" value="{{ news.author }}"/>
+              <label class="form-label" for="author">Author Name</label>
+            </div>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-6 mt-4">
+            <div>
+              <label for="thumbnail" class="form-label">Upload Thumbnail Image for Article</label>
+              <input type="file" class="form-control" id="thumbnail" name="thumbnail" value="{{ news.thumbnail }}"/>    
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-outline my-4">                
+              <textarea name="excerpt" rows="5" class="form-control"
+                placeholder="Enter excerpt here...">{{ news.excerpt }}</textarea>
+                <label class="form-label" for="excerpt">Article Excerpt</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-outline mb-4">                
+              <textarea name="article" rows="10" class="form-control"
+                placeholder="Enter article here...">{{ news.article }}</textarea>
+                <label class="form-label" for="article">Article</label>
+            </div>
+          </div>      
+          <div class="px-2 col-12">
+            <input type="submit" class="btn btn-school" value="save article" />
+          </div>
+        </div>
+      </form>
+    </div>    
+  </div>  
 {% endblock %}

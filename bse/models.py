@@ -17,3 +17,13 @@ class News(db.Model):
 
     def __repr__(self):
         return f'News {self.name}'
+
+
+class Country(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False, unique=True)
+    flag = db.Column(db.Text, nullable=False, unique=True)
+    mimetype = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f'News {self.name}'
