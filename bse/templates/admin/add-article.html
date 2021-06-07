@@ -12,37 +12,37 @@ Boarding School Experts | Admin Dasboard
       <div class="text-md-center mb-4">
         <p class="form-bold mb-0 px-3">Create News Article</p>
       </div>
-      <form action="/upload_article" method="POST" enctype=multipart/form-data id="create-article">
+      <form action="/upload_article" method="POST" enctype=multipart/form-data class="admin-forms">
         <div class="row pt-2">
-          <div class="col-md-6 mt-2">
-            <div class="form-outline">                
-              <input type="text" id="title" name="title" class="form-control"  />
+          <div class="col-md-12 mt-4">
+            <div class="form-outline">
+              <textarea name="title" rows="2" class="form-control" placeholder="Enter excerpt here..." style="text-transform: capitalize;" required></textarea>
               <label class="form-label" for="title">Article Title</label>
             </div>
-          </div>
-          <div class="col-md-6 mt-2">
+          </div>         
+          <div class="col-md-12 mt-4">
             <div class="form-outline">                
-              <input type="text" id="author" name="author" class="form-control"/>
+              <input type="text" id="author" name="author" class="form-control" style="text-transform: capitalize;" required/>
               <label class="form-label" for="author">Author Name</label>
             </div>
           </div>
           <div class="col-md-10 col-lg-8 col-xl-6 mt-4">
             <div>
               <label for="thumbnail" class="form-label">Upload Thumbnail Image for Article</label>
-              <input type="file" class="form-control" id="thumbnail" name="thumbnail" />    
+              <input type="file" class="form-control" id="thumbnail" name="thumbnail" required/>    
             </div>
           </div>
           <div class="col-12">
             <div class="form-outline my-4">                
               <textarea name="excerpt" rows="5" class="form-control"
-                placeholder="Enter excerpt here..."></textarea>
+                placeholder="Enter excerpt here..." maxlength="350" required></textarea>
                 <label class="form-label" for="excerpt">Article Excerpt</label>
             </div>
           </div>
           <div class="col-12">
             <div class="form-outline mb-4">                
               <textarea name="article" rows="10" class="form-control"
-                placeholder="Enter article here..."></textarea>
+                placeholder="Enter article here..." required></textarea>
                 <label class="form-label" for="article">Article</label>
             </div>
           </div>      

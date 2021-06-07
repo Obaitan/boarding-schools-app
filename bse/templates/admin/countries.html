@@ -1,0 +1,58 @@
+{% extends 'base-dashboard.html' %} 
+
+{% block title %} 
+Boarding School Experts | Admin Dasboard 
+{% endblock %} 
+
+{% block body %}
+<div class="col-xl-11 mx-auto px-2">
+  <div class="row mt-5">
+    {% for country in countries %}
+      <div class="col-md-6 col-xl-4 p-2 mt-4">              
+        <div class="text-center sl-text2">
+          <img src="{{ url_for('uploaded', filename=country.imageName) }}" class="w-100" alt="Country flag" />
+          <p class="mt-2 mb-0" style="text-transform: capitalize;">{{ country.name }} Schools</p>
+        </div> 
+        <div class="text-center">        
+          <a class="btn btn-danger my-3" class="del" href="/admin/dashboard/country/delete/{{ country.id }}">delete</a>
+        </div>
+      </div>
+    {% endfor %}    
+  </div>  
+  <a class="btn btn-yellow my-2 fixed-button" data-mdb-toggle="modal" type="button" data-mdb-target="#formModal" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;">
+    Add Country
+  </a>  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">          
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/admin/dashboard/country/add" method="POST" enctype=multipart/form-data class="mx-2 my-3 mx-md-4 my-md-4">
+            <div class="row">
+              <div class="col-md-12 mt-4">
+                <div class="form-outline">
+                  <input type="text" name="name" class="form-control" style="text-transform: capitalize;" required />
+                  <label class="form-label" for="name">Country</label>
+                </div>
+              </div>
+              <div class="col-md-12 my-4">
+                <div>
+                  <label for="flag" class="form-label">Upload Country Flag Image</label>
+                  <input type="file" class="form-control" name="flag" required />
+                </div>
+              </div>
+              <div class="col-12">
+                <input type="submit" class="btn btn-school" value="Add Country" />
+              </div>
+            </div>
+          </form>
+        </div>        
+      </div>
+    </div>
+  </div> 
+</div>
+{% endblock %}

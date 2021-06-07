@@ -264,18 +264,20 @@ Boarding School Experts | Services
         </div>
       </a>
     </div>
-    <div class="col-md-4 px-5 py-3 p-md-4 px-lg-5 pt-lg-5 pb-lg-2">
-      <a href="schools-display-uk.html" class="sl-text">
-        <div class="text-center">
-          <img
-            src="{{ url_for('static', filename='images/uk-flag.png') }}"
-            class="w-100 ib"
-            alt="Country flag"
-          />
-          <p class="mt-3">UK Schools</p>
-        </div>
-      </a>
-    </div>
+    {% for country in countries %}
+      <div class="col-md-4 px-5 py-3 p-md-4 px-lg-5 pt-lg-5 pb-lg-2">
+        <a href="schools-display-uk.html" class="sl-text">
+          <div class="text-center">
+            <img
+              src="{{ url_for('uploaded', filename=country.imageName) }}"
+              class="w-100 ib"
+              alt="Country flag"
+            />
+            <p class="mt-3" style="text-transform: capitalize;">{{ country.name }} Schools</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
   </div>
 </div>
 

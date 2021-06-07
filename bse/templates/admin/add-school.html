@@ -1,0 +1,216 @@
+{% extends 'base-dashboard.html' %}
+
+{% block title %}
+Boarding School Experts | Admin Dasboard
+{% endblock %}
+
+{% block body %}  
+  <div class="container">
+    <div class="col-xl-10 my-4 mx-auto px-0">
+      <div class="text-md-center mb-4">
+        <p class="form-bold mb-0 px-3">Add New School</p>
+      </div>
+      <form action="/upload_article" method="POST" enctype=multipart/form-data class="admin-forms">
+        <div class="row pt-2">
+          <div class="col-md-6 mt-4">
+            <div class="form-outline">
+              <input type="text" name="name" class="form-control" style="text-transform: capitalize;" required />
+              <label class="form-label" for="name">School Name</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-4">
+            <div class="form-outline">                
+              <input type="text" name="country" class="form-control" style="text-transform: capitalize;" required/>
+              <label class="form-label" for="country">Country</label>
+            </div>
+          </div>
+          <div class="col-md-4 mt-4">
+            <div class="form-outline">
+              <input type="text" name="colour1" class="form-control" required />
+              <label class="form-label" for="colour1">Theme Colour 1</label>
+            </div>
+          </div>
+          <div class="col-md-4 mt-4">
+            <div class="form-outline">
+              <input type="text" name="colour2" class="form-control" required />
+              <label class="form-label" for="colour2">Theme Colour 2</label>
+            </div>
+          </div>
+          <div class="col-md-4 mt-4">
+            <label for="type">Options:</label>
+            <select name="type" class="input-type" required>
+              <option value="co-ed">Co-Educational</option>
+              <option value="girls">Girls Only</option>
+              <option value="Boys">Boys Only</option>              
+            </select>
+          </div>
+          <div class="col-md-4 mt-4">
+            <div class="form-outline">
+              <input type="number" name="population" class="form-control" required />
+              <label class="form-label" for="population">School Population</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-4">
+            <div class="form-outline">
+              <input name="website" class="form-control" required type="url" />
+              <label class="form-label" for="website">School Website</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-outline mt-4">                
+              <textarea name="address" rows="2" class="form-control"
+                required></textarea>
+                <label class="form-label" for="address">School Address</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-outline mt-4">
+              <textarea name="about" rows="8" class="form-control" required></textarea>
+              <label class="form-label" for="about">Introduction Text For School</label>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <p class="form-section-heading">Attach Documents</p>
+            
+          </div>
+
+          <div class="col-md-10 col-xl-6 mt-4">
+            <div class="attachment-row">
+              <label for="pix" class="form-label show2">Upload School Logo & Images</label>
+              <input type="file" class="input-field" name="pix[]" accept="image/*" style="cursor: pointer" />
+            </div>
+            <div onClick="addMoreAttachment();" class="icon-add-more-attachemnt" title="Add More Attachments">
+              <img src="{{ url_for('static', filename='images/add.png') }}" alt="Add More Attachments" />
+            </div>
+
+            <!-- <div>
+              
+              <input type="file" class="form-control" name="pix" multiple required/>
+            </div> -->
+          </div>
+          <div class="mt-5 text-center">
+            <p class="mb-2 show2">School Programmes</p>
+          </div>          
+          <div class="col-12">
+            <div class="form-outline">
+              <textarea name="facilities" rows="4" class="form-control" required></textarea>
+              <label class="form-label" for="facilities">Boarding Facilities</label>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <div class="form-outline">
+              <textarea name="academics" rows="4" class="form-control" required></textarea>
+              <label class="form-label" for="academics">Academic Programmes</label>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <div class="form-outline">
+              <textarea name="extra" rows="4" class="form-control" required></textarea>
+              <label class="form-label" for="extra">Extra-Curricular Activities</label>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <div class="form-outline">
+              <textarea name="pastoral" rows="4" class="form-control" required></textarea>
+              <label class="form-label" for="pastoral">Pastoral Care</label>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <div class="col-lg-6">
+              <div class="form-outline">
+                <input type="text" name="one" class="form-control" />
+                <label class="form-label" for="one">Heading 1</label>
+              </div>  
+            </div>
+            <div class="form-outline mt-2">
+              <textarea name="others1" rows="4" class="form-control"></textarea>
+              <label class="form-label" for="others1">Body1</label>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <div class="col-lg-6">
+              <div class="form-outline">
+                <input type="text" name="two" class="form-control" />
+                <label class="form-label" for="two">Heading 2</label>
+              </div>
+            </div>
+            <div class="form-outline mt-2">
+              <textarea name="others2" rows="4" class="form-control"></textarea>
+              <label class="form-label" for="others2">Body2</label>
+            </div>
+          </div>
+          <div class="mt-5 text-center">
+            <p class="mb-0 show2">YouTube Video Links</p>
+          </div>          
+          <div class="col-md-6 mt-3">
+            <div class="form-outline">
+              <input type="text" name="link1" class="form-control" type="url" />
+              <label class="form-label" for="link1">YouTube Link 1</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <div class="form-outline">
+              <input type="text" name="link2" class="form-control" type="url" />
+              <label class="form-label" for="link2">YouTube Link 2</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <div class="form-outline">
+              <input type="text" name="link3" class="form-control" type="url" />
+              <label class="form-label" for="link3">YouTube Link 3</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <div class="form-outline">
+              <input type="text" name="link4" class="form-control" type="url" />
+              <label class="form-label" for="link4">YouTube Link 4</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <div class="form-outline">
+              <input type="text" name="link5" class="form-control" type="url" />
+              <label class="form-label" for="link5">YouTube Link 5</label>
+            </div>
+          </div>
+          <div></div>
+          <div class="col-md-10 col-xl-6 mt-4">
+            <div>
+              <label for="youtube" class="form-label show2">Upload YouTube Thumbnail Images</label>
+              <input type="file" class="form-control" name="youtube" multiple/>
+            </div>
+          </div> 
+          <div class="mt-4"></div>         
+          <div class="col-md-10 col-xl-6">
+            <div>
+              <label for="form" class="form-label show2">Upload Application Form</label>
+              <input type="file" class="form-control" name="form"/>
+            </div>
+          </div>
+          <div class="col-md-10 col-xl-6 mt-2">
+            <div>
+              <label for="fees" class="form-label show2">Upload Fees Form</label>
+              <input type="file" class="form-control" name="fees" />
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <div class="form-outline">
+              <input name="formLink" class="form-control" type="text" />
+              <label class="form-label" for="formLink">Application Link</label>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <div class="form-outline">
+              <input name="feesLink" class="form-control" type="text" />
+              <label class="form-label" for="feesLink">Fees Form Link</label>
+            </div>
+          </div>
+
+          <div class="px-2 col-12 mt-4">
+            <input type="submit" class="btn btn-school" value="add School" />
+          </div>
+        </div>
+      </form>
+    </div>    
+  </div>  
+{% endblock %}

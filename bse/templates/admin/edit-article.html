@@ -12,15 +12,16 @@ Boarding School Experts | Admin Dasboard
       </div>
       <form action="/admin/dashboard/news/edit/{{ news.id }}" method="POST" enctype=multipart/form-data id="create-article">
         <div class="row pt-2">
-          <div class="col-md-6 mt-2">
-            <div class="form-outline">                
-              <input type="text" id="title" name="title" class="form-control" value="{{ news.title }}"  />
+          <div class="col-md-12 mt-4">
+            <div class="form-outline">
+              <textarea name="title" rows="2" class="form-control"
+                placeholder="Enter excerpt here..."  required>{{ news.title }}</textarea>
               <label class="form-label" for="title">Article Title</label>
-            </div>
+            </div>            
           </div>
-          <div class="col-md-6 mt-2">
+          <div class="col-md-12 mt-4">
             <div class="form-outline">                
-              <input type="text" id="author" name="author" class="form-control" value="{{ news.author }}"/>
+              <input type="text" id="author" name="author" class="form-control" value="{{ news.author }}" style="text-transform: capitalize;" required/>
               <label class="form-label" for="author">Author Name</label>
             </div>
           </div>
@@ -33,19 +34,22 @@ Boarding School Experts | Admin Dasboard
           <div class="col-12">
             <div class="form-outline my-4">                
               <textarea name="excerpt" rows="5" class="form-control"
-                placeholder="Enter excerpt here...">{{ news.excerpt }}</textarea>
+                placeholder="Enter excerpt here..." maxlength="350" required>{{ news.excerpt }}</textarea>
                 <label class="form-label" for="excerpt">Article Excerpt</label>
             </div>
           </div>
           <div class="col-12">
             <div class="form-outline mb-4">                
               <textarea name="article" rows="10" class="form-control"
-                placeholder="Enter article here...">{{ news.article }}</textarea>
+                placeholder="Enter article here..." required>{{ news.article }}</textarea>
                 <label class="form-label" for="article">Article</label>
             </div>
           </div>      
           <div class="px-2 col-12">
-            <input type="submit" class="btn btn-school" value="save article" />
+            <input type="submit" class="btn btn-school mt-2" value="save article" />
+            <a class="btn btn-school-light ml-md-2 mt-2" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;" href="{{ url_for('dashboard') }}">
+              Cancel
+            </a>
           </div>
         </div>
       </form>

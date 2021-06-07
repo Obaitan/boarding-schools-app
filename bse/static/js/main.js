@@ -29,9 +29,7 @@ $(document).ready(function () {
     $(this).addClass("active");
   });
 
-  // Activate DataTable
-  $("#device-table").DataTable();
-  $("#client-table").DataTable();
-  $("#quote-table").DataTable();
-  $("#policy-table").DataTable();
-});
+function addMoreAttachment() {
+  $(".attachment-row:last").clone().insertAfter(".attachment-row:last");
+  $(".attachment-row:last").find("input").val("");
+}

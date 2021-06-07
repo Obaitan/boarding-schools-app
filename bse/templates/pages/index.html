@@ -247,26 +247,26 @@ endblock %} {% block body %}
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
       {% for item in news %}
-      <div class="col p-3 py-lg-4">
-        <div class="d-flex">
-          <div class="col-5 thumbnail-wrap">
-            <img
-              src=""
-              class="w-100"
-              alt="News thumbnail"
-            />
-          </div>
-          <div class="col-7 news-title">
-            <a href="" class="news-link">
-              <p>{{ item.title }}</p>
-            </a>
+        <div class="col p-3 py-lg-4">
+          <div class="d-flex">
+            <div class="col-5 thumbnail-wrap">
+              <img
+                src="{{ url_for('uploaded', filename=item.name) }}"
+                class="w-100"
+                alt="News thumbnail"
+              />
+            </div>
+            <div class="col-7 news-title">
+              <a href="" class="news-link">
+                <p>{{ item.title }}</p>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
       {% endfor %}
     </div>
     <div class="col-md-9 col-lg-6 col-xl-4 mx-auto mt-4 mb-3 px-0">
-      <a href="" class="btn btn-school btn-block">
+      <a href="{{ url_for('news') }}" class="btn btn-school btn-block">
         See All news Articles</a>
     </div>
   </div>

@@ -46,51 +46,27 @@
         </li>
 
         <li class="side-item">
-          <a href="{{ url_for('new_article') }}" class="fix ripple">
-            <span class="material-icons md-20">
-              description
-            </span>
-            <span class="mi">New Article</span>
-          </a>
-        </li>
-        <li class="side-item">
           <a href="{{ url_for('dashboard_news') }}" class="fix ripple">
             <span class="material-icons md-20">
               post_add
             </span>
-            <span class="mi">Edit Articles</span>
+            <span class="mi">News Articles</span>
           </a>
         </li>        
         <li class="side-item">
-          <a href="ca-pages/devices.html" class="fix ripple">
+          <a href="{{ url_for('new_school') }}" class="fix ripple">
             <span class="material-icons md-20">
               maps_home_work
             </span>
-            <span class="mi">Add School</span>
+            <span class="mi">Schools</span>
           </a>
-        </li>
+        </li>             
         <li class="side-item">
-          <a href="ca-pages/devices.html" class="fix ripple">
-            <span class="material-icons md-20">
-              maps_home_work
-            </span>
-            <span class="mi">Edit Schools</span>
-          </a>
-        </li>
-        <li class="side-item">
-          <a href="ca-pages/devices.html" class="fix ripple">
+          <a href="{{ url_for('country') }}" class="fix ripple">
             <span class="material-icons md-20">
               flag
             </span>
-            <span class="mi">Add Country</span>
-          </a>
-        </li>
-        <li class="side-item">
-          <a href="ca-pages/devices.html" class="fix ripple">
-            <span class="material-icons md-20">
-              flag
-            </span>
-            <span class="mi">Edit Countries</span>
+            <span class="mi">Countries</span>
           </a>
         </li>
         <li class="side-item">
@@ -115,12 +91,12 @@
 
   <main id="main" class="p-0">
     <header>
-      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <nav id="main-navbar" class="navbar navbar-expand-md navbar-light bg-white fixed-top">
         <!-- Container wrapper -->
         <div class="container">
           <div class="col pl d-none d-md-block">
             <a href="#!">
-              <img src="../../static/images/logo.png" class="dash-logo" alt="Logo text" />
+              <img src="{{ url_for('static', filename='images/logo.png') }}" class="dash-logo" alt="Logo text" />
             </a>
           </div>
         </div>
@@ -151,7 +127,7 @@
       </nav>
     </header>
 
-    <div class="main-content px-3 px-md-4">
+    <div class="main-content px-2 px-md-4">
       {% block body %}{% endblock %}
     </div>
 

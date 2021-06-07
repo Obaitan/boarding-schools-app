@@ -41,6 +41,16 @@ main {
   box-shadow: none;
 }
 
+
+.btn-yellow {
+  color: #fff;
+  background-color: yellowgreen !important;
+}
+
+.btn-yellow:hover {
+  color: #fff;
+}
+
 .btn-school {
   color: #fff;
   background-color: #003116 !important;
@@ -258,7 +268,7 @@ nav {
 }
 
 .modal-header {
-  background-color: #9fbe49;
+  background-color: #9fbe49 !important;
   box-shadow: none !important;
 }
 
@@ -444,13 +454,26 @@ news pages
 }
 /* news_page.html */
 
-/* add_article.html */
-#create-article {
+/* admin */
+.admin-forms {
   background-color: white;
   box-shadow: 1px 4px 8px 0px rgba(0, 0, 0, 0.12);
   padding: 3.5rem;
 }
-/* add_article.html */
+
+.fixed-button {
+  position: fixed;
+  top: 100px;
+  right: 10px;
+}
+
+.input-type {
+  padding: 0.33em 1em;
+  border-radius: 0.25rem;
+  transition: all 0.2s linear;
+  border: 1px solid #bdbdbd;
+}
+/* admin */
 
 /* Footer */
 footer {
@@ -630,19 +653,19 @@ footer {
 }
 
 /* Admin Pages */
-#del {
+.del {
   position: relative;
   left: 10px;
 }
 
 .btn-school-mellow {
-       font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.05rem;
-    border-radius: 0.25rem;
-    box-shadow: none;
-    color: #fff;
-    background-color: #9abb41;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  color: #fff;
+  background-color: #9abb41;
 }
 
 .btn-school-mellow:hover {
@@ -741,10 +764,16 @@ footer {
   transform: translateY(-5px);
 }
 
-.sl-text {
+.sl-text,
+.sl-text2 {
   color: #012213;
   font-size: 1rem;
   font-weight: 500;
+}
+
+.sl-text2 {
+  color: #9fbe49;
+  font-size: 1.1rem;
 }
 
 .sl-text:hover {
@@ -836,8 +865,12 @@ footer {
   padding: 3rem;
 }
 
-.show {
+.show, .show2 {
   font-weight: 500;
+}
+
+.show2{
+  color: #9abb41;
 }
 
 #offering {
@@ -977,6 +1010,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+  nav {
+    min-height: 55px;
+  }
+
   .logo {
     width: 70px;
     position: relative;
@@ -1321,7 +1358,7 @@ footer {
     font-size: 1.5rem;
   }
 
-  #create-article {
+  .admin-forms {
     padding: 2rem 1.2rem;
   }
 }

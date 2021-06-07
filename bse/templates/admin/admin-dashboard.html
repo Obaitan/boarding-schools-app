@@ -5,13 +5,14 @@ Boarding School Experts | Admin Dasboard
 {% endblock %} 
 
 {% block body %}
-<div class="col-xl-9 mx-auto">
+<div class="col-xl-9 mx-auto px-2">
+  <div class="mt-0 mt-md-5"></div>
   <div class="row">
     <div class="col-md-6 p-2">
-      <a href="{{ url_for('new_article') }}">
+      <a href="{{ url_for('dashboard_news') }}">
         <div class="palette">
-          <p class="palette-title">New Article</p>
-          <p class="details">Provide New Article Details</p>
+          <p class="palette-title">News Articles</p>
+          <p class="details">Add/Edit/Delete News Articles</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> description </span>
           </div>
@@ -20,22 +21,10 @@ Boarding School Experts | Admin Dasboard
     </div>
 
     <div class="col-md-6 p-2">
-      <a href="{{ url_for('dashboard_news') }}">
+      <a href="{{ url_for('new_school') }}">
         <div class="palette">
-          <p class="palette-title">Edit/Delete Articles</p>
-          <p class="details">Modify/Delete Existing Articles</p>
-          <div class="text-end">
-            <span class="material-icons md-60 cap-green"> post_add </span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-6 p-2">
-      <a href="{{ url_for('new_article') }}">
-        <div class="palette">
-          <p class="palette-title">Add New School</p>
-          <p class="details">Provide Details For New School</p>
+          <p class="palette-title">Schools</p>
+          <p class="details">Add/Edit/Delete Schools</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> maps_home_work </span>
           </div>
@@ -44,22 +33,10 @@ Boarding School Experts | Admin Dasboard
     </div>
 
     <div class="col-md-6 p-2">
-      <a href="{{ url_for('new_article') }}">
+      <a href="{{ url_for('country') }}">
         <div class="palette">
-          <p class="palette-title">Edit/Delete School</p>
-          <p class="details">Modify/Delete School Information</p>
-          <div class="text-end">
-            <span class="material-icons md-60 cap-green"> maps_home_work </span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-6 p-2">
-      <a href="{{ url_for('new_article') }}">
-        <div class="palette">
-          <p class="palette-title">Add Country</p>
-          <p class="details">Provide Country Name And Flag</p>
+          <p class="palette-title">Countries</p>
+          <p class="details">Add/Delete Countries</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> flag </span>
           </div>
@@ -68,12 +45,12 @@ Boarding School Experts | Admin Dasboard
     </div>
 
     <div class="col-md-6 p-2">
-      <a href="{{ url_for('new_article') }}">
+      <a href="#!">
         <div class="palette">
-          <p class="palette-title">Edit/Delete Country</p>
-          <p class="details">Modify/Delete Country Information</p>
+          <p class="palette-title">Logout</p>
+          <p class="details">Sign Out of Admin Account</p>
           <div class="text-end">
-            <span class="material-icons md-60 cap-green"> flag </span>
+            <span class="material-icons md-60 cap-green"> logout </span>
           </div>
         </div>
       </a>

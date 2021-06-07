@@ -57,25 +57,41 @@
             <div class="text-center">
               <p class="caption">Admin Login</p>
             </div>
-            <form>
-              <!-- Email input -->
+            <form method="" action="">
+              {{ form.hidden_tag() }}
+
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                      <button class="m1-2 mb-2 close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}              
               <div class="form-outline mb-3">
-                <input type="email" id="loginName" class="form-control" />
+                <input type="email" id="loginName" class="form-control" value="alphaUser"/>
                 <label class="form-label" for="loginName">Username</label>
               </div>
               <!-- Password input -->
               <div class="form-outline mb-3">
-                <input
-                  type="password"
-                  id="loginPassword"
-                  class="form-control"
-                />
+                <input type="password" id="loginPassword" class="form-control" value="weswekGHuTY12$#@wsfjhkj20983" />
                 <label class="form-label" for="loginPassword">Password</label>
               </div>
-              <a
-                href="{{ url_for('dashboard') }}"
-                class="btn btn-school-light btn-block mb-2"
-                >Login
+              <!-- {{ form.username.label() }} -->
+              <!-- {{ form.username(class="form-control mb-3", placeholder="
+              Username...") }} -->
+
+              <!-- {{ form.password.label() }} -->
+              <!-- {{ form.password(class="form-control mb-3", placeholder="
+              Password...") }}  -->
+              
+              <!-- {{ form.submit(class="btn btn-school-light
+              btn-block mb-2") }} -->
+              <a href="{{ url_for('dashboard') }}" class="btn btn-school-light btn-block mb-2">Login
               </a>
             </form>
           </div>
@@ -89,9 +105,9 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
     ></script>
     <!-- Custom scripts -->
-    <script
+    <!-- <script
       type="text/javascript"
       src="{{ url_for('static', filename = 'js/admin.js') }}"
-    ></script>
+    ></script> -->
   </body>
 </html>
