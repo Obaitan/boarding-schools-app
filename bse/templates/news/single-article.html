@@ -1,79 +1,67 @@
-{% extends 'base.html' %} {% block title %} Boarding School Experts | News {%
-endblock %} {% block body %}
-<div id="news-item">
-  <div class="container px-3 px-md-4">
-    <div class="row">
-      <div class="col-lg-9">
-        <div class="row">
-            <div class="col-3">
-                <img src="{{ url_for('static', filename='images/boys.jpg') }}" class="w-100" alt="News thumbnail" />                
-            </div> 
-            <div class="col-9 news-heading mb-2">
-                Study Abroad in Maine? #1 Safest State in the US
-                <div class="date mt-3">21 JANUARY, 2021</div>
-                <div class="date2 mt-2">By Mr. Macaroni Pimp</div>
-            </div>
-        </div>            
-        <div>
-          <p class="news-text mt-4">
-            We're so grateful to be located in southern Maine; just minutes from
-            the ocean and mountains, and easily accessible from Boston and New
-            York. Studying in Maine gives our students opportunities to explore
-            the world, and discover their passions in a safe and
-            supportive environment.<br /><br />
-            <span class="sm-t">
-              Email
-              <span class="bse-green"
-                >admissions@boardingschoolsexperts.com</span
-              >
-              for enquires.
-            </span>
-          </p>
-        </div>
+{% extends 'base.html' %} 
 
-        <div class="text-right mt-4">
-          <a
-            href="news-best-private-school.html"
-            class="news-link"
-            style="font-weight: 600; font-size: small"
-            >Next Article</a
-          >
-        </div>
-        <hr class="bse-line" />
-      </div>
-      <div class="col-lg-3 d-none d-lg-block">
-        <div>
-          <div class="col-11 ml-auto">
-            <div class="mb-3">
-              <p class="section-title">News Articles</p>
-            </div>
-            <div class="p-2">
-              <div class="thumbnail-wrap mb-2">
-                <img
-                  src="../images/news-thumbnails/school-age.jpg"
-                  class="w-100 nt-image"
-                  alt="News thumbnail"
-                />
+{% block title %} 
+Boarding School Experts | News 
+{% endblock %} 
+
+{% block body %}
+  <div id="news-item">
+    <div class="container px-3 px-md-4">
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="row">
+              <div class="col-3">
+                  <img src="{{ url_for('uploaded', filename=news.thumbnail) }}" class="w-100" alt="News thumbnail" />                
+              </div> 
+              <div class="col-9 news-heading mb-2" style="text-transform: capitalize;">
+                  {{ news.title }}
+                  <div class="date mt-3">{{ news.date.strftime('%B %d, %Y') }}</div>
+                  <div class="date2 mt-2">By {{ news.author }}</div>
               </div>
-              <a href="age-for-boarding-schools.html" class="news-link">
-                <p style="font-size: 0.87rem; font-weight: 500">
-                  Could Sending Your Child To Boarding School At A Younger Age,
-                  Actually Be Kinder?
-                </p>
-              </a>
-            </div>
-            <div>
-              <a
-                href="#!"
-                role="button"
-                class="btn btn-school btn-sm btn-block ml-0"
-                >See More</a
-              >
+          </div>            
+          <div>
+            <p class="news-text mt-2" style="white-space:pre-line;">
+              {{ news.article }}<br /><br />              
+            </p>
+            <p class="sm-t" >
+              Email
+              <span><a class="bse-green" href="mailto:info@boardingschoolsexperts.com">info@boardingschoolsexperts.com</a></span>
+              for enquires.
+            </p>
+          </div>
+          <hr class="bse-line" />
+        </div>
+        <div class="col-lg-3 d-none d-lg-block">
+          <div>
+            <div class="col-11 ml-auto">
+              <div class="mb-3">
+                <p class="section-title">Latest Articles</p>
+              </div>
+              {% for item in last %}
+                <div class="p-2">
+                  <div class="thumbnail-wrap mb-2">
+                    <img src="{{ url_for('uploaded', filename=item.thumbnail) }}" class="w-100 nt-image" alt="News thumbnail" />
+                  </div>
+                  <a href="/news/single/{{ item.id }}" class="news-link">
+                    <p style="font-size: 0.87rem; font-weight: 500; text-transform: capitalize;">
+                      {{ item.title }}
+                    </p>
+                  </a>
+                </div>
+              {% endfor %}            
+              
+              <div>
+                <a
+                  href="{{ url_for('news') }}"
+                  role="button"
+                  class="btn btn-school btn-block ml-0"
+                  >See All Articles</a
+                >
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

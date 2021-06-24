@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Boarding School Experts | Schools Partnership Form
+{% endblock %}
+
+{% block body %}  
+  <div class="bit-dark">
+    <div id="agent-form">
+      <div class="container-2">
+        <div class="col-12 mb-5 text-md-center">
+          <p class="form-bold mb-0">Agents Partnership Form</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} text-center text-bold mb-3">
+                <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form class="row" id="ap-form" method="POST" action="{{ url_for('agents_form') }}">
+          {{ form.hidden_tag() }}         
+          
+          <div class="col-xl-6 px-xl-3">
+            <div class="form-style">
+              <h4 class="display-4">Company Information</h4>
+              <div class="row mt-n2">
+                <div class="col-12 mb-1">
+                  <p class="lead">Company Name</p>
+                  {{ form.companyName(class="form-control") }}                  
+                </div>
+                <div class="col-12 mb-2">
+                  <p class="lead">Company Address</p>
+                  {{ form.companyAddress(class="form-control") }}                  
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-1">
+                  <p class="lead">City</p>
+                  {{ form.city(class="form-control") }}                 
+                </div>
+                <div class="col-md-6 mb-1">
+                  <p class="lead">State</p>
+                  {{ form.state(class="form-control") }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-1">
+                  <p class="lead">Country</p>
+                {{ form.countryName(class="form-control") }}
+                </div>
+                <div class="col-md-6 mb-1">
+                  <p class="lead">Email</p>
+                  {{ form.email(class="form-control") }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-1">
+                  <p class="lead">Phone #1</p>
+                  {{ form.phone1(class="form-control", id="phone2", onkeypress="return isNumberKey(event)") }}
+                </div>
+                <div class="col-md-6 mb-1">
+                  <p class="lead">Phone #2</p>
+                  {{ form.phone2(class="form-control", id="phone3", onkeypress="return isNumberKey(event)") }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-1">
+                  <p class="lead">WhatsApp Number</p>
+                  {{ form.whatsApp(class="form-control", id="phone4", onkeypress="return isNumberKey(event)") }}
+                </div>
+                <div class="col-md-6 mb-1">
+                  <p class="lead">Company Website</p>
+                  {{ form.website(class="form-control") }}
+                </div>
+                <div class="col-12">
+                  <p class="lead">Operations Commencement Date</p>
+                  {{ form.startDate(class="form-control") }}
+                </div>
+              </div>
+
+              <h5 class="display-5">Social</h5>
+              <p class="lead">Linkedin Page</p>
+              {{ form.lnked(class="form-control") }}
+
+              <p class="lead">Facebook Page</p>
+              {{ form.fb(class="form-control") }}
+
+              <p class="lead">Twitter Handle</p>
+              {{ form.twi(class="form-control") }}
+
+              <p class="lead">Instagram Handle</p>
+              {{ form.insta(class="form-control") }}
+
+              <p class="lead">Skype ID</p>
+              {{ form.skype(class="form-control mb-4") }}
+            </div>            
+          </div>
+
+          <div class="col-xl-6 px-xl-3">
+            <div class="form-style">
+              <h4 class="display-4 mb-3">Recruitment Details</h4>
+              <p class="lead">Services You Provide</p>
+              <ol type="A">
+                <li>
+                  {{ form.service1(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.service2(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.service3(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.service4(class="form-control mb-3") }}
+                </li>
+              </ol>
+
+              <p class="lead mt-4">Countries You Work In</p>
+              <ol type="A">
+                <li>
+                  {{ form.country1(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.country2(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.country3(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.country4(class="form-control mb-3") }}
+                </li>
+              </ol>
+
+              <p class="lead mt-4">
+                Educational Associations / Groups You Belong To
+              </p>
+              <ol type="A">
+                <li>
+                  {{ form.group1(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.group2(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.group3(class="form-control mb-3") }}
+                </li>
+                <li>
+                  {{ form.group4(class="form-control mb-3") }}
+                </li>
+              </ol>
+
+              <p class="display-5 mt-5">Reference 1</p>
+              <ol type="A">
+                <li>
+                  <p class="lead">Name of Institution</p>
+                  {{ form.refInstitution(class="form-control mb-3") }}                  
+                </li>
+                <li>
+                  <p class="lead">Name of Person</p>
+                  {{ form.refName(class="form-control mb-3") }}                 
+                </li>
+                <li>
+                  <p class="lead">Phone Number</p>
+                  {{ form.refPhone(class="form-control mb-3", id="phone5", onkeypress="return isNumberKey(event)") }}
+                </li>
+                <li>
+                  <p class="lead">Email</p>
+                  {{ form.refEmail(class="form-control mb-3") }}                  
+                </li>
+              </ol>
+
+              <p class="display-5 mt-5">Reference 2</p>
+              <ol type="A">
+                <li>
+                  <p class="lead">Name of Institution</p>
+                  {{ form.refInstitution2(class="form-control mb-3") }}
+                </li>
+                <li>
+                  <p class="lead">Name of Person</p>
+                  {{ form.refName2(class="form-control mb-3") }}
+                </li>
+                <li>
+                  <p class="lead">Phone Number</p>
+                  {{ form.refPhone2(class="form-control mb-3", id="phone6", onkeypress="return isNumberKey(event)") }}
+                </li>
+                <li>
+                  <p class="lead">Email</p>
+                  {{ form.refEmail2(class="form-control mb-3") }}
+                </li>
+              </ol>
+
+              <div class="custom-control custom-checkbox mt-4">
+                <input type="checkbox" class="custom-control-input" id="checkbox2" required />
+                <label class="custom-control-label" for="checkbox2">I declare that the information contained in this
+                  application and all supporting doumentation is true and
+                  correct.</label>
+              </div>
+              <div class="pl-0 my-4">
+                {{ form.submit(class="btn btn-school-light") }}
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var input2 = document.querySelector("#phone2");
+    var input3 = document.querySelector("#phone3");
+    var input4 = document.querySelector("#phone4");
+    var input5 = document.querySelector("#phone5");
+    var input6 = document.querySelector("#phone6");
+
+    window.intlTelInput(input2, {
+      initialCountry: "auto",
+      geoIpLookup: function (callback) {
+        $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+          var countryCode = resp && resp.country ? resp.country : "ng";
+          callback(countryCode);
+        });
+      },
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+    });
+
+     window.intlTelInput(input3, {
+        initialCountry: "auto",
+        geoIpLookup: function (callback) {
+          $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+            var countryCode = resp && resp.country ? resp.country : "ng";
+            callback(countryCode);
+          });
+        },
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+      });
+
+       window.intlTelInput(input4, {
+          initialCountry: "auto",
+          geoIpLookup: function (callback) {
+            $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+              var countryCode = resp && resp.country ? resp.country : "ng";
+              callback(countryCode);
+            });
+          },
+          utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+        });
+
+         window.intlTelInput(input5, {
+            initialCountry: "auto",
+            geoIpLookup: function (callback) {
+              $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                var countryCode = resp && resp.country ? resp.country : "ng";
+                callback(countryCode);
+              });
+            },
+            utilsScript:
+              "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+          });
+
+          window.intlTelInput(input6, {
+              initialCountry: "auto",
+              geoIpLookup: function (callback) {
+                $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                  var countryCode = resp && resp.country ? resp.country : "ng";
+                  callback(countryCode);
+                });
+              },
+              utilsScript:
+                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+            });
+  </script>
+{% endblock %}

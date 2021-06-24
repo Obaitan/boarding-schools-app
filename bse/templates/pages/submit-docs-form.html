@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Boarding School Experts | Submit Documents Form
+{% endblock %}
+
+{% block body %}
+  <div class="bit-dark">
+    <div id="application-form">
+      <div class="container">
+        <div class="row flex-column">
+          <div class="text-md-center">
+            <p class="form-bold mb-0 px-3">Document Upload Form</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-9 col-xl-8 mx-auto">
+            <form class="form-container upload-form" id="upload-form" method="POST" action="" enctype="multipart/form-data">
+              <div class="m-md-4">
+                <div class="row mb-0">
+                  <div class="col-md-12">
+                    <div class="md-form mb-0">
+                      {{ form.name.label }}
+                      {{ form.name(class="form-control") }}
+                    </div>
+                  </div>
+              
+                  <div class="col-md-12">
+                    <div class="md-form mb-0">
+                      {{ form.school.label }}
+                      {{ form.school(class="form-control") }}
+                    </div>
+                  </div>
+              
+                  <div class="col-md-12 col-xl-6">
+                    <div class="md-form mb-0">
+                      {{ form.email.label }}
+                      {{ form.email(class="form-control") }}
+                      <p class="field-text text-info"><small>Enter a valid email address.</small></p>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-12 col-xl-6 mb-3">
+                    <div class="md-form mb-0">
+                      {{ form.phone(class="form-control", id="phone7", onkeypress="return isNumberKey(event)") }}
+                      <p class="field-text text-info mt-2"><small>Enter a valid contact number.</small></p>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-12">
+                    <div class="text-center mt-2">
+                      <p class="form-section-heading mb-1">Attach Documents</p>
+                    </div>
+                    <div class="attachment-row">
+                      <input type="file" class="input-field" name="attachment[]" accept="image/*,.pdf, .doc, .docx"
+                        style="cursor: pointer" />
+                    </div>
+                    <div onClick="addMoreAttachment();" class="icon-add-more-attachemnt" title="Add More Attachments">
+                      <img src="{{ url_for('static', filename='images/add.png') }}" alt="Add More Attachments" />
+                    </div>
+                  </div>
+              
+              
+                  <div class="col-md-12 ml-0 mt-2">
+                    <input class="btn btn-school-light waves-effect mx-0" type="submit" name="send" value="submit document(s)" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var input7 = document.querySelector("#phone7");
+    window.intlTelInput(input7, {
+        initialCountry: "auto",
+        geoIpLookup: function (callback) {
+          $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+            var countryCode = resp && resp.country ? resp.country : "ng";
+            callback(countryCode);
+          });
+        },
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+      });
+  </script>
+{% endblock %}

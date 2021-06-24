@@ -1,0 +1,17 @@
+{% extends 'base-dashboard.html' %} 
+
+{% block title %} 
+Boarding School Experts | Admin Dasboard 
+{% endblock %} 
+
+{% set active_page = 'dashboard_news' %}
+
+{% block body %}
+<div class="col-xl-11 mx-auto px-2">  
+  <a class="btn btn-yellow my-2 fixed-button" href="{{ url_for('new_school') }}"style="padding: .625rem 1.5rem .5rem; font-size: .85rem;">
+    Add School
+  </a>  
+  
+  
+</div>
+{% endblock %}

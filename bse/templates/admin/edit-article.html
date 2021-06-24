@@ -10,12 +10,22 @@ Boarding School Experts | Admin Dasboard
       <div class="text-md-center mb-4">
         <p class="form-bold mb-0 px-3">Edit News Article</p>
       </div>
-      <form action="/admin/dashboard/news/edit/{{ news.id }}" method="POST" enctype=multipart/form-data class="admin-forms">
+      <form action="/admin/news/edit/{{ news.id }}" method="POST" enctype=multipart/form-data class="admin-forms">
+      
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} text-center text-bold mb-0">               
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
         <div class="row pt-2">
           <div class="col-md-12 mt-4">
             <div class="form-outline">
               <textarea name="title" rows="2" class="form-control"
-                placeholder="Enter excerpt here..."  required>{{ news.title }}</textarea>
+                placeholder="Enter excerpt here..." style="text-transform: capitalize;"required>{{ news.title }}</textarea>
               <label class="form-label" for="title">Article Title</label>
             </div>            
           </div>
@@ -47,7 +57,7 @@ Boarding School Experts | Admin Dasboard
           </div>      
           <div class="px-2 col-12">
             <input type="submit" class="btn btn-school mt-2" value="save article" />
-            <a class="btn btn-school-light ml-md-2 mt-2" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;" href="{{ url_for('dashboard') }}">
+            <a class="btn btn-school-light ml-md-2 mt-2" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;" href="{{ url_for('dashboard_news') }}">
               Cancel
             </a>
           </div>

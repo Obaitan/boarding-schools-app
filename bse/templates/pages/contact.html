@@ -1,4 +1,3 @@
-
   {% extends 'base.html' %}
   
   {% block title %}
@@ -38,85 +37,69 @@
           Reach us through any of our channels. We will be happy to engage
           with you.
         </p>
-      </div>   
+      </div> 
+     
       <div
-        class="col-lg-10 col-xl-7 mx-auto px-0 contact-form">
-        <form id="contact-form" method="POST" action="contact-form.php">          
-          <div class="row pt-3">
-            <div class="col-md-12">
-              <div class="md-form mb-0">
-                <input
-                  type="text"
-                  id="fullname"
-                  name="fullname"
-                  class="form-control fullname"
-                />
-                <label for="fullname" class="">Name</label>
+        class="col-lg-10 col-xl-7 mx-auto px-0 contact-form">        
+        <form id="contact-form" method="POST" action="{{ url_for('contact') }}">
+          {{ form.hidden_tag() }}
+          {% if success %}            
+            <div class="alert alert-success text-center text-bold my-3">              
+              <p>Your message has been sent! We will get in touch with you shortly.</p>
+            </div>            
+          {% else %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }} text-center text-bold mb-0">
+                    <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            <div class="row pt-3">
+              <div class="col-md-12">
+                <div class="md-form mb-0"> 
+                  {{ form.name.label }}
+                  {{ form.name(class="form-control") }}
+                  <p class="field-text text-info"><small>Minimum 3 characters.</small></p>            
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="md-form mb-0">
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  class="form-control email"
-                />
-                <label for="email" class="">Email</label>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="md-form mb-0">
+                  {{ form.email.label }}
+                  {{ form.email(class="form-control") }}
+                  <p class="field-text text-info"><small>Enter a valid email address.</small></p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="md-form mb-0">               
+                  {{ form.phone(class="form-control", id="phone", onkeypress="return isNumberKey(event)") }}
+                  <p class="field-text text-info mt-2"><small>Enter a valid contact number.</small></p>
+                </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="md-form mb-0">
-                <input
-                  name="phone"
-                  id="phone"
-                  type="tel"
-                  class="form-control phone"
-                />
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="md-form">
+                  {{ form.message.label }}
+                  {{ form.message(class="form-control md-textarea pt-2", rows=6, cols=80) }}
+                  <p class="field-text text-info"><small>Minimum 50 characters.</small></p>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="md-form">
-                <textarea
-                  type="text"
-                  id="message"
-                  name="message"
-                  rows="4"
-                  class="form-control md-textarea message"
-                ></textarea>
-                <label for="message">Message</label>
-              </div>
-            </div>
-          </div>
-
-          <div id="errors"></div>
-
-          <div class="text-md-left">
-            <button
-              class="btn btn-school ml-0"
-              id="submit"
-              type="submit"
-              name="submit"
-            >
-              Submit
-            </button>
-          </div>
+            <div class="text-md-left">
+              {{ form.submit(class="btn btn-school ml-0") }}            
+            </div>  
+          {% endif %}
         </form>
-        <!-- <div id="msg_submitting" class="text-center">
-          <h2>Submitting...</h2>
-        </div>
-        <div id="msg_submitted" class="text-center">
-          <h2>
-            Thank you!<br />
-            The form was submitted Successfully.
-          </h2>
-        </div> -->
       </div>
     </div>
   </section>

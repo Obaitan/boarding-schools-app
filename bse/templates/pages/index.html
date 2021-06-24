@@ -251,14 +251,14 @@ endblock %} {% block body %}
           <div class="d-flex">
             <div class="col-5 thumbnail-wrap">
               <img
-                src="{{ url_for('uploaded', filename=item.name) }}"
+                src="{{ url_for('uploaded', filename=item.thumbnail) }}"
                 class="w-100"
                 alt="News thumbnail"
               />
             </div>
             <div class="col-7 news-title">
-              <a href="" class="news-link">
-                <p>{{ item.title }}</p>
+              <a href="/news/single/{{ item.id }}" class="news-link">
+                <p style="text-transform: capitalize;">{{ item.title }}</p>
               </a>
             </div>
           </div>
@@ -267,7 +267,7 @@ endblock %} {% block body %}
     </div>
     <div class="col-md-9 col-lg-6 col-xl-4 mx-auto mt-4 mb-3 px-0">
       <a href="{{ url_for('news') }}" class="btn btn-school btn-block">
-        See All news Articles</a>
+        See All News Articles</a>
     </div>
   </div>
 </section>

@@ -5,38 +5,27 @@ from flask_login import UserMixin
 
 
 @login_manager.user_loader
-def load_user(admin_id):
-    return Admin.get(int(admin_id))
+def load_user(user_id):
+    return User.get(int(user_id))
 
 
-# class Login(db.Model, UserMixin):
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String(30), nullable=False, unique=True)
-#     passwordHash = db.Column(db.String(60), nullable=False)
-
-#     @property
-#     def password(self):
-#         return self.password()
-
-#     @password.setter
-#     def password(self, plain_text_password):
-#         self.passwordHash = bcrypt.generate_password_hash(
-#             plain_text_password).decode('utf-8')
-
-
-class Admin(db.Model):
+class User (db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
-    passwordHash = db.Column(db.String(60), nullable=False)
+    password_hash = db.Column(db.String(60), nullable=False)
+    firstName = db.Column(db.String(30), nullable=False, unique=True)
 
     @property
     def password(self):
-        return self.password()
+        return self.password
 
     @password.setter
     def password(self, plain_text_password):
-        self.passwordHash = bcrypt.generate_password_hash(
+        self.password_hash = bcrypt.generate_password_hash(
             plain_text_password).decode('utf-8')
+
+    def check_password_correction(self, attempted_password):
+        return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
 
 class News(db.Model):
@@ -48,8 +37,8 @@ class News(db.Model):
                        default='Unknown')
     date = db.Column(db.DateTime, nullable=False,
                      unique=True, default=datetime.utcnow)
-    fp = db.Column(db.String(256), nullable=False)
-    name = db.Column(db.Text, nullable=False)
+    imagePath = db.Column(db.String(256), nullable=False)
+    thumbnail = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
         return f'News {self.name}'
@@ -58,51 +47,73 @@ class News(db.Model):
 class Country(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False,  unique=True)
-    imageName = db.Column(db.Text, nullable=False)
+    flagName = db.Column(db.Text, nullable=False)
     imagePath = db.Column(db.String(256), nullable=False)
     date = db.Column(db.DateTime, nullable=False,
                      unique=True, default=datetime.utcnow)
 
     def __repr__(self):
-        return f'News {self.name}'
+        return f'Country {self.name}'
 
 
-class School(db.Model):
+class Schools(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     colour1 = db.Column(db.String(7), nullable=False)
     colour2 = db.Column(db.String(7), nullable=False)
-    name = db.Column(db.String(50), nullable=False,  unique=True)
+    schoolName = db.Column(db.String(100), nullable=False)
     schoolType = db.Column(db.String(6), nullable=False)
-    population = db.Column(db.String(75), nullable=False)
-    address = db.Column(db.String(200), nullable=False)
-    website = db.Column(db.String(50), nullable=False)
-    about = db.Column(db.Text, nullable=False,  unique=True)
-    logo = db.Column(db.Text, nullable=False,  unique=True)
-    logo_path = db.Column(db.String(256), nullable=False)
-    pix = db.Column(db.Text, nullable=False,  unique=True)
-    pixPath = db.Column(db.String(256), nullable=False)
-    vidThumbnail = db.Column(db.Text, nullable=False)
-    vidThumbnail_path = db.Column(db.String(256), nullable=False)
-    facilities = db.Column(db.Text, nullable=True,  unique=True)
-    academics = db.Column(db.Text, nullable=True,  unique=True)
-    extra_curricular = db.Column(db.Text, nullable=True,  unique=True)
-    pastoralCare = db.Column(db.Text, nullable=True,  unique=True)
-    others1 = db.Column(db.Text, nullable=True,  unique=True)
-    others2 = db.Column(db.Text, nullable=True,  unique=True)
-    videoLink1 = db.Column(db.String(256), nullable=True, unique=True)
-    videoLink2 = db.Column(db.String(256), nullable=True, unique=True)
-    videoLink3 = db.Column(db.String(256), nullable=True, unique=True)
-    videoLink4 = db.Column(db.String(256), nullable=True, unique=True)
-    videoLink5 = db.Column(db.String(256), nullable=True, unique=True)
-    feesForm = db.Column(db.Text, nullable=True,  unique=True)
-    feesForm_path = db.Column(db.String(256), nullable=True)
-    feesForm_link = db.Column(db.String(256), nullable=True, unique=True)
-    appForm = db.Column(db.Text, nullable=True,  unique=True)
-    appForm_path = db.Column(db.String(256), nullable=True)
-    appForm_link = db.Column(db.String(256), nullable=True, unique=True)
+    population = db.Column(db.String(100), nullable=False)
+    address = db.Column(db.Text, nullable=False)
+    website = db.Column(db.String(60), nullable=False)
+    about = db.Column(db.Text, nullable=False)
+    logo = db.Column(db.Text, nullable=False, unique=True)
+    logoPath = db.Column(db.String(256), nullable=False)
+    badge = db.Column(db.Text, nullable=False, unique=True)
+    badgePath = db.Column(db.String(256), nullable=False)
     date = db.Column(db.DateTime, nullable=False,
                      unique=True, default=datetime.utcnow)
-    country = db.Column(db.String(30), nullable=False)
+    country = db.Column(db.String(35), nullable=False)    
+    facilities = db.Column(db.Text, nullable=True)
+    academics = db.Column(db.Text, nullable=True)
+    extra = db.Column(db.Text, nullable=True)
+    care = db.Column(db.Text, nullable=True)
+    newHeading = db.Column(db.Text, nullable=True)
+    newBody = db.Column(db.Text, nullable=True)
+    newHeading2 = db.Column(db.Text, nullable=True)
+    newBody2 = db.Column(db.Text, nullable=True)
+    newHeading3 = db.Column(db.Text, nullable=True)
+    newBody3 = db.Column(db.Text, nullable=True)
+    link1 = db.Column(db.String(256), nullable=True)
+    link2 = db.Column(db.String(256), nullable=True)
+    link3 = db.Column(db.String(256), nullable=True)
+    link4 = db.Column(db.String(256), nullable=True)
+    link5 = db.Column(db.String(256), nullable=True)    
+    
 
     def __repr__(self):
-        return f'News {self.name}'
+        return f'School {self.name}'
+
+
+class Images(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    schoolName = db.Column(db.Text, nullable=False, unique=True)
+    schoolPix = db.Column(db.Text, nullable=False, unique=True)
+    schoolPixPath = db.Column(db.String(256), nullable=False)
+    vidPix = db.Column(db.Text, nullable=False, unique=True)
+    vidThumbnailPath = db.Column(db.String(256), nullable=False)
+
+    def __repr__(self):
+        return f'School {self.name}'
+
+
+class Documents(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    schoolName = db.Column(db.Text, nullable=False, unique=True)
+    forms = db.Column(db.Text, nullable=True, unique=True)
+    formsPath = db.Column(db.String(256), nullable=True)
+    feesLink = db.Column(db.String(256), nullable=True, unique=True)
+    appLink = db.Column(db.String(256), nullable=True, unique=True)
+
+    def __repr__(self):
+        return f'School {self.name}'
+    

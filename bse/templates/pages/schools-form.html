@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Boarding School Experts | Schools Partnership Form
+{% endblock %}
+
+{% block body %}
+  <div class="bit-dark">
+    <div id="school-form">
+      <div class="container">
+        <div class="row flex-column mx-1">
+          <div class="text-md-center">
+            <p class="form-bold mb-0">Schools Partnership Form</p>
+          </div>
+          <div class="mx-auto">
+            <p class="form-title">
+              Schools interested in partnering with us should complete the
+              form below.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 tile-square">
+            <div class="text-center pt-lg-4">
+              <p class="form-bold2">Why You Should Partner With Us</p>
+            </div>
+            <ul class="points mt-4">
+              <li class="mb-3">
+                Guaranteed outreach to international students.
+              </li>
+              <li class="mb-3">Screened applications.</li>
+              <li class="mb-3">Work with quality counsellors.</li>
+              <li class="mb-3">Receive vetted documents.</li>
+              <li class="mb-3">Publicity channels on the website.</li>
+            </ul>
+          </div>
+          <div class="col-lg-8 pl-lg-5">            
+            <form class="form-container" id="form-container" action="{{ url_for('schools_form') }}" method="POST">
+              {{ form.hidden_tag() }}
+              
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} text-center text-bold mb-0">
+                      <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              <div>
+                <p class="lead">School Name</p>                
+                {{ form.schoolName(class="form-control") }}
+                <p class="field-text2 text-info"><small>Minimum 12 characters.</small></p>
+
+                <div class="row">
+                  <div class="col-md-5">
+                    <p class="lead">Contact's Title</p>
+                    {{ form.title(class="form-control") }}                                  
+                  </div>
+                  <div class="col-md-7">
+                    <p class="lead">Contact's Full Name</p>
+                    {{ form.contactName(class="form-control") }}
+                    <p class="field-text2 text-info"><small>Minimum 5 characters.</small></p>                   
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="lead">Email</p>
+                    {{ form.email(class="form-control") }}
+                    <p class="field-text2 text-info"><small>Enter a valid email address.</small></p>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="lead">Phone Number</p>
+                    {{ form.phone(class="form-control", id="phone2", onkeypress="return isNumberKey(event)") }}
+                    <p class="field-text2 text-info"><small>Enter a valid contact number.</small></p>
+                  </div>
+                </div>
+
+                <p class="lead">Additional Comments</p>               
+                {{ form.comments(class="form-control pt-2 mb-4", rows=5) }}                
+
+                <div class="custom-control custom-checkbox">
+                  {{ form.checkbox(class="custom-control-input", id="checkbox") }}                  
+                  <label class="custom-control-label" for="checkbox">I declare that the information contained in this
+                    application and all supporting doumentation is true and
+                    correct.</label>                   
+                </div>
+              </div>
+
+              <div class="pl-0 my-4">
+                {{ form.submit(class="btn btn-school-light") }}                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var input2 = document.querySelector("#phone2");
+    window.intlTelInput(input2, {
+        initialCountry: "auto",
+        geoIpLookup: function (callback) {
+          $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+            var countryCode = resp && resp.country ? resp.country : "ng";
+            callback(countryCode);
+          });
+        },
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+      });
+  </script>
+{% endblock %}

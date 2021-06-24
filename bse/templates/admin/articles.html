@@ -4,6 +4,8 @@
 Boarding School Experts | Admin dashboard 
 {% endblock %} 
 
+{% set active_page = 'dashboard_news' %}
+
 {% block body %}
 <div class="col-xl-10 my-4 mx-auto px-2">
   <a class="btn btn-yellow my-2 fixed-button" href="{{ url_for('new_article') }}" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;">
@@ -12,20 +14,20 @@ Boarding School Experts | Admin dashboard
   {% for item in news %}
   <div class="row mtop">
     <div class="col-md-3">
-      <a href="">
-        <img src="{{ url_for('uploaded', filename=item.name) }}" class="w-100" alt="News thumbnail" />
-        <div class="date mt-3">{{ item.date.strftime('%Y-%m-%d') }}</div>
+      <a>
+        <img src="{{ url_for('uploaded', filename=item.thumbnail) }}" class="w-100" alt="News thumbnail" />
+        <div class="date mt-3">{{ item.date.strftime('%B %d, %Y') }}</div>
       </a>
     </div>
     <div class="col-md-9 pl-xl-4">
-      <a href="">
+      <a>
         <div class="news-heading mb-2" style="text-transform: capitalize;">{{ item.title }}</div>
         <div class="date2 mb-4">By: {{ item.author }}</div>
-        <p class="news-text">{{ item.excerpt }}...</p>
+        <p class="news-text" style="white-space: pre-line;">{{ item.excerpt }}...</p>
       </a>
       <div>
-        <a class="btn btn-school-mellow my-2" href="/admin/dashboard/news/edit/{{ item.id }}"> Edit Article </a>
-        <a class="btn btn-danger my-2" class="del" href="/admin/dashboard/news/delete/{{ item.id }}"> delete Article </a>
+        <a class="btn btn-school-mellow my-2" href="/admin/news/edit/{{ item.id }}"> Edit Article </a>
+        <a class="btn btn-danger my-2" class="del" href="/admin/news/delete/{{ item.id }}"> delete Article </a>
       </div>
     </div>
     <div class="col-12 my-0">

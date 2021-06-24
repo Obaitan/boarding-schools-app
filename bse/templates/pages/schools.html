@@ -36,7 +36,7 @@ Boarding School Experts | Services
             </p>
             <div class="col-md-9 px-0">
               <a
-                href="webforms/schools-form/schools-form.php"
+                href="{{ url_for('schools_form') }}"
                 class="btn btn-school btn-lg btn-block"
               >
                 Partner With Us</a
@@ -269,7 +269,7 @@ Boarding School Experts | Services
         <a href="#!" class="sl-text">
           <div class="text-center">
             <img
-              src="{{ url_for('uploaded', filename=country.imageName) }}"
+              src="{{ url_for('uploaded', filename=country.flagName) }}"
               class="w-100 ib"
               alt="Country flag"
             />

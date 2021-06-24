@@ -4,6 +4,8 @@
 Boarding School Experts | Admin Dasboard 
 {% endblock %} 
 
+{% set active_page = 'dashboard_news' %}
+
 {% block body %}
 <div class="col-xl-9 mx-auto px-2">
   <div class="mt-0 mt-md-5"></div>
@@ -21,7 +23,7 @@ Boarding School Experts | Admin Dasboard
     </div>
 
     <div class="col-md-6 p-2">
-      <a href="{{ url_for('new_school') }}">
+      <a href="{{ url_for('admin_schools') }}">
         <div class="palette">
           <p class="palette-title">Schools</p>
           <p class="details">Add/Edit/Delete Schools</p>
@@ -45,10 +47,10 @@ Boarding School Experts | Admin Dasboard
     </div>
 
     <div class="col-md-6 p-2">
-      <a href="#!">
+      <a href="{{ url_for('home') }}">
         <div class="palette">
           <p class="palette-title">Logout</p>
-          <p class="details">Sign Out of Admin Account</p>
+          <p class="details">Leave The Admin Panel</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> logout </span>
           </div>
