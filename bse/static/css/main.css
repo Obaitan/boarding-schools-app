@@ -23,6 +23,41 @@ body {
   }
 }
 
+.home-logo {
+  width: 250px;
+}
+
+.home-text {
+  font-size: 18px;
+  font-weight: 400;
+  color: #232323;
+}
+
+.hover-card {
+  padding: 3.5rem;
+  background-color: rgba(251, 251, 251, 0.85);
+  box-shadow: 1px 10px 20px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+.caption {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #003116;
+}
+
+@media (max-width: 575px) {
+  .caption {
+    font-size: 1.35rem;
+  }
+
+  .hover-card {
+    padding: 3rem 1.75rem;
+  }
+}
+
+
+
 
 .btn-school-light {
   background-color: #9fbe49;

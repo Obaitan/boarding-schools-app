@@ -30,8 +30,8 @@
         <p class="ca-text">7, Aje Street, Sabo-Yaba, Lagos, Nigeria</p>
       </div>
     </div>
-    <div class="container pt-5">
-      <div class="my-5 text-center">
+    <div class="container pt-4">
+      <div class="mt-5 mb-4 text-center">
         <p class="section-title">Contact Us</p>
         <p class="mb-0" style="font-weight: 400">
           Reach us through any of our channels. We will be happy to engage
@@ -41,7 +41,7 @@
      
       <div
         class="col-lg-10 col-xl-7 mx-auto px-0 contact-form">        
-        <form id="contact-form" method="POST" action="{{ url_for('contact') }}">
+        <form id="contact-form" method="POST" action="{{ url_for('contact') }}" novalidate>
           {{ form.hidden_tag() }}
           {% if success %}            
             <div class="alert alert-success text-center text-bold my-3">              
@@ -65,7 +65,9 @@
                 <div class="md-form mb-0"> 
                   {{ form.name.label }}
                   {{ form.name(class="form-control") }}
-                  <p class="field-text text-info"><small>Minimum 3 characters.</small></p>            
+                  {% for error in form.name.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -75,13 +77,17 @@
                 <div class="md-form mb-0">
                   {{ form.email.label }}
                   {{ form.email(class="form-control") }}
-                  <p class="field-text text-info"><small>Enter a valid email address.</small></p>
+                  {% for error in form.email.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="md-form mb-0">               
                   {{ form.phone(class="form-control", id="phone", onkeypress="return isNumberKey(event)") }}
-                  <p class="field-text text-info mt-2"><small>Enter a valid contact number.</small></p>
+                  {% for error in form.phone.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -91,7 +97,9 @@
                 <div class="md-form">
                   {{ form.message.label }}
                   {{ form.message(class="form-control md-textarea pt-2", rows=6, cols=80) }}
-                  <p class="field-text text-info"><small>Minimum 50 characters.</small></p>
+                  {% for error in form.message.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
             </div>

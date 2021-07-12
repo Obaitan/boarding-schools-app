@@ -35,7 +35,7 @@ Boarding School Experts | Schools Partnership Form
             </ul>
           </div>
           <div class="col-lg-8 pl-lg-5">            
-            <form class="form-container" id="form-container" action="{{ url_for('schools_form') }}" method="POST">
+            <form class="form-container" id="form-container" action="{{ url_for('schools_form') }}" method="POST" novalidate>
               {{ form.hidden_tag() }}
               
               {% with messages = get_flashed_messages(with_categories=true) %}
@@ -53,17 +53,24 @@ Boarding School Experts | Schools Partnership Form
               <div>
                 <p class="lead">School Name</p>                
                 {{ form.schoolName(class="form-control") }}
-                <p class="field-text2 text-info"><small>Minimum 12 characters.</small></p>
+                {% for error in form.schoolName.errors %}
+                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                {% endfor %}
 
                 <div class="row">
                   <div class="col-md-5">
                     <p class="lead">Contact's Title</p>
-                    {{ form.title(class="form-control") }}                                  
+                    {{ form.title(class="form-control") }}
+                    {% for error in form.title.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
                   </div>
                   <div class="col-md-7">
                     <p class="lead">Contact's Full Name</p>
                     {{ form.contactName(class="form-control") }}
-                    <p class="field-text2 text-info"><small>Minimum 5 characters.</small></p>                   
+                    {% for error in form.contactName.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
                   </div>
                 </div>
 
@@ -71,12 +78,16 @@ Boarding School Experts | Schools Partnership Form
                   <div class="col-md-6">
                     <p class="lead">Email</p>
                     {{ form.email(class="form-control") }}
-                    <p class="field-text2 text-info"><small>Enter a valid email address.</small></p>
+                    {% for error in form.email.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
                   </div>
                   <div class="col-md-6">
                     <p class="lead">Phone Number</p>
                     {{ form.phone(class="form-control", id="phone2", onkeypress="return isNumberKey(event)") }}
-                    <p class="field-text2 text-info"><small>Enter a valid contact number.</small></p>
+                    {% for error in form.phone.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
                   </div>
                 </div>
 
@@ -84,10 +95,14 @@ Boarding School Experts | Schools Partnership Form
                 {{ form.comments(class="form-control pt-2 mb-4", rows=5) }}                
 
                 <div class="custom-control custom-checkbox">
-                  {{ form.checkbox(class="custom-control-input", id="checkbox") }}                  
+                  {{ form.checkbox(class="custom-control-input", id="checkbox") }}
                   <label class="custom-control-label" for="checkbox">I declare that the information contained in this
                     application and all supporting doumentation is true and
-                    correct.</label>                   
+                    correct.
+                  </label>
+                  {% for error in form.checkbox.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
 

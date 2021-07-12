@@ -1,9 +1,23 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block content %}
-    <div class="container" style="min-height: 60vh;">
-        <h1>An unexpected error has occurred</h1>
-        <p>The administrator has been notified. Sorry for the inconvenience!</p>
-        <p><a href="{{ url_for('index') }}">Back</a></p>
+{% block body %}
+    <div id="backdrop">
+    <div class="db row align-items-center">
+        <div class="text-center w-100">
+        <p class="error-bold mb-3">Error<br />500</p>
+        <p class="error-text1">
+            An unexpected error has occurred.<br />Please notify the administrator
+            has been notified. Sorry for the inconvenience!
+        </p>
+        <div class="">
+            <a
+            class="btn btn-school ml-0"
+            href="{{ url_for('home') }}"
+            role="button"
+            >Go To Home page</a
+            >
+        </div>
+        </div>
+    </div>
     </div>
 {% endblock %}

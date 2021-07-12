@@ -50,82 +50,42 @@ function myFunction() {
   }
 }
 
-function myFunction2() {
-  var dots2 = document.getElementById("dots2");
-  var moreText2 = document.getElementById("more2");
-  var btnText2 = document.getElementById("myBtn2");
+$(document).ready(function () {
+  var showChar = 175;
+  var ellipsestext = "...";
+  var moretext = "More";
+  var lesstext = " Less";
+  $(".more").each(function () {
+    var content = $(this).html();
 
-  if (dots2.style.display === "none") {
-    dots2.style.display = "inline";
-    btnText2.innerHTML = "Show More";
-    moreText2.style.display = "none";
-  } else {
-    dots2.style.display = "none";
-    btnText2.innerHTML = "Show Less";
-    moreText2.style.display = "inline";
-  }
-}
+    if (content.length > showChar) {
+      var c = content.substr(0, showChar);
+      var h = content.substr(showChar - 1, content.length - showChar);
 
-function myFunction3() {
-  var dots3 = document.getElementById("dots3");
-  var moreText3 = document.getElementById("more3");
-  var btnText3 = document.getElementById("myBtn3");
+      var html =
+        c +
+        '<span class="moreellipses">' +
+        ellipsestext +
+        '&nbsp;</span><span class="morecontent"><span>' +
+        h +
+        '</span>&nbsp;&nbsp;<a href="" class="morelink toggle">' +
+        moretext +
+        "</a></span>";
 
-  if (dots3.style.display === "none") {
-    dots3.style.display = "inline";
-    btnText3.innerHTML = "Show More";
-    moreText3.style.display = "none";
-  } else {
-    dots3.style.display = "none";
-    btnText3.innerHTML = "Show Less";
-    moreText3.style.display = "inline";
-  }
-}
+      $(this).html(html);
+    }
+  });
 
-function myFunction4() {
-  var dots4 = document.getElementById("dots4");
-  var moreText4 = document.getElementById("more4");
-  var btnText4 = document.getElementById("myBtn4");
-
-  if (dots4.style.display === "none") {
-    dots4.style.display = "inline";
-    btnText4.innerHTML = "Show More";
-    moreText4.style.display = "none";
-  } else {
-    dots4.style.display = "none";
-    btnText4.innerHTML = "Show Less";
-    moreText4.style.display = "inline";
-  }
-}
-
-function myFunction5() {
-  var dots5 = document.getElementById("dots5");
-  var moreText5 = document.getElementById("more5");
-  var btnText5 = document.getElementById("myBtn5");
-
-  if (dots5.style.display === "none") {
-    dots5.style.display = "inline";
-    btnText5.innerHTML = "Show More";
-    moreText5.style.display = "none";
-  } else {
-    dots5.style.display = "none";
-    btnText5.innerHTML = "Show Less";
-    moreText5.style.display = "inline";
-  }
-}
-
-function myFunction6() {
-  var dots6 = document.getElementById("dots6");
-  var moreText6 = document.getElementById("more6");
-  var btnText6 = document.getElementById("myBtn6");
-
-  if (dots6.style.display === "none") {
-    dots6.style.display = "inline";
-    btnText6.innerHTML = "Show More";
-    moreText6.style.display = "none";
-  } else {
-    dots6.style.display = "none";
-    btnText6.innerHTML = "Show Less";
-    moreText6.style.display = "inline";
-  }
-}
+  $(".morelink").click(function () {
+    if ($(this).hasClass("less")) {
+      $(this).removeClass("less");
+      $(this).html(moretext);
+    } else {
+      $(this).addClass("less");
+      $(this).html(lesstext);
+    }
+    $(this).parent().prev().toggle();
+    $(this).prev().toggle();
+    return false;
+  });
+});

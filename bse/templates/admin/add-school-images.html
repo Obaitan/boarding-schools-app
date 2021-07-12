@@ -1,0 +1,91 @@
+{% extends 'base-dashboard.html' %}
+
+{% block title %}
+Boarding School Experts | Admin Dasboard
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.css"
+  integrity="sha512-joKDvh+eAWoVNKsL6T1spjb9TUTVLKzp9kD+BsfkKmy3RiwKlBK2A0fqSBmPOG0RW9jTvpNDjkX0Z02d3A6jbA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block body %}  
+  <div class="container">
+    <div class="col-xl-11 my-4 mx-auto px-0">
+      <div class="row">
+        <div class="col-xl-3">
+          <div>
+            <a class="btn button-link" href="{{ url_for('new_school_info') }}">Add School Info</a>
+          </div>
+          <div class="mt-2">
+            <a class="btn button-link see" href="{{ url_for('new_school_images') }}">Add School Images</a>
+          </div>
+          <div class="mt-2">
+            <a class="btn button-link" href="{{ url_for('new_school_thumbnails') }}">Add YouTube Images</a>
+          </div>
+          <div class="mt-2">
+            <a class="btn button-link" href="{{ url_for('new_school_forms') }}">Add School Forms</a>
+          </div>
+        </div>
+      
+        <div class="col-xl-9 mt-5 mt-xl-0">          
+          <div>            
+              <form action="" method="POST" enctype=multipart/form-data class="admin-forms" novalidate>
+                {{ form.hidden_tag() }}
+              
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} text-center text-bold mb-0">                  
+                  {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <div class="row pt-2">
+                  <div class="col-md-12 mt-4">
+                    <div>
+                      {{ form.schoolName(class="form-control form-select", placeholder="School Name") }}
+                      {% for error in form.schoolName.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 mt-4">
+                    <div class="custom-file-container" data-upload-id="Upload3">
+                      <p class="show2 mt-2 mb-0">Upload School Images (PNG / JPG / JPEG) <a href="javascript:void(0)"
+                          class="custom-file-container__image-clear" title="Clear Image">&times;</a></p>
+                      <label class="custom-file-container__custom-file">
+                        {{ form.schoolPix(class="custom-file-container__custom-file__custom-file-input", accept="image/*") }}                        
+                        <span class="custom-file-container__custom-file__custom-file-control"></span>
+                      </label>
+                      {% for error in form.schoolPix.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                      <div class="custom-file-container__image-preview"></div>
+                    </div>
+                  </div>                
+                  <div class="px-2 col-12 mt-4">
+                    {{ form.submit(class="btn btn-school btn-block") }}
+                  </div>
+                </div>
+              </form>
+            </div>               
+          </div>         
+        </div>
+      </div>      
+    </div>    
+  </div>  
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.js"
+  integrity="sha512-Z41LlJOURucboITRl9uL5Y7GNfyxqS6+i9THsMWsOpvStxQjY/uGmU+5a3+4ddXeHZcUXZTeHI272bZPWkGF3w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  var upload = new FileUploadWithPreview('Upload3')
+</script>
+{% endblock %}

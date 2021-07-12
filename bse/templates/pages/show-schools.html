@@ -1,958 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js",
-        });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-PZC755D");
-    </script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta
-      name="description"
-      content="We link parents and their wards with premium boarding institutions around the world. This is done in a stress-free and pocket-friendly manner. Come partner with us today."
-    />
-    <meta
-      name="keywords"
-      content="Boarding Schools, Educational Consultancy, Admission Processing, Visa Application"
-    />
-    <title>Boarding Schools Experts | Schools-Page</title>
+{% extends 'base.html' %}
 
-    <link rel="icon" href="images/site-logo.png" type="image/x-icon" />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
-    />
-    <!-- Google Fonts Roboto -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;200;700&display=swap"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap core CSS -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Material Design Bootstrap -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
-      rel="stylesheet"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+{% block title %}
+Boarding School Experts | Schools
+{% endblock %}
 
-    <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet" />
-  </head>
-
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-PZC755D"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- Project-->
-    <div class="top-bar d-none d-md-block">
-      <div class="container d-flex justify-content-center h-100">
-        <div class="d-flex col-lg-4"></div>
-        <div
-          class="d-flex justify-content-end align-items-center px-md-4 col-md-4"
-        >
-          <i class="fas fa-phone-alt mr-2"></i>
-          <p class="top-bar-text mb-0">+234 814 849 3618</p>
+{% block body %}
+  <div id="s-display2">
+    <div class="container">
+      <div class="d-flex justify-content-md-end">
+        <div class="col-md-7 col-lg-5 mt-4 mt-lg-5">
+          <div class="input-group md-form form-sm form-2 pl-0">
+            <input
+              class="form-control my-0 py-1"
+              id="search"
+              type="text"
+              placeholder="Search by school name or school type"
+              aria-label="Search"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-text1"
+                ><i class="fas fa-search text-grey" aria-hidden="true"></i
+              ></span>
+            </div>
+          </div>
         </div>
-        <div
-          class="d-flex justify-content-center align-items-center col-md-6 col-lg-4"
-        >
-          <i class="fas fa-envelope mr-2"></i>
-          <p class="top-bar-text mb-0">- info@boardingschoolsexperts.com</p>
+      </div>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <div class="d-none d-md-block col-md-3 px-0 pr-md-2 pr-lg-4 pr-xl-5">
+          <div>
+            <hr />
+            <div class="px-2">
+              <p class="bsb-text2 mb-2">Filter</p>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  class="custom-control-input"
+                  id="radioA"
+                  name="filter"
+                  checked
+                  value="school"
+                />
+                <label class="custom-control-label" for="radioA"
+                  >All Schools</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  class="custom-control-input"
+                  id="radio1"
+                  name="filter"
+                  value="co-ed"
+                />
+                <label class="custom-control-label" for="radio1"
+                  >Co-Educational Schools</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  class="custom-control-input"
+                  id="radio2"
+                  name="filter"
+                  value="boys"
+                />
+                <label class="custom-control-label" for="radio2"
+                  >Boys Schools</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  class="custom-control-input"
+                  id="radio3"
+                  name="filter"
+                  value="girls"
+                />
+                <label class="custom-control-label" for="radio3"
+                  >Girls Schools</label
+                >
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="mt-3">
+            <a
+              href="{{ url_for('schools', _anchor='countries') }}"
+              role="button"
+              class="btn btn-school btn-block ml-0"
+              >Schools Page</a
+            >
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div
+            class="row row-cols-2 row-cols-md-3 row-cols-xl-4 mt-3 mt-md-0 p-0"
+          >
+            {% for school in schools %}
+              <div
+                class="col p-2 school co-ed"
+                data-toggle="tooltip"
+                title="{{ school.schoolName }}"
+              >               
+                <a href="/schools/{{ school.country }}/{{ school.schoolName }}" target="_blank">
+                  <img
+                    src="{{ url_for('uploaded', filename=school.badge) }}"
+                    class="w-100 slate"
+                    alt="School badge"
+                  />
+                </a>               
+                <div class="title d-none">
+                  <p class="name">{{ school.schoolName }} {{ school.schoolType }}</p>
+                </div>
+              </div>  
+            {% endfor %}         
+          </div>
         </div>
       </div>
     </div>
-    <a href="index.html" class="c-brand">
-      <img src="images/site-logo2.png" class="logo" id="logo" alt="Logo" />
-      <div class="overlay"></div>
-    </a>
+  </div>
+{% endblock %}
 
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-      <div class="container">
-        <!-- Toggle button -->
-        <button
-          class="navbar-toggler ml-auto"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mb-2 mb-lg-0 mt-4 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="services.html">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="schools.html">Schools</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="agents.html">Agents</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
-            </li>
-          </ul>
-
-          <div class="my-md-2">
-            <a
-              class="btn btn-white my-2 my-sm-0"
-              href="webforms/file-upload/upload-form.php"
-              target="_blank"
-            >
-              Submit Form
-            </a>
-          </div>
-        </div>
-        <!-- Collapsible wrapper -->
-      </div>
-    </nav>
-
-    <main>
-      <div id="s-display">
-        <div class="container">
-          <div class="d-flex justify-content-md-end">
-            <div class="col-md-7 col-lg-5 mt-4 mt-lg-5">
-              <div class="input-group md-form form-sm form-2 pl-0">
-                <input
-                  class="form-control my-0 py-1"
-                  id="search"
-                  type="text"
-                  placeholder="Search school name, co-educational, girls or boys"
-                  aria-label="Search"
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-text1"
-                    ><i class="fas fa-search text-grey" aria-hidden="true"></i
-                  ></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="d-flex justify-content-center flex-wrap">
-            <div
-              class="d-none d-md-block col-md-3 px-0 pr-md-2 pr-lg-4 pr-xl-5"
-            >
-              <div>
-                <hr />
-                <div class="px-2">
-                  <p class="bsb-text2 mb-2">Filter</p>
-                  <div class="custom-control custom-radio">
-                    <input
-                      type="radio"
-                      class="custom-control-input"
-                      id="radioA"
-                      name="filter"
-                      checked
-                      value="school"
-                    />
-                    <label class="custom-control-label" for="radioA"
-                      >All Schools</label
-                    >
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input
-                      type="radio"
-                      class="custom-control-input"
-                      id="radio1"
-                      name="filter"
-                      value="co-ed"
-                    />
-                    <label class="custom-control-label" for="radio1"
-                      >Co-Educational Schools</label
-                    >
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input
-                      type="radio"
-                      class="custom-control-input"
-                      id="radio2"
-                      name="filter"
-                      value="boys"
-                    />
-                    <label class="custom-control-label" for="radio2"
-                      >Boys Schools</label
-                    >
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input
-                      type="radio"
-                      class="custom-control-input"
-                      id="radio3"
-                      name="filter"
-                      value="girls"
-                    />
-                    <label class="custom-control-label" for="radio3"
-                      >Girls Schools</label
-                    >
-                  </div>
-                </div>
-                <hr />
-              </div>
-              <div class="mt-3">
-                <a
-                  href="schools.html#countries"
-                  role="button"
-                  class="btn btn-school btn-block ml-0"
-                  >Schools Page</a
-                >
-              </div>
-            </div>
-
-            <div class="col-md-9">
-              <div
-                class="row row-cols-2 row-cols-md-3 row-cols-xl-4 mt-3 mt-md-0 p-0"
-              >
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Ashford School"
-                >
-                  <a href="school-files/ashford-school.html" target="_blank">
-                    <img
-                      src="images/badges/ashford-badge.jpg"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Ashford School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Bede's School"
-                >
-                  <a href="school-files/bedes.html" target="_blank">
-                    <img
-                      src="images/badges/bedes badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Bede's School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Brooke House College"
-                >
-                  <a href="school-files/bhc.html" target="_blank">
-                    <img
-                      src="images/badges/brooke house badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Brooke House College Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Buckswood School"
-                >
-                  <a href="school-files/buckswood.html" target="_blank">
-                    <img
-                      src="images/badges/buckswood school badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Buckswood School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Cardiff Sixth Form College"
-                >
-                  <a href="school-files/cardiff.html" target="_blank">
-                    <img
-                      src="images/badges/cardiff-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      Cardiff Sixth Form College Co-educational
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Dover College"
-                >
-                  <a href="school-files/dover.html" target="_blank">
-                    <img
-                      src="images/badges/Dover badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Dover College Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Earlscliffe"
-                >
-                  <a href="school-files/earlscliffe.html" target="_blank">
-                    <img
-                      src="images/badges/earlscliffe badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Earlscliffe Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Farringtons School"
-                >
-                  <a
-                    href="school-files/farringtons-school.html"
-                    target="_blank"
-                  >
-                    <img
-                      src="images/badges/farringtons-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Farringtons School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school girls"
-                  data-toggle="tooltip"
-                  title="Harrogate Girl's College"
-                >
-                  <a href="school-files/harrogate.html" target="_blank">
-                    <img
-                      src="images/badges/harrogate badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Harrogate Girls' College</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Hereford Cathedral School"
-                >
-                  <a
-                    href="school-files/hereford-cathedral-school.html"
-                    target="_blank"
-                  >
-                    <img
-                      src="images/badges/hereford-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Hereford Cathedral School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Highfield & Brookham School"
-                >
-                  <a href="school-files/hbs.html" target="_blank">
-                    <img
-                      src="images/badges/highfield-brookham-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      Highfield And Brookham School Co-educational
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school girls"
-                  data-toggle="tooltip"
-                  title="Jersey College For Girls"
-                >
-                  <a href="school-files/jersey-college.html" target="_blank">
-                    <img
-                      src="images/badges/jersey-college.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Jersey College For Girls</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Leighton Park School"
-                >
-                  <a
-                    href="school-files/leighton-park-school.html"
-                    target="_blank"
-                  >
-                    <img
-                      src="images/badges/leighton-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Leighton Park School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Lime House School"
-                >
-                  <a href="school-files/lime-house-school.html" target="_blank">
-                    <img
-                      src="images/badges/lime-school-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Lime House School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school girls"
-                  data-toggle="tooltip"
-                  title="Malvern St. James Girls' School"
-                >
-                  <a href="school-files/malvern.html" target="_blank">
-                    <img
-                      src="images/badges/malvern-st-james badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Malvern St. James Girls' School</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Moyles Court School"
-                >
-                  <a href="school-files/moyles-court.html" target="_blank">
-                    <img
-                      src="images/badges/moyles court badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Moyles Court School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="National Mathematics & Science College"
-                >
-                  <a href="school-files/nmsc.html" target="_blank">
-                    <img
-                      src="images/badges/nmsc.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      National Mathematics And Science College Co-educational
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Padworth College"
-                >
-                  <a href="school-files/padworth.html" target="_blank">
-                    <img
-                      src="images/badges/padworth badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Padworth College Co-educational</p>
-                  </div>
-                </div>
-                <!-- <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Princess Helena College"
-                >
-                  <a href="school-files/phc.html" target="_blank">
-                    <img
-                      src="images/badges/princess helena college badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Princess Helena College Co-educational</p>
-                  </div>
-                </div> -->
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Queen Ethelburga's Collegiate"
-                >
-                  <a href="school-files/qe.html" target="_blank">
-                    <img
-                      src="images/badges/queen-ethelburgas badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      Queen Ethelburga's Collegiate Co-educational
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Rochester Independent College"
-                >
-                  <a href="school-files/rochester-college.html" target="_blank">
-                    <img
-                      src="images/badges/rochester-college.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      Rochester Independent College Co-educational
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="S. Anselm’s School And College "
-                >
-                  <a href="school-files/s-anslem.html" target="_blank">
-                    <img
-                      src="images/badges/s-anslem-badge.jpg"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      S. Anselm’s School And College Co-educational
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Sedbergh School"
-                >
-                  <a href="school-files/sedbergh.html" target="_blank">
-                    <img
-                      src="images/badges/sedbergh school badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Sedbergh School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Sibford School"
-                >
-                  <a href="school-files/sibford.html" target="_blank">
-                    <img
-                      src="images/badges/sibford-badge.jpg"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Sibford School Co-educational</p>
-                  </div>
-                </div>
-                <!-- <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Sherborne International School"
-                >
-                  <a href="school-files/sherborne.html" target="_blank">
-                    <img
-                      src="images/badges/sherbourne international badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      Sherborne International School Co-educational
-                    </p>
-                  </div>
-                </div> -->
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title=" St Clare’s"
-                >
-                  <a href="school-files/st-clares.html" target="_blank">
-                    <img
-                      src="images/badges/st-clares-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">St Clare’s Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="St. Andrew’s College Cambridge"
-                >
-                  <a href="school-files/st-andrews.html" target="_blank">
-                    <img
-                      src="images/badges/st-andrews-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">
-                      St. Andrew’s College Cambridge Co-educational
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school girls"
-                  data-toggle="tooltip"
-                  title="St. Francis' College"
-                >
-                  <a href="school-files/st-francis.html" target="_blank">
-                    <img
-                      src="images/badges/st. francis college badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">St. Francis' College Girls</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school girls"
-                  data-toggle="tooltip"
-                  title="St. Mary’s Calne"
-                >
-                  <a href="school-files/st-mary's.html" target="_blank">
-                    <img
-                      src="images/badges/st-marys-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">St. Mary’s Calne Girls</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="St Michael’s School"
-                >
-                  <a href="school-files/st-michaels.html" target="_blank">
-                    <img
-                      src="images/badges/st-michaels-badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">St Michael’s School Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Stamford Endowed Schools"
-                >
-                  <a href="school-files/stamford.html" target="_blank">
-                    <img
-                      src="images/badges/stamford badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Stanford Endowed Schools Co-educational</p>
-                  </div>
-                </div>
-                <div
-                  class="col p-2 school co-ed"
-                  data-toggle="tooltip"
-                  title="Woodhouse Grove School"
-                >
-                  <a href="school-files/woodhouse.html" target="_blank">
-                    <img
-                      src="images/badges/Woodhouse grove badge.png"
-                      class="w-100 slate"
-                      alt="School badge"
-                    />
-                  </a>
-                  <div class="title d-none">
-                    <p class="name">Woodhouse Grove School Co-educational</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <footer class="text-white">
-      <div class="container p-4">
-        <!--Grid row-->
-        <div class="row">
-          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-            <p class="footer-header">Why Boarding Schools Experts</p>
-            <ul class="mb-0 b-bullet">
-              <li class="mb-1">
-                We take the responsibility of searching, processing admission
-                and assist in securing study visa for all our students.
-              </li>
-              <li class="mb-1">
-                We help parents and students get the best options available in
-                term of academic and financial expectations.
-              </li>
-              <li class="mb-1">
-                We organize pre-departure briefing for all our students.
-              </li>
-              <li class="mb-1">
-                We assure parents of continuous assistance during the child
-                studies in our partners’ schools.
-              </li>
-              <li class="mb-1">
-                We also offer Family and student advisory services all through
-                the academic years of your children and wards.
-              </li>
-            </ul>
-          </div>
-
-          <div
-            class="col-lg-3 col-md-4 mt-4 mt-lg-0 mb-4 mb-md-0 d-flex justify-content-lg-center"
-          >
-            <div>
-              <p class="footer-header">Navigation Links</p>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="index.html" class="b-link">Home</a>
-                </li>
-                <li>
-                  <a href="about.html" class="b-link">About Us</a>
-                </li>
-                <li>
-                  <a href="services.html" class="b-link">Services</a>
-                </li>
-                <li>
-                  <a href="schools.html" class="b-link">Schools</a>
-                </li>
-                <li>
-                  <a href="agents.html" class="b-link">Agents</a>
-                </li>
-                <li>
-                  <a href="contact.html" class="b-link">Contact Us</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-5 mb-4 mb-md-0 mt-4 mt-lg-0">
-            <p class="footer-header">Enquiries</p>
-            <div class="d-flex justify-content-start align-items-center mb-2">
-              <i class="fas fa-phone-alt mr-3"></i>
-              <p class="adf-text mb-0">+234 814 849 3618</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-center mb-2">
-              <i class="fas fa-envelope mr-3"></i>
-              <p class="adf-text mb-0">info@boardingschoolsexperts.com</p>
-            </div>
-            <div class="d-flex justify-content-start align-items-start">
-              <i class="fas fa-map-marker-alt mr-3"></i>
-              <p class="adf-text mb-0">
-                7, Aje Street, Sabo-Yaba, Lagos, Nigeria
-              </p>
-            </div>
-
-            <div class="d-flex justify-content-start mt-4">
-              <a
-                href="https://web.facebook.com/Boarding-Schools-Experts-102632928407518"
-                class="icon-link"
-                target="_blank"
-              >
-                <div class="ring"><i class="fab fa-facebook-f"></i></div>
-              </a>
-              <a
-                href="https://twitter.com/BSchoolsExperts?s=09"
-                class="icon-link"
-                target="_blank"
-              >
-                <div class="ring"><i class="fab fa-twitter"></i></div>
-              </a>
-              <a
-                href="https://instagram.com/bschoolsexperts?igshid=hvslhw2xpi0m"
-                class="icon-link"
-                target="_blank"
-              >
-                <div class="ring"><i class="fab fa-instagram"></i></div>
-              </a>
-              <a
-                href="https://www.linkedin.com/company/boarding-school-experts/"
-                class="icon-link"
-                target="_blank"
-              >
-                <div class="ring"><i class="fab fa-linkedin-in"></i></div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!--Grid row-->
-      </div>
-
-      <!-- Copyright -->
-      <div class="footer-base text-center small mt-4">
-        <!-- © 2020 Copyright
-            <a class="company-link ml-1" href="http://virtueconsult.com/"
-              >Virtue Consult Ltd</a
-            > -->
-        <p class="mb-0 ft-text">
-          Developed By<a
-            class="ml-1 company-link"
-            href="https://lumosstudio.tech/"
-            target="_blank"
-            >Lumos Studio</a
-          >
-        </p>
-      </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Project-->
-
-    <!-- JQuery -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-    ></script>
-    <!-- Bootstrap tooltips -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
-    ></script>
-    <!-- Bootstrap core JavaScript -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"
-    ></script>
-    <!-- MDB core JavaScript -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"
-    ></script>
-
-    <!-- Custom scripts -->
-    <script type="text/javascript" src="js/script.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      $(document).ready(function () {
-        $('input[type="radio"]').click(function () {
-          var inputValue = $(this).attr("value");
-          var targetBox = $("." + inputValue);
-          $(".school").not(targetBox).hide("5000");
-          $(targetBox).show("5000");
-        });
+{% block script %}
+  <script>
+    $(document).ready(function () {
+      $('input[type="radio"]').click(function () {
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".school").not(targetBox).hide("5000");
+        $(targetBox).show("5000");
       });
-    </script>
-  </body>
-</html>
+       
+      // Tooltips Initialization
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    });
+  </script>
+{% endblock %}

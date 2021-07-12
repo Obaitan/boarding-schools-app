@@ -11,7 +11,7 @@ Boarding School Experts | News
         <div class="col-lg-9">
           <div class="row">
               <div class="col-3">
-                  <img src="{{ url_for('uploaded', filename=news.thumbnail) }}" class="w-100" alt="News thumbnail" />                
+                  <img src="{{ url_for('uploaded', filename=news.image) }}" class="w-100" alt="News thumbnail" />                
               </div> 
               <div class="col-9 news-heading mb-2" style="text-transform: capitalize;">
                   {{ news.title }}
@@ -34,13 +34,13 @@ Boarding School Experts | News
         <div class="col-lg-3 d-none d-lg-block">
           <div>
             <div class="col-11 ml-auto">
-              <div class="mb-3">
+              <div class="mb-2 text-center">
                 <p class="section-title">Latest Articles</p>
               </div>
               {% for item in last %}
                 <div class="p-2">
                   <div class="thumbnail-wrap mb-2">
-                    <img src="{{ url_for('uploaded', filename=item.thumbnail) }}" class="w-100 nt-image" alt="News thumbnail" />
+                    <img src="{{ url_for('uploaded', filename=item.image) }}" class="w-100 nt-image" alt="News thumbnail" />
                   </div>
                   <a href="/news/single/{{ item.id }}" class="news-link">
                     <p style="font-size: 0.87rem; font-weight: 500; text-transform: capitalize;">

@@ -36,16 +36,16 @@
     />
 
     <!-- Custom styles -->
-    <link
-      href="{{ url_for('static', filename='css/main.css') }}"
-      rel="stylesheet"
-    />
+    <!-- <link
+      href="{{ url_for('static', filename='css/main2.css') }}" rel="stylesheet"
+    /> -->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
   </head>
 
   <body>
     <div class="home px-2">
       <div class="container h-100">
-        <div class="col-xl-6 mx-auto">
+        <div class="col-lg-10 col-xl-6 mx-auto">
           <div class="text-center mb-0">
             <img
               src="{{ url_for('static', filename='images/svg/bse-logo.svg') }}"
@@ -57,27 +57,32 @@
             <div class="text-center">
               <p class="caption">Admin Login</p>
             </div>
-            <form method="" action="">
-            {{ form.hidden_tag() }}
+            <form method="POST" action="" novalidate>
+              {{ form.hidden_tag() }}
 
-            <!-- {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                {% for category, message in messages %}
-                <div class="alert alert-{{ category }} text-center text-bold mb-0">
-                  <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  {{ message }}
-                </div>
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                  <div class="alert alert-{{ category }} text-center text-bold mb-0">                  
+                    {{ message }}
+                  </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            
+              <p>
+                {{ form.username(class="form-control", placeholder="Username") }}
+                {% for error in form.username.errors %}
+                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
                 {% endfor %}
-              {% endif %}
-            {% endwith %} -->
-            
-            {{ form.username(class="form-control my-3", placeholder="Username") }}
-            
-            {{ form.password(class="form-control mb-3", placeholder="Password") }} 
-            
-            {{ form.submit(class="btn btn-school-light btn-block") }}            
+              </p>              
+              <p>
+                {{ form.password(class="form-control", placeholder="Password") }}
+                {% for error in form.password.errors %}
+                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                {% endfor %}
+              </p>               
+              {{ form.submit(class="btn btn-school-light btn-block") }}            
             </form>
           </div>
         </div>
@@ -89,10 +94,6 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"
     ></script>
-    <!-- Custom scripts -->
-    <!-- <script
-      type="text/javascript"
-      src="{{ url_for('static', filename = 'js/admin.js') }}"
-    ></script> -->
+    <!-- Custom scripts -->   
   </body>
 </html>

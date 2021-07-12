@@ -25,7 +25,7 @@ Boarding School Experts | Schools Partnership Form
           {% endif %}
         {% endwith %}
 
-        <form class="row" id="ap-form" method="POST" action="{{ url_for('agents_form') }}">
+        <form class="row" id="ap-form" method="POST" action="{{ url_for('agents_form') }}" novalidate>
           {{ form.hidden_tag() }}         
           
           <div class="col-xl-6 px-xl-3">
@@ -34,33 +34,51 @@ Boarding School Experts | Schools Partnership Form
               <div class="row mt-n2">
                 <div class="col-12 mb-1">
                   <p class="lead">Company Name</p>
-                  {{ form.companyName(class="form-control") }}                  
+                  {{ form.companyName(class="form-control") }}
+                  {% for error in form.companyName.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
                 <div class="col-12 mb-2">
                   <p class="lead">Company Address</p>
-                  {{ form.companyAddress(class="form-control") }}                  
+                  {{ form.companyAddress(class="form-control") }}
+                  {% for error in form.companyAddress.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 mb-1">
                   <p class="lead">City</p>
-                  {{ form.city(class="form-control") }}                 
+                  {{ form.city(class="form-control") }}
+                  {% for error in form.city.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
                 <div class="col-md-6 mb-1">
                   <p class="lead">State</p>
                   {{ form.state(class="form-control") }}
+                  {% for error in form.state.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 mb-1">
                   <p class="lead">Country</p>
-                {{ form.countryName(class="form-control") }}
+                  {{ form.countryName(class="form-control") }}
+                  {% for error in form.countryName.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
                 <div class="col-md-6 mb-1">
                   <p class="lead">Email</p>
                   {{ form.email(class="form-control") }}
+                  {% for error in form.email.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
 
@@ -68,10 +86,16 @@ Boarding School Experts | Schools Partnership Form
                 <div class="col-md-6 mb-1">
                   <p class="lead">Phone #1</p>
                   {{ form.phone1(class="form-control", id="phone2", onkeypress="return isNumberKey(event)") }}
+                  {% for error in form.phone1.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
                 <div class="col-md-6 mb-1">
                   <p class="lead">Phone #2</p>
                   {{ form.phone2(class="form-control", id="phone3", onkeypress="return isNumberKey(event)") }}
+                  {% for error in form.phone2.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
 
@@ -79,32 +103,56 @@ Boarding School Experts | Schools Partnership Form
                 <div class="col-md-6 mb-1">
                   <p class="lead">WhatsApp Number</p>
                   {{ form.whatsApp(class="form-control", id="phone4", onkeypress="return isNumberKey(event)") }}
+                  {% for error in form.whatsApp.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
                 <div class="col-md-6 mb-1">
                   <p class="lead">Company Website</p>
                   {{ form.website(class="form-control") }}
+                  {% for error in form.website.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
                 <div class="col-12">
                   <p class="lead">Operations Commencement Date</p>
                   {{ form.startDate(class="form-control") }}
+                  {% for error in form.startDate.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </div>
               </div>
 
               <h5 class="display-5">Social</h5>
               <p class="lead">Linkedin Page</p>
               {{ form.lnked(class="form-control") }}
+              {% for error in form.lnked.errors %}
+              <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+              {% endfor %}
 
               <p class="lead">Facebook Page</p>
               {{ form.fb(class="form-control") }}
+              {% for error in form.fb.errors %}
+              <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+              {% endfor %}
 
               <p class="lead">Twitter Handle</p>
               {{ form.twi(class="form-control") }}
+              {% for error in form.twi.errors %}
+              <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+              {% endfor %}
 
               <p class="lead">Instagram Handle</p>
               {{ form.insta(class="form-control") }}
+              {% for error in form.insta.errors %}
+              <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+              {% endfor %}
 
               <p class="lead">Skype ID</p>
               {{ form.skype(class="form-control mb-4") }}
+              {% for error in form.skype.errors %}
+              <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+              {% endfor %}
             </div>            
           </div>
 
@@ -113,8 +161,11 @@ Boarding School Experts | Schools Partnership Form
               <h4 class="display-4 mb-3">Recruitment Details</h4>
               <p class="lead">Services You Provide</p>
               <ol type="A">
-                <li>
-                  {{ form.service1(class="form-control mb-3") }}
+                <li class="mb-3">
+                  {{ form.service1(class="form-control") }}
+                  {% for error in form.service1.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
                 <li>
                   {{ form.service2(class="form-control mb-3") }}
@@ -129,8 +180,11 @@ Boarding School Experts | Schools Partnership Form
 
               <p class="lead mt-4">Countries You Work In</p>
               <ol type="A">
-                <li>
-                  {{ form.country1(class="form-control mb-3") }}
+                <li class="mb-3">
+                  {{ form.country1(class="form-control") }}
+                  {% for error in form.country1.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
                 <li>
                   {{ form.country2(class="form-control mb-3") }}
@@ -147,8 +201,11 @@ Boarding School Experts | Schools Partnership Form
                 Educational Associations / Groups You Belong To
               </p>
               <ol type="A">
-                <li>
-                  {{ form.group1(class="form-control mb-3") }}
+                <li class="mb-3">
+                  {{ form.group1(class="form-control") }}
+                  {% for error in form.group1.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
                 <li>
                   {{ form.group2(class="form-control mb-3") }}
@@ -163,49 +220,77 @@ Boarding School Experts | Schools Partnership Form
 
               <p class="display-5 mt-5">Reference 1</p>
               <ol type="A">
-                <li>
+                <li class="mb-3">
                   <p class="lead">Name of Institution</p>
-                  {{ form.refInstitution(class="form-control mb-3") }}                  
+                  {{ form.refInstitution(class="form-control") }}
+                  {% for error in form.refInstitution.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
-                <li>
+                <li class="mb-3">
                   <p class="lead">Name of Person</p>
-                  {{ form.refName(class="form-control mb-3") }}                 
+                  {{ form.refName(class="form-control") }}
+                  {% for error in form.refName.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
-                <li>
+                <li class="mb-3">
                   <p class="lead">Phone Number</p>
-                  {{ form.refPhone(class="form-control mb-3", id="phone5", onkeypress="return isNumberKey(event)") }}
+                  {{ form.refPhone(class="form-control", id="phone5", onkeypress="return isNumberKey(event)") }}
+                  {% for error in form.refPhone.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
-                <li>
+                <li class="mb-3">
                   <p class="lead">Email</p>
-                  {{ form.refEmail(class="form-control mb-3") }}                  
+                  {{ form.refEmail(class="form-control") }}
+                  {% for error in form.refEmail.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
               </ol>
 
               <p class="display-5 mt-5">Reference 2</p>
               <ol type="A">
-                <li>
+                <li class="mb-3">
                   <p class="lead">Name of Institution</p>
-                  {{ form.refInstitution2(class="form-control mb-3") }}
+                  {{ form.refInstitution2(class="form-control") }}
+                  {% for error in form.refInstitution2.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
-                <li>
+                <li class="mb-3">
                   <p class="lead">Name of Person</p>
-                  {{ form.refName2(class="form-control mb-3") }}
+                  {{ form.refName2(class="form-control") }}
+                  {% for error in form.refName2.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
-                <li>
+                <li class="mb-3">
                   <p class="lead">Phone Number</p>
-                  {{ form.refPhone2(class="form-control mb-3", id="phone6", onkeypress="return isNumberKey(event)") }}
+                  {{ form.refPhone2(class="form-control", id="phone6", onkeypress="return isNumberKey(event)") }}
+                  {% for error in form.refPhone2.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
-                <li>
+                <li class="mb-3">
                   <p class="lead">Email</p>
-                  {{ form.refEmail2(class="form-control mb-3") }}
+                  {{ form.refEmail2(class="form-control") }}
+                  {% for error in form.refEmail2.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
                 </li>
               </ol>
 
-              <div class="custom-control custom-checkbox mt-4">
-                <input type="checkbox" class="custom-control-input" id="checkbox2" required />
-                <label class="custom-control-label" for="checkbox2">I declare that the information contained in this
+              <div class="custom-control custom-checkbox">
+                {{ form.checkbox(class="custom-control-input", id="checkbox") }}
+                <label class="custom-control-label" for="checkbox">I declare that the information contained in this
                   application and all supporting doumentation is true and
-                  correct.</label>
+                  correct.
+                </label>
+                {% for error in form.checkbox.errors %}
+                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                {% endfor %}
               </div>
               <div class="pl-0 my-4">
                 {{ form.submit(class="btn btn-school-light") }}

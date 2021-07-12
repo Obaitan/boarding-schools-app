@@ -9,10 +9,16 @@ Boarding School Experts | Admin Dasboard
 {% block body %}  
   <div class="container">
     <div class="col-xl-10 my-4 mx-auto px-0">
+      <a class="btn btn-yellow my-2 fixed-button" href="{{ url_for('dashboard_news') }}"
+        style="padding: .625rem 1.5rem .5rem; font-size: .85rem;">
+        Back To Articles
+      </a>
       <div class="text-md-center mb-4">
-        <p class="form-bold mb-0 px-3">Create News Article</p>
+        <p class="form-bold mb-0 px-3">New Article</p>
       </div>
-      <form action="/upload_article" method="POST" enctype=multipart/form-data class="admin-forms">
+      <form action="" method="POST" enctype=multipart/form-data class="admin-forms" novalidate>
+        {{ form.hidden_tag() }}
+        
         {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
             {% for category, message in messages %}
@@ -24,39 +30,52 @@ Boarding School Experts | Admin Dasboard
         {% endwith %}
         <div class="row pt-2">
           <div class="col-md-12 mt-4">
-            <div class="form-outline">
-              <textarea name="title" rows="2" class="form-control" placeholder="Enter excerpt here..." style="text-transform: capitalize;" required></textarea>
-              <label class="form-label" for="title">Article Title</label>
+            <div class="form-outline">              
+              {{ form.title(class="form-control", style="text-transform: capitalize;") }}
+              {{ form.title.label(class="form-label") }}              
             </div>
+            {% for error in form.title.errors %}
+            <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+            {% endfor %}
           </div>         
           <div class="col-md-12 mt-4">
-            <div class="form-outline">                
-              <input type="text" id="author" name="author" class="form-control" style="text-transform: capitalize;" required/>
-              <label class="form-label" for="author">Author Name</label>
+            <div class="form-outline">
+              {{ form.author(class="form-control", style="text-transform: capitalize;") }}
+              {{ form.author.label(class="form-label") }}              
             </div>
+            {% for error in form.author.errors %}
+            <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+            {% endfor %}
           </div>
           <div class="col-md-10 col-lg-8 col-xl-6 mt-4">
             <div>
-              <label for="thumbnail" class="form-label">Upload Thumbnail Image for Article</label>
-              <input type="file" class="form-control" id="thumbnail" name="thumbnail" required/>    
+              <p class="show2 mb-2">Upload Article Image (PNG / JPEG / JPG)</p>
+              {{ form.image(class="form-control input-field", accept="image/*") }}
+              {% for error in form.image.errors %}
+                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+              {% endfor %}              
             </div>
           </div>
           <div class="col-12">
-            <div class="form-outline my-4">                
-              <textarea name="excerpt" rows="5" class="form-control"
-                placeholder="Enter excerpt here..." maxlength="350" required></textarea>
-                <label class="form-label" for="excerpt">Article Excerpt</label>
+            <div class="form-outline mt-4">
+              {{ form.excerpt(class="form-control", rows=5) }}
+              {{ form.excerpt.label(class="form-label") }}              
             </div>
+            {% for error in form.excerpt.errors %}
+            <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+            {% endfor %}
           </div>
           <div class="col-12">
-            <div class="form-outline mb-4">                
-              <textarea name="article" rows="10" class="form-control"
-                placeholder="Enter article here..." required></textarea>
-                <label class="form-label" for="article">Article</label>
+            <div class="form-outline mt-4">
+              {{ form.article(class="form-control", rows=10) }}
+              {{ form.article.label(class="form-label") }}                            
             </div>
+            {% for error in form.article.errors %}
+            <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+            {% endfor %}
           </div>      
-          <div class="px-2 col-12">
-            <input type="submit" class="btn btn-school" value="publish article" />
+          <div class="px-2 col-12 mt-4">
+            {{ form.submit(class="btn btn-school btn-block") }}
           </div>
         </div>
       </form>

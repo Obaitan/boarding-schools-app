@@ -8,10 +8,99 @@ Boarding School Experts | Admin Dasboard
 
 {% block body %}
 <div class="col-xl-11 mx-auto px-2">  
-  <a class="btn btn-yellow my-2 fixed-button" href="{{ url_for('new_school') }}"style="padding: .625rem 1.5rem .5rem; font-size: .85rem;">
+  <a class="btn btn-yellow my-2 fixed-button" href="{{ url_for('new_school_info') }}"style="padding: .625rem 1.5rem .5rem; font-size: .85rem;">
     Add School
   </a>  
+  <div id="s-display">
+    <div class="container">
+      <div class="d-flex justify-content-md-start">
+        <div class="mt-4 mt-lg-5 mb-3">     
+          <div class="input-group">
+            <div class="form-outline">
+              <input type="search" id="search2" class="form-control" style="background-color: #fff;" />
+              <label class="form-label" for="search">Search</label>
+            </div>
+            <button type="button" class="btn btn-new btn-sm">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
   
+      <div class="d-flex justify-content-center flex-wrap">
+        <div class="d-none d-md-block col-md-3 px-0 pr-md-2 pr-lg-4 pr-xl-5">
+          <div>           
+            <div class="px-2">
+              <p class="bsb-text2 mb-0">Filter</p>
+              <div class="form-check mt-2">
+                <input type="radio" class="form-check-input" id="radioA" name="filter" checked value="school" />
+                <label class="form-check-label" for="radioA">All Schools</label>
+              </div>
+              <div class="form-check mt-2">
+                <input type="radio" class="form-check-input" id="radioB" name="filter" value="co-ed" />
+                <label class="form-check-label" for="radio1">Co-Educational Schools</label>
+              </div>
+              <div class="form-check mt-2">
+                <input type="radio" class="form-check-input" id="radioC" name="filter" value="boys" />
+                <label class="form-check-label" for="radio2">Boys Schools</label>
+              </div>
+              <div class="form-check mt-2">
+                <input type="radio" class="form-check-input" id="radioD" name="filter" value="girls" />
+                <label class="form-check-label" for="radio3">Girls Schools</label>
+              </div>
+            </div>           
+          </div>         
+        </div>
+  
+        <div class="col-md-9">
+          <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 mt-3 mt-md-0 p-0">
+            {% for item in schools %}
+              <div class="col p-2 school ecole {{ item.schoolType }} bind" data-toggle="tooltip" title="{{ item.schoolName }}">
+                <div class="canvas">
+                  <img src="{{ url_for('uploaded', filename=item.badge) }}" class="w-100 slateX" alt="School badge" />
+                  <div class="title d-none">
+                    <p class="name">{{ item.schoolName }} {{ item.schoolType }}</p>
+                  </div>               
+                  <div class="lay">
+                    <div class="case">
+                      <a class="btn btn-white btn-sm mx-1" href="{{ url_for('new_school_info') }}">Edit</a>                
+                    </div>
+                  </div>
+                </div>              
+              </div>
+            {% endfor %}            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   
 </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    $(document).ready(function () {
+      $('input[type="radio"]').click(function () {
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".ecole").not(targetBox).hide("5000");
+        $(targetBox).show("5000");
+      });
+
+      // Search function for schools display
+      $("#search2").keyup(function () {
+        // Search text
+        var text = $(this).val();
+
+        // Hide all content class element
+        $(".ecole").hide();
+
+        // Search
+        $('.ecole .title:contains("' + text + '")')
+          .closest(".ecole")
+          .show();
+      });
+    });
+  </script>
 {% endblock %}

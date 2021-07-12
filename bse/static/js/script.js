@@ -80,7 +80,7 @@ $(document).ready(function () {
   });
 
   // Search function for schools display
-  $("#search, #search2").keyup(function () {
+  $("#search").keyup(function () {
     // Search text
     var text = $(this).val();
 
@@ -92,11 +92,7 @@ $(document).ready(function () {
       .closest(".school")
       .show();
   });
-
-  // Tooltips Initialization
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-  });
+  
 });
 
 $.expr[":"].contains = $.expr.createPseudo(function (arg) {

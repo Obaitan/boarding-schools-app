@@ -90,16 +90,7 @@
               <span class="material-icons md-20"> post_add </span>
               <span class="mi">News Articles</span>
             </a>
-          </li>
-          <li class="side-item">
-            <a
-              href="{{ url_for('admin_schools') }}"
-              class="fix ripple {{'actively' if active_page == 'admin_schools' }}"
-            >
-              <span class="material-icons md-20"> maps_home_work </span>
-              <span class="mi">Schools</span>
-            </a>
-          </li>
+          </li>          
           <li class="side-item">
             <a
               href="{{ url_for('country') }}"
@@ -108,7 +99,13 @@
               <span class="material-icons md-20"> flag </span>
               <span class="mi">Countries</span>
             </a>
-          </li>         
+          </li> 
+          <li class="side-item">
+            <a href="{{ url_for('admin_schools') }}" class="fix ripple {{'actively' if active_page == 'admin_schools' }}">
+              <span class="material-icons md-20"> maps_home_work </span>
+              <span class="mi">Schools</span>
+            </a>
+          </li>
           <li class="side-item">
             <a href="{{ url_for('home') }}" class="fix ripple">
               <span class="material-icons md-20"> logout </span>

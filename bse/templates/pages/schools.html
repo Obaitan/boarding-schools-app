@@ -266,10 +266,10 @@ Boarding School Experts | Services
     </div>
     {% for country in countries %}
       <div class="col-md-4 px-5 py-3 p-md-4 px-lg-5 pt-lg-5 pb-lg-2">
-        <a href="#!" class="sl-text">
+        <a href="/schools/{{ country.name }}" class="sl-text">
           <div class="text-center">
             <img
-              src="{{ url_for('uploaded', filename=country.flagName) }}"
+              src="{{ url_for('uploaded', filename=country.flag) }}"
               class="w-100 ib"
               alt="Country flag"
             />

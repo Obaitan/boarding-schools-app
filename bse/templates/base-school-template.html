@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PZC755D");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <meta
+      name="description"
+      content="We link parents and their wards with premium boarding institutions around the world. This is done in a stress-free and pocket-friendly manner. Come partner with us today."
+    />
+    <meta
+      name="keywords"
+      content="Boarding Schools, Educational Consultancy, Admission Processing, Visa Application"
+    />
+    <title>{% block title %}{% endblock %}</title>
+
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/site-logo.png') }}"
+      type="image/x-icon"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;200;700&display=swap"
+    />   
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
+      rel="stylesheet"
+    />    
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Material Design Bootstrap -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+      rel="stylesheet"
+    />      
+    <!-- Custom styles -->
+    <link href="{{ url_for('static', filename='libraries/lightbox-2/dist/css/lightbox.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='libraries/lity-2.4.1/dist/lity.css') }}" rel="stylesheet" />
+    <!-- Custom styles -->    
+    <link
+      href="{{ url_for('static', filename='css/school-style.css') }}"
+      rel="stylesheet"
+    />   
+    {% block style %}{% endblock %}
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PZC755D"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% block body %}{% endblock %}
+
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"
+    ></script>
+    
+    <script src="{{ url_for('static', filename='libraries/lightbox-2/dist/js/lightbox.js') }}"></script>
+    <script src="{{ url_for('static', filename='libraries/lity-2.4.1/dist/lity.js') }}"></script>
+    <!-- Custom scripts -->  
+    <script type="text/javascript" src="{{ url_for('static', filename='js/template-script.js') }}"></script>    
+    {% block script %}{% endblock %}
+  </body>
+</html>

@@ -4,6 +4,11 @@ from bse import bcrypt
 from flask_login import UserMixin
 
 
+# @app.shell_context_processor
+# def make_shell_context():
+#     return {'db': db, 'User': User, 'News': News, 'Country': Country, 'Schools': Schools, 'Imgaes': Images, 'Thumbnails': Thumbnails, 'Documents', Documents}
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(int(user_id))
@@ -31,36 +36,36 @@ class User (db.Model, UserMixin):
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False, unique=True)
-    excerpt = db.Column(db.String(300), nullable=False)
-    article = db.Column(db.Text, nullable=False)
+    excerpt = db.Column(db.String(300), nullable=False, unique=True)
+    article = db.Column(db.Text, nullable=False, unique=True)
     author = db.Column(db.String(40), nullable=False,
                        default='Unknown')
     date = db.Column(db.DateTime, nullable=False,
                      unique=True, default=datetime.utcnow)
     imagePath = db.Column(db.String(256), nullable=False)
-    thumbnail = db.Column(db.Text, nullable=False)
+    image = db.Column(db.Text, nullable=False, unique=True)
 
     def __repr__(self):
-        return f'News {self.name}'
+        return f'News {self.id}'
 
 
-class Country(db.Model):
+class Country(db.Model):    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False,  unique=True)
-    flagName = db.Column(db.Text, nullable=False)
-    imagePath = db.Column(db.String(256), nullable=False)
+    flag = db.Column(db.Text, nullable=False, unique=True)
+    flagPath = db.Column(db.String(256), nullable=False)
     date = db.Column(db.DateTime, nullable=False,
                      unique=True, default=datetime.utcnow)
 
     def __repr__(self):
-        return f'Country {self.name}'
+        return f'Country: {self.name}'
 
 
-class Schools(db.Model):
+class Schools(db.Model):    
     id = db.Column(db.Integer, primary_key=True)
     colour1 = db.Column(db.String(7), nullable=False)
     colour2 = db.Column(db.String(7), nullable=False)
-    schoolName = db.Column(db.String(100), nullable=False)
+    schoolName = db.Column(db.String(100), nullable=False, unique=True)
     schoolType = db.Column(db.String(6), nullable=False)
     population = db.Column(db.String(100), nullable=False)
     address = db.Column(db.Text, nullable=False)
@@ -72,7 +77,7 @@ class Schools(db.Model):
     badgePath = db.Column(db.String(256), nullable=False)
     date = db.Column(db.DateTime, nullable=False,
                      unique=True, default=datetime.utcnow)
-    country = db.Column(db.String(35), nullable=False)    
+    country = db.Column(db.String(35), nullable=False)
     facilities = db.Column(db.Text, nullable=True)
     academics = db.Column(db.Text, nullable=True)
     extra = db.Column(db.Text, nullable=True)
@@ -87,33 +92,42 @@ class Schools(db.Model):
     link2 = db.Column(db.String(256), nullable=True)
     link3 = db.Column(db.String(256), nullable=True)
     link4 = db.Column(db.String(256), nullable=True)
-    link5 = db.Column(db.String(256), nullable=True)    
-    
+    link5 = db.Column(db.String(256), nullable=True)
+    tour = db.Column(db.String(256), nullable=True)
+    appLink = db.Column(db.String(256), nullable=True)
+    feesLink = db.Column(db.String(256), nullable=True)
 
     def __repr__(self):
-        return f'School {self.name}'
+        return f'School: {self.schoolName}'
 
 
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    schoolName = db.Column(db.Text, nullable=False, unique=True)
-    schoolPix = db.Column(db.Text, nullable=False, unique=True)
+    schoolName = db.Column(db.Text, nullable=False)
+    schoolPix = db.Column(db.Text, nullable=False)
     schoolPixPath = db.Column(db.String(256), nullable=False)
-    vidPix = db.Column(db.Text, nullable=False, unique=True)
-    vidThumbnailPath = db.Column(db.String(256), nullable=False)
 
     def __repr__(self):
-        return f'School {self.name}'
+        return f'Image {self.id}'
+
+
+class Thumbnails(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    vidPix = db.Column(db.Text, nullable=False)
+    vidPixPath = db.Column(db.String(256), nullable=False)
+
+    def __repr__(self):
+        return f'Thumbnail {self.id}'
 
 
 class Documents(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    schoolName = db.Column(db.Text, nullable=False, unique=True)
-    forms = db.Column(db.Text, nullable=True, unique=True)
-    formsPath = db.Column(db.String(256), nullable=True)
-    feesLink = db.Column(db.String(256), nullable=True, unique=True)
-    appLink = db.Column(db.String(256), nullable=True, unique=True)
+    schoolName = db.Column(db.Text, nullable=False)
+    appForm = db.Column(db.Text, nullable=True, unique=True)
+    appFormsPath = db.Column(db.String(256), nullable=True)
+    feesForm = db.Column(db.Text, nullable=True, unique=True)
+    feesFormsPath = db.Column(db.String(256), nullable=True)
 
     def __repr__(self):
-        return f'School {self.name}'
-    
+        return f'Form: {self.name}'

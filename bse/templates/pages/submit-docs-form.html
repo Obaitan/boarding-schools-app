@@ -4,6 +4,13 @@
 Boarding School Experts | Submit Documents Form
 {% endblock %}
 
+{% block style %}
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.css"
+  integrity="sha512-joKDvh+eAWoVNKsL6T1spjb9TUTVLKzp9kD+BsfkKmy3RiwKlBK2A0fqSBmPOG0RW9jTvpNDjkX0Z02d3A6jbA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
 {% block body %}
   <div class="bit-dark">
     <div id="application-form">
@@ -15,13 +22,27 @@ Boarding School Experts | Submit Documents Form
         </div>
         <div class="row">
           <div class="col-lg-9 col-xl-8 mx-auto">
-            <form class="form-container upload-form" id="upload-form" method="POST" action="" enctype="multipart/form-data">
-              <div class="m-md-4">
+            <form class="form-container upload-form" id="upload-form" method="POST" action="" enctype="multipart/form-data" novalidate>
+              {{ form.hidden_tag() }}
+              
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} text-center text-bold mb-0">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              <div class="mb-md-4">
                 <div class="row mb-0">
                   <div class="col-md-12">
                     <div class="md-form mb-0">
                       {{ form.name.label }}
                       {{ form.name(class="form-control") }}
+                      {% for error in form.name.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
                     </div>
                   </div>
               
@@ -29,6 +50,9 @@ Boarding School Experts | Submit Documents Form
                     <div class="md-form mb-0">
                       {{ form.school.label }}
                       {{ form.school(class="form-control") }}
+                      {% for error in form.school.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
                     </div>
                   </div>
               
@@ -36,33 +60,38 @@ Boarding School Experts | Submit Documents Form
                     <div class="md-form mb-0">
                       {{ form.email.label }}
                       {{ form.email(class="form-control") }}
-                      <p class="field-text text-info"><small>Enter a valid email address.</small></p>
+                      {% for error in form.email.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
                     </div>
                   </div>
               
                   <div class="col-md-12 col-xl-6 mb-3">
                     <div class="md-form mb-0">
                       {{ form.phone(class="form-control", id="phone7", onkeypress="return isNumberKey(event)") }}
-                      <p class="field-text text-info mt-2"><small>Enter a valid contact number.</small></p>
+                      {% for error in form.phone.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
                     </div>
                   </div>
               
-                  <div class="col-md-12">
-                    <div class="text-center mt-2">
-                      <p class="form-section-heading mb-1">Attach Documents</p>
-                    </div>
-                    <div class="attachment-row">
-                      <input type="file" class="input-field" name="attachment[]" accept="image/*,.pdf, .doc, .docx"
-                        style="cursor: pointer" />
-                    </div>
-                    <div onClick="addMoreAttachment();" class="icon-add-more-attachemnt" title="Add More Attachments">
-                      <img src="{{ url_for('static', filename='images/add.png') }}" alt="Add More Attachments" />
+                  <div class="col-md-12 mt-2">                   
+                    <div class="custom-file-container" data-upload-id="Upload6">
+                      <p class="show2 mt-2 mb-0">Upload Application Form And Documents (PDF) <a href="javascript:void(0)"
+                          class="custom-file-container__image-clear" title="Clear Image">&times;</a></p>
+                      <label class="custom-file-container__custom-file">
+                        {{ form.docs(class="custom-file-container__custom-file__custom-file-input", accept=".doc, .docx, .pdf") }}                        
+                        <span class="custom-file-container__custom-file__custom-file-control"></span>
+                      </label>
+                      {% for error in form.docs.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                      <div class="custom-file-container__image-preview"></div>
                     </div>
                   </div>
-              
-              
+                  
                   <div class="col-md-12 ml-0 mt-2">
-                    <input class="btn btn-school-light waves-effect mx-0" type="submit" name="send" value="submit document(s)" />
+                    {{ form.submit(class="btn btn-school-light mx-0") }}                    
                   </div>
                 </div>
               </div>
@@ -75,6 +104,10 @@ Boarding School Experts | Submit Documents Form
 {% endblock %}
 
 {% block script %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.js"
+    integrity="sha512-Z41LlJOURucboITRl9uL5Y7GNfyxqS6+i9THsMWsOpvStxQjY/uGmU+5a3+4ddXeHZcUXZTeHI272bZPWkGF3w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
     var input7 = document.querySelector("#phone7");
     window.intlTelInput(input7, {
@@ -88,5 +121,7 @@ Boarding School Experts | Submit Documents Form
         utilsScript:
           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
       });
+
+      var upload = new FileUploadWithPreview('Upload6')
   </script>
 {% endblock %}

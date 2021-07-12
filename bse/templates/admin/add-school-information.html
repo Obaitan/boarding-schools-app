@@ -1,0 +1,305 @@
+{% extends 'base-dashboard.html' %}
+
+{% block title %}
+Boarding School Experts | Admin Dasboard
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.css"
+  integrity="sha512-joKDvh+eAWoVNKsL6T1spjb9TUTVLKzp9kD+BsfkKmy3RiwKlBK2A0fqSBmPOG0RW9jTvpNDjkX0Z02d3A6jbA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block body %}  
+  <div class="container">
+    <div class="col-xl-11 my-4 mx-auto px-0">
+      <div class="row">
+        <div class="col-xl-3">
+          <div>
+            <a class="btn button-link see" href="{{ url_for('new_school_info') }}">Add School Info</a>
+          </div>
+          <div class="mt-2">
+            <a class="btn button-link" href="{{ url_for('new_school_images') }}">Add School Images</a>
+          </div>
+          <div class="mt-2">
+            <a class="btn button-link" href="{{ url_for('new_school_thumbnails') }}">Add YouTube Images</a>
+          </div>
+          <div class="mt-2">
+            <a class="btn button-link" href="{{ url_for('new_school_forms') }}">Add School Forms</a>
+          </div>
+        </div>
+      
+        <div class="col-xl-9 mt-5 mt-xl-0">          
+          <div class="">            
+              <form action="" method="POST" enctype=multipart/form-data class="admin-forms" id="form1" novalidate>
+                {{ form.hidden_tag() }}
+              
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }} text-center text-bold mb-0">                  
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+                <div class="row">
+                  <div class="col-md-6 mt-4">
+                    <div>
+                      {{ form.schoolName.label(class="form-control.label") }}
+                      {{ form.schoolName(class="form-control", style="text-transform: capitalize;") }}
+                      {% for error in form.schoolName.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>                   
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div>
+                      {{ form.country.label(class="form-control.label") }}
+                      {{ form.country(class="form-control form-select", style="text-transform: capitalize;") }}
+                      {% for error in form.country.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-4">
+                    <div>
+                      {{ form.col1.label(class="form-control.label") }}
+                      {{ form.col1(class="form-control") }}
+                      {% for error in form.col1.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-4">
+                    <div>
+                      {{ form.col2.label(class="form-control.label") }}
+                      {{ form.col2(class="form-control") }}
+                      {% for error in form.col2.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-4">
+                    {{ form.schoolType.label(class="form-control.label") }}
+                    {{ form.schoolType(class="form-control form-select") }}
+                    {% for error in form.schoolType.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  <div class="col-md-4 mt-4">
+                    <div>
+                      {{ form.population.label(class="form-control.label") }}
+                      {{ form.population(class="form-control") }}
+                      {% for error in form.population.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-8 mt-4">
+                    <div>
+                      {{ form.website.label(class="form-control.label") }}
+                      {{ form.website(class="form-control") }}
+                      {% for error in form.website.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mt-4">
+                      {{ form.address.label(class="form-control.label") }}
+                      {{ form.address(class="form-control", rows=2) }}
+                      {% for error in form.address.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mt-4">
+                      {{ form.about.label(class="form-control.label") }}
+                      {{ form.about(class="form-control", rows=8) }}
+                      {% for error in form.about.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+              
+                  <div class="col-md-12 col-xl-6 mt-5">
+                    <p class="show2 mb-2">Upload School Logo(PNG / JPEG / JPG)</p>
+                    {{ form.logo(class="form-control input-field", id="file-input", accept="image/*") }}
+                    {% for error in form.logo.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                    <div id="preview" class="mt-3"></div>
+                  </div>
+                  <div class="col-md-12 col-xl-6 mt-5">
+                    <p class="show2 mb-2">Upload School Badge(PNG / JPEG / JPG)</p>
+                    {{ form.badge(class="form-control input-field", id="file-input2", accept="image/*") }}
+                    {% for error in form.badge.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                    <div id="preview2" class="mt-3"></div>
+                  </div>
+                  <div class="mt-5 text-center">
+                    <p class="mb-2 show2">School Programmes</p>
+                  </div>
+                  <div class="col-12">
+                    <div>
+                      {{ form.facilities.label(class="form-control-label") }}
+                      {{ form.facilities(class="form-control", rows=8) }}
+                    </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <div>
+                      {{ form.academics.label(class="form-control-label") }}
+                      {{ form.academics(class="form-control", rows=8) }}
+                    </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <div>
+                      {{ form.extra.label(class="form-control-label") }}
+                      {{ form.extra(class="form-control", rows=8) }}
+                    </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <div>
+                      {{ form.care.label(class="form-control-label") }}
+                      {{ form.care(class="form-control",  rows=8) }}
+                    </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <div class="col-lg-6">
+                      <div>
+                        {{ form.newHeading.label(class="form-control-label") }}
+                        {{ form.newHeading(class="form-control") }}
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      {{ form.newBody.label(class="form-control-label") }}
+                      {{ form.newBody(class="form-control", rows=8) }}
+                    </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <div class="col-lg-6">
+                      <div>
+                        {{ form.newHeading2.label(class="form-control-label") }}
+                        {{ form.newHeading2(class="form-control") }}
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      {{ form.newBody2.label(class="form-control-label") }}
+                      {{ form.newBody2(class="form-control", rows=8) }}
+                    </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <div class="col-lg-6">
+                      <div>
+                        {{ form.newHeading3.label(class="form-control-label") }}
+                        {{ form.newHeading3(class="form-control") }}
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      {{ form.newBody3.label(class="form-control-label") }}
+                      {{ form.newBody3(class="form-control", rows=8) }}
+                    </div>
+                  </div>
+              
+                  <div class="mt-5 text-center">
+                    <p class="mb-0 show2">YouTube Video Links</p>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.link1.label(class="form-control-label") }}
+                      {{ form.link1(class="form-control") }}
+                      {% for error in form.link1.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.link2.label(class="form-control-label") }}
+                      {{ form.link2(class="form-control") }}
+                      {% for error in form.link2.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.link3.label(class="form-control-label") }}
+                      {{ form.link3(class="form-control") }}
+                      {% for error in form.link3.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.link4.label(class="form-control-label") }}
+                      {{ form.link4(class="form-control") }}
+                      {% for error in form.link4.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.link5.label(class="form-control-label") }}
+                      {{ form.link5(class="form-control") }}
+                      {% for error in form.link5.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.tour.label(class="form-control-label") }}
+                      {{ form.tour(class="form-control") }}
+                      {% for error in form.tour.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="mt-5 text-center">
+                    <p class="mb-0 show2">Link To Forms (Where PDF Documents Are Unavailable)</p>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.appLink.label(class="form-control-label") }}
+                      {{ form.appLink(class="form-control") }}
+                      {% for error in form.appLink.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      {{ form.feesLink.label(class="form-control-label") }}
+                      {{ form.feesLink(class="form-control") }}
+                      {% for error in form.feesLink.errors %}
+                      <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="px-2 col-12 mt-4">
+                    {{ form.submit(class="btn btn-school btn-block") }}                   
+                  </div>
+                </div>
+              </form>
+            </div>           
+        </div>
+      </div>      
+    </div>    
+  </div>  
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.js"
+  integrity="sha512-Z41LlJOURucboITRl9uL5Y7GNfyxqS6+i9THsMWsOpvStxQjY/uGmU+5a3+4ddXeHZcUXZTeHI272bZPWkGF3w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  var upload = new FileUploadWithPreview('myUniqueUploadId')
+</script>
+{% endblock %}
