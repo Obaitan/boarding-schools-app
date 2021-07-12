@@ -289,3 +289,13 @@ class NewsForm(FlaskForm):
     author = StringField('Author Name', validators=[DataRequired()])
     image = FileField("School Address", validators=[DataRequired()])
     submit = SubmitField('Publish Article')
+
+
+class EditNewsForm(FlaskForm): 
+    title = StringField('Article Title', validators=[DataRequired()])
+    excerpt = TextAreaField("Article Excerpt", validators=[
+                            DataRequired(), Length(max=350)])
+    article = TextAreaField("Article", validators=[DataRequired()])
+    author = StringField('Author Name', validators=[DataRequired()])
+    image = FileField("School Address")
+    submit = SubmitField('Save Article')

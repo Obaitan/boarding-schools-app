@@ -4,7 +4,7 @@ from bse import app, db, bcrypt, mail
 from flask import render_template, url_for, redirect, request, flash, send_from_directory
 from bse.models import News, User, Country, Schools, Images, Thumbnails, Documents
 from werkzeug.utils import secure_filename
-from bse.forms import LoginForm, ContactForm, SchoolsForm, AgentsForm, SubmitDocsForm, BoardingSchoolsForm, ImageForm, ThumbnailForm, DocumentsForm, NewsForm
+from bse.forms import LoginForm, ContactForm, SchoolsForm, AgentsForm, SubmitDocsForm, BoardingSchoolsForm, ImageForm, ThumbnailForm, DocumentsForm, NewsForm, EditNewsForm
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
 from sqlalchemy import exc
@@ -550,10 +550,10 @@ def add_country():
 @ app.route('/admin/country/delete/<int:id>')
 def delete_country(id):
     country = Country.query.get_or_404(id)
-    filepath = country.flagPath
-    os.remove(filepath)
     db.session.delete(country)
     db.session.commit()
+    filepath = country.flagPath
+    os.remove(filepath)
     return redirect(url_for('country'))
 
 
@@ -577,7 +577,7 @@ def article():
 
 @ app.route('/admin/news/articles/delete/<int:id>')
 def delete_article(id):
-    entry = News.query.get_or_404(id)       
+    entry = News.query.get_or_404(id)
     db.session.delete(entry)
     db.session.commit()
     filepath = entry.imagePath
@@ -589,34 +589,19 @@ def delete_article(id):
 # @login_required
 def edit_article(id):
     news = News.query.get_or_404(id)
+    form = EditNewsForm(obj=news)
     if request.method == "POST":
-        news.title = request.form['title']
-        news.excerpt = request.form['excerpt']
-        news.article = request.form['article']
-        news.author = request.form['author']
-
-        # check if the post request has the file part
-        if 'thumbnail' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        thumbnail = request.files['thumbnail']
-        if thumbnail.filename == '':
-            flash('No image file selected. Please select an image file.',
-                  category='danger')
-            return redirect(request.url)
-        # if thumbnail and allowed_file(thumbnail.filename):
-        filename = secure_filename(thumbnail.filename)
-        thumbnail.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-        news.thumbnail = filename
-        news.imagePath = os.path.abspath(
-            os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        db.session.commit()
-        return redirect('/admin/news')
+        if form.validate_on_submit():  
+            news.title = form.title.data
+            news.author = form.author.data
+            news.excerpt = form.excerpt.data
+            news.article = form.article.data            
+            db.session.commit()            
+            return redirect(url_for('dashboard_news'))
+        else:
+            return render_template('admin/edit-article.html', news=news, form=form)
     else:
-        # filepath = news.fp
-        # os.remove(filepath)
-        return render_template('admin/edit-article.html', news=news)
+        return render_template('admin/edit-article.html', news=news, form=form)
 
 
 @ app.errorhandler(404)
