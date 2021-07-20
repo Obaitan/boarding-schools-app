@@ -80,7 +80,7 @@ Boarding School Experts | Submit Documents Form
                       <p class="show2 mt-2 mb-0">Upload Application Form And Documents (PDF) <a href="javascript:void(0)"
                           class="custom-file-container__image-clear" title="Clear Image">&times;</a></p>
                       <label class="custom-file-container__custom-file">
-                        {{ form.docs(class="custom-file-container__custom-file__custom-file-input", accept=".doc, .docx, .pdf") }}                        
+                        {{ form.docs(class="custom-file-container__custom-file__custom-file-input", accept=".pdf") }}                        
                         <span class="custom-file-container__custom-file__custom-file-control"></span>
                       </label>
                       {% for error in form.docs.errors %}

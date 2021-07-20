@@ -1,10 +1,9 @@
-{% extends 'base-dashboard.html' %} 
+{% extends 'base-dashboard.html' %}
+
 
 {% block title %} 
 Boarding School Experts | Admin Dasboard 
 {% endblock %} 
-
-{% set active_page = 'dashboard_news' %}
 
 {% block body %}
 <div class="col-xl-9 mx-auto px-2">
@@ -14,7 +13,7 @@ Boarding School Experts | Admin Dasboard
       <a href="{{ url_for('dashboard_news') }}">
         <div class="palette">
           <p class="palette-title">News Articles</p>
-          <p class="details">Add/Edit/Delete News Articles</p>
+          <p class="details">Add News Articles</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> description </span>
           </div>
@@ -26,7 +25,7 @@ Boarding School Experts | Admin Dasboard
       <a href="{{ url_for('country') }}">
         <div class="palette">
           <p class="palette-title">Countries</p>
-          <p class="details">Add/Delete Countries</p>
+          <p class="details">Add Countries</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> flag </span>
           </div>
@@ -38,7 +37,7 @@ Boarding School Experts | Admin Dasboard
       <a href="{{ url_for('admin_schools') }}">
         <div class="palette">
           <p class="palette-title">Schools</p>
-          <p class="details">Add/Edit/Delete Schools</p>
+          <p class="details">Add Schools</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> maps_home_work </span>
           </div>
@@ -47,10 +46,10 @@ Boarding School Experts | Admin Dasboard
     </div>
 
     <div class="col-md-6 p-2">
-      <a href="{{ url_for('home') }}">
+      <a href="{{ url_for('logout') }}">
         <div class="palette">
           <p class="palette-title">Logout</p>
-          <p class="details">Leave The Admin Panel</p>
+          <p class="details">Leave Admin Panel</p>
           <div class="text-end">
             <span class="material-icons md-60 cap-green"> logout </span>
           </div>

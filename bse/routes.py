@@ -4,6 +4,7 @@ from bse import app, db, bcrypt, mail
 from flask import render_template, url_for, redirect, request, flash, send_from_directory
 from bse.models import News, User, Country, Schools, Images, Thumbnails, Documents
 from werkzeug.utils import secure_filename
+from werkzeug.urls import url_parse
 from bse.forms import LoginForm, ContactForm, SchoolsForm, AgentsForm, SubmitDocsForm, BoardingSchoolsForm, ImageForm, ThumbnailForm, DocumentsForm, NewsForm, EditNewsForm
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
@@ -11,6 +12,11 @@ from sqlalchemy import exc
 
 
 ALLOWED_EXTENSIONS = set(['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg'])
+
+
+@app.route('/static/uploads/<filename>')
+def uploaded(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 @app.route('/')
@@ -135,32 +141,18 @@ def submit_docs():
     form = SubmitDocsForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            name = form.name.data
-            school = form.school.data
-            email = form.email.data
-            phone = form.phone.data
-            docs = form.docs.data
-            # admissions@boardingschoolsexperts.com
-            if docs:
-                subject = "New Message From Applicant On Website."
-                msg = Message(subject, sender='webforms@boardingschoolsexperts.com',
-                              recipients=['elero.obaitan@gmail.com'])
+            subject = "New Message From Applicant On Website."
+            msg = Message(subject, sender='webforms@boardingschoolsexperts.com',
+                          recipients=['admissions@boardingschoolsexperts.com'])
+            msg.html = f'<p><b>From</b>: {form.name.data}<br><b>School Applied To</b>: {form.school.data}<br><b>Email</b>: {form.email.data}<br><b>Phone Number</b>: {form.phone.data}</p>'
 
-                msg.html = f'<p><b>From</b>: {form.name.data}<br><b>School Applied To</b>: {form.school.data}<br><b>Email</b>: {form.email.data}<br><b>Phone Number</b>: {form.phone.data}</p>'
-
-                with app.open_resource(docs) as fp:
-                    for doc in docs:
-                        msg.attach(docs, "pdf", fp.read())
-
-                mail.send(msg)
-
-                flash(
-                    'Your Message Has Been Sent! We Will Be In Touch With You Shortly.', category='success')
-                return redirect(url_for('schools_form'))
-            else:
-                flash(
-                    f'Please Meet The Requirements of The Form Fields And Submit Again.', category='danger')
-                return render_template('pages/submit-docs-form.html', form=form)
+            for data in form.docs.data:
+                msg.attach(secure_filename(data.filename),
+                           "application/octect-stream", data.read())
+            mail.send(msg)
+            flash(
+                'Your Message Has Been Sent! We Will Be In Touch With You Shortly.', category='success')
+            return redirect(request.url)
         else:
             flash(
                 f'Please Meet The Requirements of The Form Fields And Submit Again.', category='danger')
@@ -184,37 +176,49 @@ def news_single(id):
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
     form = LoginForm()
     if form.validate_on_submit():
-        # flash()
-        return redirect(url_for('dashboard'))
-    else:
-        # flash()
-        return render_template('admin/admin-login.html', form=form)
+        attempted_user = User.query.filter_by(
+            username=form.username.data).first()
+        if attempted_user and attempted_user.check_password_correction(
+                attempted_password=form.password.data
+        ):
+            login_user(attempted_user)
+            next_page = request.args.get('next')
+            if not next_page or url_parse(next_page).netloc != '':
+                next_page = url_for('admin')
+                return redirect(next_page)
+        else:
+            flash(f'Incorrect Username Or Password! Please Try Again.',
+                  category='danger')
+            return redirect(request.url)
+    return render_template('admin/admin-login.html', form=form)
 
 
 @app.route('/logout')
 def logout():
     logout_user()
     flash("You have been logged out!", category='info')
-    return redirect(url_for('home'))
+    return redirect(url_for('admin'))
 
 
 @app.route('/admin/dashboard')
-# @login_required
+@login_required
 def dashboard():
     return render_template('admin/admin-dashboard.html')
 
 
 @app.route('/admin/news')
-# @login_required
+@login_required
 def dashboard_news():
     news = News.query.order_by(News.id.desc()).all()
     return render_template('admin/articles.html', news=news)
 
 
-@app.route('/admin/news/add', methods=['GET', 'POST'])
-# @login_required
+@app.route('/admin/news/articles/add', methods=['GET', 'POST'])
+@login_required
 def new_article():
     form = NewsForm()
     if request.method == "POST":
@@ -248,15 +252,45 @@ def new_article():
         return render_template('admin/add-article.html', form=form)
 
 
+@ app.route('/admin/news/articles/delete/<int:id>')
+@login_required
+def delete_article(id):
+    entry = News.query.get_or_404(id)
+    db.session.delete(entry)
+    db.session.commit()
+    filepath = entry.imagePath
+    os.remove(filepath)
+    return redirect('/admin/news')
+
+
+@ app.route('/admin/news/articles/edit/<int:id>', methods=["GET", "POST"])
+@login_required
+def edit_article(id):
+    news = News.query.get_or_404(id)
+    form = EditNewsForm(obj=news)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            news.title = form.title.data
+            news.author = form.author.data
+            news.excerpt = form.excerpt.data
+            news.article = form.article.data
+            db.session.commit()
+            return redirect(url_for('dashboard_news'))
+        else:
+            return render_template('admin/edit-article.html', news=news, form=form)
+    else:
+        return render_template('admin/edit-article.html', news=news, form=form)
+
+
 @app.route('/admin/schools')
-# @login_required
+@login_required
 def admin_schools():
     schools = Schools.query.order_by(Schools.schoolName).all()
     return render_template('admin/admin-schools.html', schools=schools)
 
 
 @app.route('/admin/schools/new/information', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new_school_info():
     form = BoardingSchoolsForm()
     s = Schools.query.filter_by(schoolName=form.schoolName.data).first()
@@ -325,7 +359,7 @@ def new_school_info():
 
 
 @app.route('/admin/schools/new/images', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new_school_images():
     form = ImageForm()
     i = Images.query.filter_by(schoolName=form.schoolName.data).first()
@@ -361,7 +395,7 @@ def new_school_images():
 
 
 @app.route('/admin/schools/new/thumbnails', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new_school_thumbnails():
     form = ThumbnailForm()
     t = Thumbnails.query.filter_by(name=form.name.data).first()
@@ -399,7 +433,7 @@ def new_school_thumbnails():
 
 
 @app.route('/admin/schools/new/forms', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new_school_forms():
     form = DocumentsForm()
     school_name = Documents.query.filter_by(
@@ -453,7 +487,7 @@ def new_school_forms():
 
 
 @ app.route('/admin/school/delete/<string:name>')
-# @login_required
+@login_required
 def delete_school(name):
     school = Schools.query.filter_by(schoolName=name).first()
     db.session.delete(school)
@@ -486,7 +520,7 @@ def delete_school(name):
 
 
 @ app.route('/admin/school/edit/<int:id>', methods=["GET", "POST"])
-# @login_required
+@login_required
 def edit_school(id):
     news = News.query.get_or_404(id)
     if request.method == "POST":
@@ -519,7 +553,15 @@ def edit_school(id):
         return render_template('admin/edit-article.html', news=news)
 
 
-@app.route('/admin/dashboard/country/add', methods=['POST'])
+@ app.route('/admin/countries')
+@login_required
+def country():
+    countries = Country.query.order_by(Country.id).all()
+    return render_template('admin/countries.html', countries=countries)
+
+
+@app.route('/admin/countries/add', methods=['POST'])
+@login_required
 def add_country():
     name = request.form['name']
     flag = request.files['flag']
@@ -547,7 +589,8 @@ def add_country():
         return redirect(url_for('country'))
 
 
-@ app.route('/admin/country/delete/<int:id>')
+@ app.route('/admin/countries/delete/<int:id>')
+@login_required
 def delete_country(id):
     country = Country.query.get_or_404(id)
     db.session.delete(country)
@@ -555,53 +598,6 @@ def delete_country(id):
     filepath = country.flagPath
     os.remove(filepath)
     return redirect(url_for('country'))
-
-
-@ app.route('/static/uploads/<filename>')
-def uploaded(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-
-@ app.route('/admin/countries')
-# @login_required
-def country():
-    countries = Country.query.order_by(Country.id).all()
-    return render_template('admin/countries.html', countries=countries)
-
-
-@ app.route('/news/articles')
-def article():
-    news = News.query.all()
-    return render_template('news/single-article.html', news=news)
-
-
-@ app.route('/admin/news/articles/delete/<int:id>')
-def delete_article(id):
-    entry = News.query.get_or_404(id)
-    db.session.delete(entry)
-    db.session.commit()
-    filepath = entry.imagePath
-    os.remove(filepath)
-    return redirect('/admin/news')
-
-
-@ app.route('/admin/news/articles/edit/<int:id>', methods=["GET", "POST"])
-# @login_required
-def edit_article(id):
-    news = News.query.get_or_404(id)
-    form = EditNewsForm(obj=news)
-    if request.method == "POST":
-        if form.validate_on_submit():  
-            news.title = form.title.data
-            news.author = form.author.data
-            news.excerpt = form.excerpt.data
-            news.article = form.article.data            
-            db.session.commit()            
-            return redirect(url_for('dashboard_news'))
-        else:
-            return render_template('admin/edit-article.html', news=news, form=form)
-    else:
-        return render_template('admin/edit-article.html', news=news, form=form)
 
 
 @ app.errorhandler(404)

@@ -168,10 +168,15 @@ ul.menu li {
   padding-left: 0;
 }
 
-.fix:hover,
 .actively{
   color: #fff;
   background-color: #9db853;
+  border-top: 1px solid #6e8826;
+}
+
+.fix:hover{
+  color: #fff;
+  background-color: #bfd67e;
   border-top: 1px solid #6e8826;
 }
 

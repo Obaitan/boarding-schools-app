@@ -92,7 +92,6 @@ $(document).ready(function () {
       .closest(".school")
       .show();
   });
-  
 });
 
 $.expr[":"].contains = $.expr.createPseudo(function (arg) {
@@ -119,32 +118,6 @@ window.intlTelInput(input, {
   utilsScript:
     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // just for formatting/placeholders etc
 });
-
-// Scroll to top script
-document.addEventListener("scroll", handleScroll);
-// get a reference to our predefined button
-var scrollToTopBtn = document.querySelector(".up");
-
-function handleScroll() {
-  var scrolled = window.pageYOffset;
-  if (scrolled > 400) {
-    //show button
-    scrollToTopBtn.style.display = "block";
-  } else {
-    //hide button
-    scrollToTopBtn.style.display = "none";
-  }
-}
-
-scrollToTopBtn.addEventListener("click", scrollToTop);
-
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
-// End of script
 
 // Limit input to the + sign and numbers only
 function isNumberKey(evt) {

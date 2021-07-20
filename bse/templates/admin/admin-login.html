@@ -47,11 +47,9 @@
       <div class="container h-100">
         <div class="col-lg-10 col-xl-6 mx-auto">
           <div class="text-center mb-0">
-            <img
-              src="{{ url_for('static', filename='images/svg/bse-logo.svg') }}"
-              class="home-logo"
-              alt="logo"
-            />
+            <a href="{{ url_for('home') }}">
+              <img src="{{ url_for('static', filename='images/svg/bse-logo.svg') }}" class="home-logo" alt="logo" />
+            </a>           
           </div>
           <div class="col-md-10 col-lg-9 col-xl-10 mx-auto hover-card">
             <div class="text-center">
@@ -63,26 +61,27 @@
               {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                   {% for category, message in messages %}
-                  <div class="alert alert-{{ category }} text-center text-bold mb-0">                  
+                  <div class="alert alert-{{ category }} text-center text-bold mb-3">                  
                     {{ message }}
                   </div>
                   {% endfor %}
                 {% endif %}
               {% endwith %}
-            
-              <p>
-                {{ form.username(class="form-control", placeholder="Username") }}
-                {% for error in form.username.errors %}
-                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
-                {% endfor %}
-              </p>              
-              <p>
-                {{ form.password(class="form-control", placeholder="Password") }}
-                {% for error in form.password.errors %}
-                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
-                {% endfor %}
-              </p>               
-              {{ form.submit(class="btn btn-school-light btn-block") }}            
+              <div>
+                <p>
+                  {{ form.username(class="form-control", placeholder="Username") }}
+                  {% for error in form.username.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
+                </p>
+                <p>
+                  {{ form.password(class="form-control", placeholder="Password") }}
+                  {% for error in form.password.errors %}
+                  <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                  {% endfor %}
+                </p>
+                {{ form.submit(class="btn btn-school-light btn-block") }}
+              </div>                        
             </form>
           </div>
         </div>

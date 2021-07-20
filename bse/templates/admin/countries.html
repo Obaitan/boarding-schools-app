@@ -1,10 +1,10 @@
-{% extends 'base-dashboard.html' %} 
+{% extends 'base-dashboard.html' %}
+
 
 {% block title %} 
 Boarding School Experts | Admin Dasboard 
 {% endblock %} 
 
-{% set active_page = 'dashboard_news' %}
 
 {% block body %}
 <div class="col-xl-11 mx-auto px-2">
@@ -25,8 +25,9 @@ Boarding School Experts | Admin Dasboard
           <p class="mt-2 mb-0" style="text-transform: capitalize;">{{ country.name }} Schools</p>
         </div> 
         <div class="text-center">        
-          <a class="btn btn-danger my-3" class="del" data-mdb-toggle="modal" type="button" data-mdb-target="#formModal2">delete</a>
-          <a class="btn btn-danger my-3" class="del" href="/admin/country/delete/{{ country.id }}">delete</a>
+          <a class="btn btn-danger my-3" data-id="{{ country.id }}" class="del some-but" data-mdb-toggle="modal" type="button" data-mdb-target="#formModal2">delete</a>
+          <!-- <a class="btn btn-danger my-3" class="del" href="/admin/country/delete/{{ country.id }}">delete</a> --> 
+          <input type="hidden" id="dt" name="dt" value="{{ country.id }}">     
         </div>
       </div>
     {% endfor %}    
@@ -43,7 +44,7 @@ Boarding School Experts | Admin Dasboard
           <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/admin/dashboard/country/add" method="POST" enctype=multipart/form-data class="mx-2 my-3 mx-md-4 my-md-4">            
+          <form action="/admin/countries/add" method="POST" enctype=multipart/form-data class="mx-2 my-3 mx-md-4 my-md-4">            
             <div class="row">
               <div class="col-md-12 mt-4">
                 <div class="form-outline">
@@ -73,12 +74,14 @@ Boarding School Experts | Admin Dasboard
         <div class="modal-body">
           <div class="text-center warning p-3">
             Are You Sure You Want To Delete This Country?
+            <input type="hidden" id="value" name="value" value="">
           </div>
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center">            
             <div class="mx-2 py-3">
-              <a class="btn btn-danger del" href="">delete</a>
-            </div>
+              
+            </div>            
             <div class="mx-3 py-3">
+             
               <button type="button" class="btn btn-dark" data-mdb-dismiss="modal" aria-label="Close">Close</button>
             </div>
           </div>
@@ -87,4 +90,19 @@ Boarding School Experts | Admin Dasboard
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript">
+  //   $("#send_value").click(function () {
+  //     var data = $("#value").val();
+  //     var str = "You want to delete " + data + " ?"
+  //     $("#modal_body").html(str);
+  //   });
+  
+  $(document).on("click", ".some-but", function () {
+      var data = $("#dt").val();
+      $(".modal-body #value").val(myBookId);      
+    });
+  </script>
 {% endblock %}

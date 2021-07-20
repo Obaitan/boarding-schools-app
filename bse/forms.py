@@ -123,8 +123,7 @@ class SubmitDocsForm(FlaskForm):
                        validators=[DataRequired()])
     email = TextField("Email", validators=[DataRequired(), Email()])
     phone = TelField("Phone Number", validators=[DataRequired()])
-    docs = MultipleFileField("Documents", validators=[
-                             DataRequired(), MultiFileAllowed(['pdf'])])
+    docs = MultipleFileField("Documents", validators=[DataRequired(), MultiFileAllowed(['pdf'])])
     recaptcha = RecaptchaField()
     submit = SubmitField("Submit Documents")
 

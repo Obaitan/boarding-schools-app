@@ -48,9 +48,7 @@
   </head>
 
   <body>
-  {% set active_page = 'dashboard_news' %}
-
-    <div class="sidenav" id="sidenav">
+      <div class="sidenav" id="sidenav">
       <!-- Toggle button -->
       <div
         class="group navbar-toggler d-block d-lg-none"
@@ -71,11 +69,11 @@
           <p class="lb-text">Admin Dashboard</p>
         </div>
 
-        <ul class="menu" id="menu">
+        <ul class="menu" id="menu">       
           <li class="side-item">
             <a
               href="{{ url_for('dashboard') }}"
-              class="fix ripple {{'actively' if active_page == 'dashboard' }}"
+              class="fix ripple {{'actively' if request.path == '/admin/dashboard' }}"
             >
               <span class="material-icons md-20"> dashboard </span>
               <span class="mi">Dashboard</span>
@@ -85,29 +83,32 @@
           <li class="side-item">
             <a
               href="{{ url_for('dashboard_news') }}"
-              class="fix ripple {{'actively' if active_page == 'articles' }}"
+              class="fix ripple {{'actively' if request.path == '/admin/news' }}"
             >
               <span class="material-icons md-20"> post_add </span>
               <span class="mi">News Articles</span>
             </a>
-          </li>          
+          </li>      
+
           <li class="side-item">
             <a
               href="{{ url_for('country') }}"
-              class="fix ripple {{'actively' if active_page == 'country' }}"
-            >
+              class="fix ripple {{'actively' if request.path == '/admin/countries' }}">
               <span class="material-icons md-20"> flag </span>
               <span class="mi">Countries</span>
             </a>
           </li> 
+
           <li class="side-item">
-            <a href="{{ url_for('admin_schools') }}" class="fix ripple {{'actively' if active_page == 'admin_schools' }}">
+            <a href="{{ url_for('admin_schools') }}" 
+              class="fix ripple {{'actively' if request.path == '/admin/schools' }}">
               <span class="material-icons md-20"> maps_home_work </span>
               <span class="mi">Schools</span>
             </a>
           </li>
+
           <li class="side-item">
-            <a href="{{ url_for('home') }}" class="fix ripple">
+            <a href="{{ url_for('logout') }}" class="fix ripple">
               <span class="material-icons md-20"> logout </span>
               <span class="mi">Logout</span>
             </a>
@@ -132,31 +133,25 @@
                   alt="Logo text"
                 />
               </a>
-
               <div class="nav-item">
-                <a class="nav-link">Welcome, {{ current_user.username }}!</a>
+                <p class="nav-link">Welcome, {{ current_user.firstName }}!</p>
               </div>
 
               <a
                 class="btn btn-school-light"
                 style="padding: 0.575rem 1.25rem 0.5125rem; font-size: 0.8rem"
-                href="{{ url_for('home') }}"
+                href="{{ url_for('logout') }}"
                 id="logout"
                 role="button"
               >
                 Logout
               </a>
-            </div>
-            <!-- 
-          <div class="nav-item">
-            
-          </div> -->
-          </div>
-          <!-- Container wrapper -->
+            </div>            
+          </div>         
         </nav>
       </header>
 
-      <div class="main-content px-2 px-md-4">
+      <div class="main-content px-2 px-md-4">        
         {% block body %}{% endblock %}
       </div>
 
