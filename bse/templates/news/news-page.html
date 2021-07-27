@@ -19,26 +19,23 @@ Boarding School Experts | News
 <section class="nl-wrap px-2">
   <div class="container">
     {% for item in news %}
-        <div class="row mtop">
-            <div class="col-md-3">
+        <div class="row mtop justify-content-center">
+            <div class="col-md-2">
                 <a href="">
                     <img src="{{ url_for('uploaded', filename=item.image) }}" class="w-100" alt="News thumbnail" />
                     <div class="date mt-3">{{ item.date.strftime('%B %d, %Y') }}</div>
                 </a>
             </div>
-            <div class="col-md-9 pl-xl-4">
+            <div class="col-md-10 col-xl-8 pl-xl-4 mb-2">
                 <a href="/news/single/{{ item.id }}">
                     <div class="news-heading mb-2" style="text-transform: capitalize;">
                         {{ item.title }}
                     </div>
-                    <div class="date2 mb-4">By: {{ item.author }}</div>
+                    <div class="date2">By: {{ item.author }}</div>
                     <p class="news-text" style="white-space: pre-line;">
                         {{ item.excerpt }}...
                     </p>
                 </a>
-            </div>
-            <div class="col-12 my-0">
-                <hr class="bse-line" />
             </div>
         </div>
     {% endfor %}    

@@ -17,16 +17,16 @@ Boarding School Experts | Admin Dasboard
       <div class="row">
         <div class="col-xl-3">
           <div>
-            <a class="btn button-link see" href="{{ url_for('new_school_info') }}">Add School Info</a>
+            <a class="btn button-link2 see2" href="{{ url_for('new_school_info') }}">Edit School Info</a>
           </div>
           <div class="mt-2">
-            <a class="btn button-link" href="{{ url_for('new_school_images') }}">Add School Images</a>
+            <a class="btn button-link" href="{{ url_for('new_school_images') }}">Edit School Images</a>
           </div>
           <div class="mt-2">
-            <a class="btn button-link" href="{{ url_for('new_school_thumbnails') }}">Add YouTube Images</a>
+            <a class="btn button-link" href="{{ url_for('new_school_thumbnails') }}">Edit YouTube Images</a>
           </div>
           <div class="mt-2">
-            <a class="btn button-link" href="{{ url_for('new_school_forms') }}">Add School Forms</a>
+            <a class="btn button-link" href="{{ url_for('new_school_forms') }}">Edit School Forms</a>
           </div>
         </div>
       
@@ -65,18 +65,18 @@ Boarding School Experts | Admin Dasboard
                   </div>
                   <div class="col-md-4 mt-4">
                     <div>
-                      {{ form.col1.label(class="form-control.label") }}
-                      {{ form.col1(class="form-control") }}
-                      {% for error in form.col1.errors %}
+                      {{ form.colour1.label(class="form-control.label") }}
+                      {{ form.colour1(class="form-control") }}
+                      {% for error in form.colour1.errors %}
                       <span style="color: orangered; font-size: 13px;">{{ error }}</span>
                       {% endfor %}
                     </div>
                   </div>
                   <div class="col-md-4 mt-4">
                     <div>
-                      {{ form.col2.label(class="form-control.label") }}
-                      {{ form.col2(class="form-control") }}
-                      {% for error in form.col2.errors %}
+                      {{ form.colour2.label(class="form-control.label") }}
+                      {{ form.colour2(class="form-control") }}
+                      {% for error in form.colour2.errors %}
                       <span style="color: orangered; font-size: 13px;">{{ error }}</span>
                       {% endfor %}
                     </div>
@@ -125,22 +125,22 @@ Boarding School Experts | Admin Dasboard
                     </div>
                   </div>
               
-                  <div class="col-md-12 col-xl-6 mt-5">
+                  <!-- <div class="col-md-12 col-xl-6 mt-5">
                     <p class="show2 mb-2">Upload School Logo (PNG / JPEG / JPG)</p>
                     {{ form.logo(class="form-control input-field", id="file-input", accept="image/*") }}
                     {% for error in form.logo.errors %}
                     <span style="color: orangered; font-size: 13px;">{{ error }}</span>
                     {% endfor %}
                     <div id="preview" class="mt-3"></div>
-                  </div>
-                  <div class="col-md-12 col-xl-6 mt-5">
+                  </div> -->
+                  <!-- <div class="col-md-12 col-xl-6 mt-5">
                     <p class="show2 mb-2">Upload School Badge (PNG / JPEG / JPG)</p>
                     {{ form.badge(class="form-control input-field", id="file-input2", accept="image/*") }}
                     {% for error in form.badge.errors %}
                     <span style="color: orangered; font-size: 13px;">{{ error }}</span>
                     {% endfor %}
                     <div id="preview2" class="mt-3"></div>
-                  </div>
+                  </div> -->
                   <div class="mt-5 text-center">
                     <p class="mb-2 show2">School Programmes</p>
                   </div>
@@ -283,9 +283,16 @@ Boarding School Experts | Admin Dasboard
                       {% endfor %}
                     </div>
                   </div>
-                  <div class="px-2 col-12 mt-4">
-                    {{ form.submit(class="btn btn-school btn-block") }}                   
+
+                  <div class="col-12 col-md-6 mt-4">
+                    {{ form.submit(class="btn btn-school btn-block") }}
                   </div>
+                  <div class="col-12 col-md-6 mt-4">                      
+                    <a class="btn btn-school-light btn-block" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;"
+                      href="{{ url_for('admin_schools') }}">
+                      Cancel
+                    </a>
+                  </div>                  
                 </div>
               </form>
             </div>           

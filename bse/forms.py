@@ -123,7 +123,8 @@ class SubmitDocsForm(FlaskForm):
                        validators=[DataRequired()])
     email = TextField("Email", validators=[DataRequired(), Email()])
     phone = TelField("Phone Number", validators=[DataRequired()])
-    docs = MultipleFileField("Documents", validators=[DataRequired(), MultiFileAllowed(['pdf'])])
+    docs = MultipleFileField("Documents", validators=[
+                             DataRequired(), MultiFileAllowed(['pdf'])])
     recaptcha = RecaptchaField()
     submit = SubmitField("Submit Documents")
 
@@ -160,8 +161,8 @@ class BoardingSchoolsForm(FlaskForm):
     col1 = StringField("Theme Colour 1", validators=[DataRequired()])
     col2 = StringField("Theme Colour 2", validators=[DataRequired()])
     schoolType = SelectField('School Type', [DataRequired()],
-                             choices=[('', 'School Type'), ('girls', 'Girls Only'),
-                                      ('boys', 'Boys Only'),
+                             choices=[('', 'School Type'), ('girls only', 'Girls Only'),
+                                      ('boys only', 'Boys Only'),
                                       ('co-educational', 'Co-Educational')])
     population = StringField("Student Population", validators=[DataRequired()])
     address = TextAreaField("School Address", validators=[DataRequired()])
@@ -193,6 +194,52 @@ class BoardingSchoolsForm(FlaskForm):
     appLink = URLField("Link to Application Form",
                        validators=[Optional(), URL()])
     submit = SubmitField("Submit Information")
+
+
+class EditSchoolForm(FlaskForm):
+    def query_factory():
+        return [r.name for r in Country.query.all()]
+
+    def get_pk(obj):
+        return obj
+    
+    schoolName = StringField("School Name", validators=[DataRequired()])
+    colour1 = StringField("Theme Colour 1", validators=[DataRequired()])
+    colour2 = StringField("Theme Colour 2", validators=[DataRequired()])
+    schoolType = SelectField('School Type', [DataRequired()],
+                             choices=[('', 'School Type'), ('girls only', 'Girls Only'),
+                                      ('boys only', 'Boys Only'),
+                                      ('co-educational', 'Co-Educational')])
+    population = StringField("Student Population", validators=[DataRequired()])
+    address = TextAreaField("School Address", validators=[DataRequired()])
+    website = URLField("School Website", validators=[DataRequired(), URL()])
+    country = QuerySelectField(label=u'Select Country', validators=[
+        DataRequired()], query_factory=query_factory, get_pk=get_pk)
+    about = TextAreaField("School Introduction", validators=[DataRequired()])
+    logo = FileField("School Logo", validators=[
+                     DataRequired(), FileAllowed(['jpg', 'jpeg', 'png'])])
+    badge = FileField("School Badge", validators=[
+                      DataRequired(), FileAllowed(['jpg', 'jpeg', 'png'])])
+    facilities = TextAreaField("Boarding Facilities")
+    academics = TextAreaField("Academic Programmes")
+    extra = TextAreaField("Extra-Curricular Activities")
+    care = TextAreaField("Pastoral Care")
+    newHeading = TextField("New Heading")
+    newBody = TextAreaField("New Body")
+    newHeading2 = TextField("New Heading 2")
+    newBody2 = TextAreaField("New Body 2")
+    newHeading3 = TextField("New Heading 3")
+    newBody3 = TextAreaField("New Body 3")
+    link1 = URLField("Link 1", validators=[Optional(), URL()])
+    link2 = URLField("Link 2", validators=[Optional(), URL()])
+    link3 = URLField("Link 3", validators=[Optional(), URL()])
+    link4 = URLField("Link 4", validators=[Optional(), URL()])
+    link5 = URLField("Link 5", validators=[Optional(), URL()])
+    tour = URLField("Virtual Tour Link", validators=[Optional(), URL()])
+    feesLink = URLField("Link to Fees Form", validators=[Optional(), URL()])
+    appLink = URLField("Link to Application Form",
+                       validators=[Optional(), URL()])
+    submit = SubmitField("Update Information")
 
 
 class ImageForm(FlaskForm):
@@ -267,7 +314,7 @@ class NewsForm(FlaskForm):
         if ex:
             raise ValidationError(
                 'Article Excerpt Already Exists! Please Enter A Different Excerpt.')
-    
+
     def validate_article(self, article_to_check):
         art = News.query.filter_by(
             article=article_to_check.data).first()
@@ -281,16 +328,17 @@ class NewsForm(FlaskForm):
         if ig:
             raise ValidationError(
                 'Image Already Used! Please Use A Different Image.')
-    
+
     title = StringField('Article Title', validators=[DataRequired()])
-    excerpt = TextAreaField("Article Excerpt", validators=[DataRequired(), Length(max=350)])
+    excerpt = TextAreaField("Article Excerpt", validators=[
+                            DataRequired(), Length(max=350)])
     article = TextAreaField("Article", validators=[DataRequired()])
     author = StringField('Author Name', validators=[DataRequired()])
     image = FileField("School Address", validators=[DataRequired()])
     submit = SubmitField('Publish Article')
 
 
-class EditNewsForm(FlaskForm): 
+class EditNewsForm(FlaskForm):
     title = StringField('Article Title', validators=[DataRequired()])
     excerpt = TextAreaField("Article Excerpt", validators=[
                             DataRequired(), Length(max=350)])
@@ -298,3 +346,19 @@ class EditNewsForm(FlaskForm):
     author = StringField('Author Name', validators=[DataRequired()])
     image = FileField("School Address")
     submit = SubmitField('Save Article')
+
+
+class ApplyForm(FlaskForm):
+    fName = TextField("First Name", validators=[DataRequired()])
+    sName = TextField("Surname", validators=[DataRequired()])
+    birthDate = DateField("Date of Birth", validators=[DataRequired()])
+    p_school = TextField("Present School", validators=[DataRequired()])
+    school = TextField("Name of School Applying To",
+                       validators=[DataRequired()])
+    home_address = TextAreaField("Home Address", validators=[DataRequired()])
+    full_name = TextField("Full Name", validators=[DataRequired()])
+    email = TextField("Email", validators=[DataRequired(), Email()])
+    phone = TelField(validators=[DataRequired()])
+    address = TextAreaField("Home Address", validators=[DataRequired()])
+    recaptcha = RecaptchaField()
+    submit = SubmitField("Continue Application")

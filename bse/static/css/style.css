@@ -1511,7 +1511,7 @@ input[type="file"i] {
 
 /* ... */
 
-.button-link {
+.button-link, .button-link2 {
   margin-bottom: 3px;
   padding: 1rem 1.5rem;
   font-size: 14px;
@@ -1526,6 +1526,10 @@ input[type="file"i] {
 
 .button-link:hover {
   background-color: rgb(185, 219, 134);
+}
+
+.button-link2.see2 {
+  background-color: yellow;
 }
 
 @media (max-width: 1025px) {
@@ -1566,3 +1570,28 @@ input[type="file"i] {
   color: orangered;
 }
 
+.erase,
+.edit {
+  text-transform: capitalize;
+  font-weight: 500;
+  text-decoration: none;
+  color: orangered;
+}
+
+.edit {
+  color: yellowgreen;
+}
+
+.erase:hover {
+  color: orangered;
+  opacity: 0.6;
+}
+
+.edit:hover {
+  color: #6e8b1d;
+  opacity: 0.6;
+}
+
+.cap{
+  text-transform: capitalize;
+}

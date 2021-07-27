@@ -56,9 +56,6 @@ body {
   }
 }
 
-
-
-
 .btn-school-light {
   background-color: #9fbe49;
   color: white;
@@ -168,13 +165,13 @@ ul.menu li {
   padding-left: 0;
 }
 
-.actively{
+.actively {
   color: #fff;
   background-color: #9db853;
   border-top: 1px solid #6e8826;
 }
 
-.fix:hover{
+.fix:hover {
   color: #fff;
   background-color: #bfd67e;
   border-top: 1px solid #6e8826;
@@ -320,4 +317,18 @@ footer {
 }
 
 @media (max-width: 575px) {
+}
+
+.table-float {
+  background-color: white;
+  box-shadow: 1px 3px 6px 1px rgba(0, 0, 0, 0.08);
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+  margin-top: 20px;
+}
+
+.page-item.active .page-link {
+  background-color: #9fbe49;
+  border-color: #9fbe49;
 }

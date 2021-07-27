@@ -1,17 +1,25 @@
 import os
 
 from bse import app, db, bcrypt, mail
-from flask import render_template, url_for, redirect, request, flash, send_from_directory
+from flask import render_template, url_for, redirect, request, flash, send_from_directory, session
 from bse.models import News, User, Country, Schools, Images, Thumbnails, Documents
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
-from bse.forms import LoginForm, ContactForm, SchoolsForm, AgentsForm, SubmitDocsForm, BoardingSchoolsForm, ImageForm, ThumbnailForm, DocumentsForm, NewsForm, EditNewsForm
+from bse.forms import LoginForm, ContactForm, SchoolsForm, AgentsForm, SubmitDocsForm, BoardingSchoolsForm, ImageForm, ThumbnailForm, DocumentsForm, NewsForm, EditNewsForm, ApplyForm, EditSchoolForm
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
 from sqlalchemy import exc
 
+from datetime import timedelta
+
 
 ALLOWED_EXTENSIONS = set(['doc', 'docx', 'pdf', 'png', 'jpg', 'jpeg'])
+
+
+@app.before_request
+def before_request():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=60)
 
 
 @app.route('/static/uploads/<filename>')
@@ -54,8 +62,34 @@ def single_school(name, name2):
     college = Schools.query.filter_by(schoolName=name2).first()
     images = Images.query.filter_by(schoolName=name2).all()
     thumbs = Thumbnails.query.filter_by(name=name2).all()
-    docs = Documents.query.filter_by(schoolName=name2).all()
+    docs = Documents.query.filter_by(schoolName=name2).first()
     return render_template('pages/school-template-one.html', college=college, images=images, thumbs=thumbs, docs=docs)
+
+
+@app.route('/schools/apply/<string:name>', methods=['GET', 'POST'])
+def apply_form(name):
+    form = ApplyForm()
+    school = Schools.query.filter_by(schoolName=name).first()
+    url = school.appLink
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash(
+                'Please meet the requirement for each field and click "CONTINUE APPLICATION".', category='danger')
+            return render_template('pages/apply-form.html', form=form, school=school)
+        else:
+            subject = "New Message From School Applicant Form"
+            msg = Message(subject, sender='webforms@boardingschoolsexperts.com',
+                          recipients=['admissions@boardingschoolsexperts.com'])
+
+            form.school.data = school.schoolName
+
+            msg.html = f"<p><b>STUDENT'S DETAILS</b><br><b>First Name</b>: {form.fName.data}<br><b>Surname</b>: {form.sName.data}<br><b>Date of Birth</b>: {form.birthDate.data}<br><b>Present School</b>: {form.p_school.data}<br><b>School Applying To</b>: {form.school.data}<br><b>Home Address</b>: {form.home_address.data}<br><br><b>GUARDIAN'S DETAILS<br><b>Full Name</b>: {form.full_name.data}<br><b>Email</b>: {form.email.data}<br><b>Phone Number</b>: {form.phone.data}<br><b>Address</b>: {form.address.data}</p>"
+
+            mail.send(msg)
+            return redirect(url)
+
+    elif request.method == 'GET':
+        return render_template('pages/apply-form.html', form=form, school=school)
 
 
 @app.route('/schools/partnership_form', methods=['GET', 'POST'])
@@ -285,7 +319,7 @@ def edit_article(id):
 @app.route('/admin/schools')
 @login_required
 def admin_schools():
-    schools = Schools.query.order_by(Schools.schoolName).all()
+    schools = Schools.query.order_by(Schools.id).all()
     return render_template('admin/admin-schools.html', schools=schools)
 
 
@@ -295,7 +329,7 @@ def new_school_info():
     form = BoardingSchoolsForm()
     s = Schools.query.filter_by(schoolName=form.schoolName.data).first()
     if s:
-        flash(f'{form.schoolName.data} Already Has An Entry! Click On Its Badge To Edit It.', category='danger')
+        flash(f'{form.schoolName.data} Already Has An Entry! Go To Schools Table To Edit It.', category='danger')
         return redirect(request.url)
     else:
         if request.method == "POST":
@@ -313,7 +347,6 @@ def new_school_info():
                 academics = form.academics.data
                 extra = form.extra.data
                 care = form.care.data
-                col2 = form.col2.data
                 nH = form.newHeading.data
                 nB = form.newBody.data
                 nH2 = form.newHeading2.data
@@ -346,9 +379,10 @@ def new_school_info():
                         app.config['UPLOAD_FOLDER'], badgeName))
                     flash(f'Information for {schoolName} Has Been Saved. Please Upload Images And Forms Next.',
                           category='success')
+                    return redirect(request.url)
                 else:
                     flash(
-                        'Please Upload A Proper Image (PNG / JEPG / JPG) For One Or Both Of The Image Fields', category='danger')
+                        'Please Upload Images (PNG / JEPG / JPG) For Both Of The Image Fields', category='danger')
                     return render_template('admin/add-school-information.html', form=form)
             else:
                 flash(
@@ -364,28 +398,23 @@ def new_school_images():
     form = ImageForm()
     i = Images.query.filter_by(schoolName=form.schoolName.data).first()
     if i:
-        flash(f'{form.schoolName.data} Already Has An Entry. Click On Its Badge To Edit It.', category='danger')
+        flash(f'{form.schoolName.data} Already Has An Entry. Go To Schools Table To Edit It.', category='danger')
         return redirect(request.url)
     else:
         if request.method == "POST":
             if form.validate_on_submit():
                 name = form.schoolName.data
                 for pix in form.schoolPix.data:
-                    if pix:
-                        schPixName = secure_filename(pix.filename)
-                        pix.save(os.path.join(
-                            app.config['UPLOAD_FOLDER'], schPixName))
-                        schImage = Images(schoolName=name, schoolPix=schPixName, schoolPixPath=os.path.abspath(
-                            os.path.join(app.config['UPLOAD_FOLDER'], schPixName)))
-                        db.session.add(schImage)
-                        db.session.commit()
-                        flash(
-                            f'Images For {name} Have Been Uploaded Successfully.', category='success')
-                        return redirect(request.url)
-                    else:
-                        flash(
-                            f'Please Meet The Requirements For The Form Before Submiting It.', category='danger')
-                        return render_template('admin/add-school-images.html', form=form)
+                    schPixName = secure_filename(pix.filename)
+                    schImage = Images(schoolName=name, schoolPix=schPixName, schoolPixPath=os.path.abspath(
+                        os.path.join(app.config['UPLOAD_FOLDER'], schPixName)))
+                    db.session.add(schImage)
+                    pix.save(os.path.join(
+                        app.config['UPLOAD_FOLDER'], schPixName))
+                db.session.commit()
+                flash(
+                    f'Images For {name} Have Been Uploaded Successfully.', category='success')
+                return redirect(request.url)
             else:
                 flash(
                     f'Please Meet The Requirements For The Form Before Submiting It.', category='danger')
@@ -408,22 +437,16 @@ def new_school_thumbnails():
             if form.validate_on_submit():
                 name = form.name.data
                 for image in form.vidPix.data:
-                    if image:
-                        vidPixName = secure_filename(image.filename)
-                        image.save(os.path.join(
-                            app.config['UPLOAD_FOLDER'], vidPixName))
-                        vidImage = Thumbnails(name=name, vidPix=vidPixName, vidPixPath=os.path.abspath(
-                            os.path.join(app.config['UPLOAD_FOLDER'], vidPixName)))
-                        db.session.add(vidImage)
-                        db.session.commit()
-                        flash(
-                            f'YouTube Images For {name} Have Been Uploaded Successfully.', category='success')
-                        return redirect(request.url)
-                        return redirect(request.url)
-                    else:
-                        flash(
-                            f'Please Meet The Requirements For The Form Before Submiting It.', category='danger')
-                        return render_template('admin/add-school-thumbnails.html', form=form)
+                    vidPixName = secure_filename(image.filename)
+                    vidImage = Thumbnails(name=name, vidPix=vidPixName, vidPixPath=os.path.abspath(
+                        os.path.join(app.config['UPLOAD_FOLDER'], vidPixName)))
+                    db.session.add(vidImage)
+                    image.save(os.path.join(
+                        app.config['UPLOAD_FOLDER'], vidPixName))
+                db.session.commit()
+                flash(
+                    f'YouTube Images For {name} Have Been Uploaded Successfully.', category='success')
+                return redirect(request.url)
             else:
                 flash(
                     f'Please Meet The Requirements For The Form Before Submiting It.', category='danger')
@@ -445,112 +468,137 @@ def new_school_forms():
         if request.method == "POST":
             if form.validate_on_submit():
                 name = form.schoolName.data
-
                 af = form.appForm.data
-                if af:
-                    afName = secure_filename(af.filename)
-                    af.save(os.path.join(
-                        app.config['UPLOAD_FOLDER'], afName))
-                else:
-                    flash('Please Attach Document(s) Before Submiting Form',
-                          category='danger')
-                    return render_template('admin/add-school-forms.html', form=form)
-
                 ff = form.feesForm.data
-                if ff:
+                if af and ff:
+                    afName = secure_filename(af.filename)
                     ffName = secure_filename(ff.filename)
-                    ff.save(os.path.join(
-                        app.config['UPLOAD_FOLDER'], ffName))
-                else:
-                    flash('Please Attach Document(s) Before Submiting Form',
-                          category='danger')
-                    return render_template('admin/add-school-forms.html', form=form)
-
-                forms = Documents(schoolName=name, appForm=afName, appFormsPath=os.path.abspath(
-                    os.path.join(app.config['UPLOAD_FOLDER'], afName)), feesForm=ffName, feesFormsPath=os.path.abspath(
-                    os.path.join(app.config['UPLOAD_FOLDER'], ffName)))
-
+                    forms = Documents(schoolName=name, appForm=afName, appFormsPath=os.path.abspath(
+                        os.path.join(app.config['UPLOAD_FOLDER'], afName)), feesForm=ffName, feesFormsPath=os.path.abspath(
+                        os.path.join(app.config['UPLOAD_FOLDER'], ffName)))
+                elif af:
+                    afName = secure_filename(af.filename)
+                    forms = Documents(schoolName=name, appForm=afName, appFormsPath=os.path.abspath(
+                        os.path.join(app.config['UPLOAD_FOLDER'], afName)))
+                elif ff:
+                    ffName = secure_filename(ff.filename)
+                    forms = Documents(schoolName=name, feesForm=ffName, feesFormsPath=os.path.abspath(
+                        os.path.join(app.config['UPLOAD_FOLDER'], ffName)))
                 try:
                     db.session.add(forms)
                     db.session.commit()
                     flash(
                         f'Form(s) for {name} Have Been Uploaded Successfully.', category='success')
-                except exc.IntegrityError:
+                    if af:
+                        af.save(os.path.join(
+                            app.config['UPLOAD_FOLDER'], afName))
+                    if ff:
+                        ff.save(os.path.join(
+                            app.config['UPLOAD_FOLDER'], ffName))
+                except:
                     db.session.rollback()
-                    flash('There Was An Error While Uploading Form(s). Please Try Again Or Contact Administrator',
+                    flash('There Was An Error While Uploading Form(s). Please Try Again Or Contact Administrator.',
                           category='danger')
                 return redirect(request.url)
             else:
+                flash(
+                    'Please Meet The Requirements For The Form Before Submiting It.', category='danger')
                 return render_template('admin/add-school-forms.html', form=form)
         else:
             return render_template('admin/add-school-forms.html', form=form)
 
 
-@ app.route('/admin/school/delete/<string:name>')
+@ app.route('/admin/schools/delete/<string:name>')
 @login_required
 def delete_school(name):
     school = Schools.query.filter_by(schoolName=name).first()
-    db.session.delete(school)
+    if school:
+        db.session.delete(school)
+        db.session.commit()
+        os.remove(school.logoPath)
+        os.remove(school.badgePath)
 
     images = Images.query.filter_by(schoolName=name).all()
-    db.session.delete(images)
+    if images:
+        if len(images) > 1:
+            for pix in images:
+                db.session.delete(pix)
+                os.remove(pix.schoolPixPath)
+            db.session.commit()
+        else:
+            db.session.delete(images)
+            os.remove(images.schoolPixPath)
+            db.session.commit()
 
     thumbs = Thumbnails.query.filter_by(name=name).all()
-    db.session.delete(thumbs)
+    if thumbs:
+        if len(thumbs) > 1:
+            for thumb in thumbs:
+                db.session.delete(thumb)
+                os.remove(thumb.vidPixPath)
+            db.session.commit()
+        else:
+            db.session.delete(thumbs)
+            os.remove(thumbs.vidPixPath)
+            db.session.commit()
 
     docs = Documents.query.filter_by(schoolName=name).first()
-    db.session.delete(docs)
-    db.session.commit()
-
-    logopath = school.logoPath
-    badgepath = school.badgePath
-    # af = docs.appFormsPath
-    # ff = docs.feesFormsPath
-    os.remove(logopath)
-    os.remove(badgepath)
-    # os.remove(af)
-    # os.remove(ff)
-    for pix in images:
-        p = pix.schoolPixPath
-        os.remove(p)
-    for thumb in thumbs:
-        t = thumb.vidPixPath
-        os.remove(t)
-    return redirect('/admin/schools')
-
-
-@ app.route('/admin/school/edit/<int:id>', methods=["GET", "POST"])
-@login_required
-def edit_school(id):
-    news = News.query.get_or_404(id)
-    if request.method == "POST":
-        news.title = request.form['title']
-        news.excerpt = request.form['excerpt']
-        news.article = request.form['article']
-        news.author = request.form['author']
-
-        # check if the post request has the file part
-        if 'thumbnail' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        thumbnail = request.files['thumbnail']
-        if thumbnail.filename == '':
-            flash('No image file selected. Please select an image file.',
-                  category='danger')
-            return redirect(request.url)
-        # if thumbnail and allowed_file(thumbnail.filename):
-        filename = secure_filename(thumbnail.filename)
-        thumbnail.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-        news.thumbnail = filename
-        news.imagePath = os.path.abspath(
-            os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    if docs:
+        db.session.delete(docs)
         db.session.commit()
-        return redirect('/admin/news')
+        if docs.appFormsPath:
+            os.remove(docs.appFormsPath)
+        if docs.feesFormsPath:
+            os.remove(docs.feesFormsPath)
+    return redirect(url_for('admin_schools'))
+
+
+@ app.route('/admin/schools/edit/<string:name>', methods=["GET", "POST"])
+@login_required
+def edit_school(name):
+    school = Schools.query.filter_by(schoolName=name).first()
+    form = EditSchoolForm(obj=school)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            school.schoolName = form.schoolName.data
+            school.country = form.country.data
+            school.colour1 = form.colour1.data
+            school.colour2 = form.colour2.data
+            school.schType = form.schoolType.data
+            school.population = form.population.data
+            school.website = form.website.data
+            school.address = form.address.data
+            school.about = form.about.data
+            school.facilities = form.facilities.data
+            school.academics = form.academics.data
+            school.extra = form.extra.data
+            school.care = form.care.data
+            school.newHeading = form.newHeading.data
+            school.newBody = form.newBody.data
+            school.newHeading2 = form.newHeading2.data
+            school.newBody2 = form.newBody2.data
+            school.newHeading3 = form.newHeading3.data
+            school.newBody3 = form.newBody3.data
+            school.link1 = form.link1.data
+            school.link2 = form.link2.data
+            school.link3 = form.link3.data
+            school.link4 = form.link4.data
+            school.link5 = form.link5.data
+            school.tour = form.tour.data
+            school.appLink = form.appLink.data
+            school.feesLink = form.feesLink.data
+            # school.logo = form.logo.data
+            # school.badge = form.badge.data
+            db.session.commit()
+            flash(
+                f'Information for {school.schoolName} Has Been Updated.', category='success')
+            return redirect(url_for('admin_schools'))
+        else:
+            flash(
+                f'Please Meet The Requirements For The Form Before Submiting It.', category='danger')
+            return render_template('admin/edit-school.html', form=form, school=school)
     else:
-        # filepath = news.fp
-        # os.remove(filepath)
-        return render_template('admin/edit-article.html', news=news)
+        return render_template('admin/edit-school.html', form=form, school=school)
 
 
 @ app.route('/admin/countries')

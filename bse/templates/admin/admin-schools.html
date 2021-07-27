@@ -1,9 +1,14 @@
 {% extends 'base-dashboard.html' %}
 
-
 {% block title %} 
 Boarding School Experts | Admin Dasboard 
 {% endblock %} 
+
+{% block style %}
+<link rel="stylesheet" type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+{% endblock %}
 
 {% block body %}
 <div class="col-xl-11 mx-auto px-2">  
@@ -12,65 +17,73 @@ Boarding School Experts | Admin Dasboard
   </a>  
   <div id="s-display">
     <div class="container">
-      <div class="d-flex justify-content-md-start">
-        <div class="mt-4 mt-lg-5 mb-3">     
-          <div class="input-group">
-            <div class="form-outline">
-              <input type="search" id="search2" class="form-control" style="background-color: #fff;" />
-              <label class="form-label" for="search">Search</label>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} text-center text-bold mt-3 mb-0">
+              {{ message }}
             </div>
-            <button type="button" class="btn btn-new btn-sm">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-  
-      <div class="d-flex justify-content-center flex-wrap">
-        <div class="d-none d-md-block col-md-3 px-0 pr-md-2 pr-lg-4 pr-xl-5">
-          <div>           
-            <div class="px-2">
-              <p class="bsb-text2 mb-0">Filter</p>
-              <div class="form-check mt-2">
-                <input type="radio" class="form-check-input" id="radioA" name="filter" checked value="school" />
-                <label class="form-check-label" for="radioA">All Schools</label>
-              </div>
-              <div class="form-check mt-2">
-                <input type="radio" class="form-check-input" id="radioB" name="filter" value="co-ed" />
-                <label class="form-check-label" for="radio1">Co-Educational Schools</label>
-              </div>
-              <div class="form-check mt-2">
-                <input type="radio" class="form-check-input" id="radioC" name="filter" value="boys" />
-                <label class="form-check-label" for="radio2">Boys Schools</label>
-              </div>
-              <div class="form-check mt-2">
-                <input type="radio" class="form-check-input" id="radioD" name="filter" value="girls" />
-                <label class="form-check-label" for="radio3">Girls Schools</label>
-              </div>
-            </div>           
-          </div>         
-        </div>
-  
-        <div class="col-md-9">
-          <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 mt-3 mt-md-0 p-0">
-            {% for item in schools %}
-              <div class="col p-2 school ecole {{ item.schoolType }} bind" data-toggle="tooltip" title="{{ item.schoolName }}">
-                <div class="canvas">
-                  <img src="{{ url_for('uploaded', filename=item.badge) }}" class="w-100 slateX" alt="School badge" />
-                  <div class="title d-none">
-                    <p class="name">{{ item.schoolName }} {{ item.schoolType }}</p>
-                  </div>               
-                  <div class="lay">
-                    <div class="case">
-                      <a class="btn btn-white btn-sm mx-1" href="{{ url_for('new_school_info') }}">Edit</a>                
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <div class="row px-2 mt-3">
+        <div class="mt-3 px-4 py-5 p-lg-5 table-float">
+          <div class="table-base">
+            <div class="table-responsive">
+              <table class="table table-hover text-nowrap" id="schools">
+                <thead>
+                  <tr style="color: #003116">
+                    <th scope="col">ID</th>
+                    <th scope="col">School</th>
+                    <th scope="col">Badge</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Date Saved</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for school in schools %}
+                    <tr class="clickable-row">
+                      <th scope="row">{{ school.id }}</th>
+                      <td style="text-transform: capitalize;"><strong>{{ school.schoolName }}</strong></td>
+                      <td><img src="{{ url_for('uploaded', filename=school.logo) }}" height="33" alt="School logo" /></td>
+                      <td class="cap"><strong>{{ school.schoolType }}</strong></td>
+                      <td><strong>{{ school.country }}</strong></td>
+                      <td><strong>{{ school.date.strftime('%B %d, %Y') }}</strong></td>
+                      <td>
+                        <a class="edit" href="/admin/schools/edit/{{ school.schoolName }}">edit</a>
+                          <span class="mx-1">/</span>
+                        <a class="erase" data-mdb-toggle="modal" type="button"
+                            data-mdb-target="#del{{ school.id }}">delete</a>
+                      </td>
+                    </tr>
+
+                    <div class="modal fade" id="del{{ school.id }}" tabindex="-1" aria-labelledby="formModalLabel2" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <div class="text-center p-3" style="font-size: 18px; text-transform: capitalize;">
+                              Are you sure you want to delete <span class="warning">{{ school.schoolName }}</span> and all its information?
+                            </div>
+                            <div class="d-flex justify-content-center">
+                              <div class="mx-3 py-3">
+                                <button type="button" class="btn btn-dark" data-mdb-dismiss="modal" aria-label="Close">Close</button>
+                                <a class="btn btn-danger del" href="/admin/schools/delete/{{ school.schoolName }}">delete</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>              
-              </div>
-            {% endfor %}            
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
+           
     </div>
   </div>
   
@@ -78,28 +91,10 @@ Boarding School Experts | Admin Dasboard
 {% endblock %}
 
 {% block script %}
-  <script>
-    $(document).ready(function () {
-      $('input[type="radio"]').click(function () {
-        var inputValue = $(this).attr("value");
-        var targetBox = $("." + inputValue);
-        $(".ecole").not(targetBox).hide("5000");
-        $(targetBox).show("5000");
-      });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-      // Search function for schools display
-      $("#search2").keyup(function () {
-        // Search text
-        var text = $(this).val();
-
-        // Hide all content class element
-        $(".ecole").hide();
-
-        // Search
-        $('.ecole .title:contains("' + text + '")')
-          .closest(".ecole")
-          .show();
-      });
-    });
-  </script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 {% endblock %}

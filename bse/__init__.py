@@ -34,6 +34,10 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = "admin"
 login_manager.login_message_category = "info"
+login_manager.refresh_view = 'admin'
+# login_manager.needs_refresh_message = (u"Session timedout, please re-login")
+login_manager.needs_refresh_message_category = "info"
+
 
 
 from bse import routes

@@ -1,10 +1,14 @@
 {% extends 'base-dashboard.html' %}
 
-
 {% block title %} 
 Boarding School Experts | Admin Dasboard 
 {% endblock %} 
 
+{% block style %}
+<link rel="stylesheet" type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+{% endblock %}
 
 {% block body %}
 <div class="col-xl-11 mx-auto px-2">
@@ -17,20 +21,53 @@ Boarding School Experts | Admin Dasboard
       {% endfor %}
     {% endif %}
   {% endwith %}
-  <div class="row mt-5">
-    {% for country in countries %}
-      <div class="col-md-6 col-xl-4 p-3 mt-4">              
-        <div class="text-center sl-text2">
-          <img src="{{ url_for('uploaded', filename=country.flag) }}" class="w-100" alt="Country flag" />
-          <p class="mt-2 mb-0" style="text-transform: capitalize;">{{ country.name }} Schools</p>
-        </div> 
-        <div class="text-center">        
-          <a class="btn btn-danger my-3" data-id="{{ country.id }}" class="del some-but" data-mdb-toggle="modal" type="button" data-mdb-target="#formModal2">delete</a>
-          <!-- <a class="btn btn-danger my-3" class="del" href="/admin/country/delete/{{ country.id }}">delete</a> --> 
-          <input type="hidden" id="dt" name="dt" value="{{ country.id }}">     
+  <div class="row px-2 mt-5">
+      <div class="mt-3 px-4 py-5 p-lg-5 table-float">
+        <div class="table-base">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped text-nowrap" id="countries">
+              <thead>
+                <tr style="color: #003116">
+                  <th scope="col">ID</th>
+                  <th scope="col">Country</th>
+                  <th scope="col">Flag</th>
+                  <th scope="col">Date Saved</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for country in countries %}
+                  <tr class="clickable-row">
+                    <th scope="row">{{ country.id }}</th>
+                    <td><strong>{{ country.name }}</strong></td>
+                    <td><img src="{{ url_for('uploaded', filename=country.flag) }}" width="50" alt="Country flag" /></td>
+                    <td><strong>{{ country.date.strftime('%B %d, %Y') }}</strong></td>
+                    <td><a class="erase" data-mdb-toggle="modal" type="button" data-mdb-target="#delete{{ country.id }}">delete</a></td>
+                  </tr>
+
+                  <div class="modal fade" id="delete{{ country.id }}" tabindex="-1" aria-labelledby="formModalLabel2" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <div class="text-center p-3" style="font-size: 18px;">
+                            Are you sure you want to delete <span class="warning">{{ country.name }}</span>?
+                          </div>
+                          <div class="d-flex justify-content-center">
+                            <div class="mx-3 py-3">
+                              <button type="button" class="btn btn-dark" data-mdb-dismiss="modal" aria-label="Close">Close</button>
+                              <a class="btn btn-danger" class="del" href="/admin/countries/delete/{{ country.id }}">delete</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    {% endfor %}    
+      </div>        
   </div>  
   <a class="btn btn-yellow my-2 fixed-button" data-mdb-toggle="modal" type="button" data-mdb-target="#formModal" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;">
     Add Country
@@ -68,41 +105,15 @@ Boarding School Experts | Admin Dasboard
     </div>
   </div> 
 
-  <div class="modal fade" id="formModal2" tabindex="-1" aria-labelledby="formModalLabel2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">        
-        <div class="modal-body">
-          <div class="text-center warning p-3">
-            Are You Sure You Want To Delete This Country?
-            <input type="hidden" id="value" name="value" value="">
-          </div>
-          <div class="d-flex justify-content-center">            
-            <div class="mx-2 py-3">
-              
-            </div>            
-            <div class="mx-3 py-3">
-             
-              <button type="button" class="btn btn-dark" data-mdb-dismiss="modal" aria-label="Close">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </div>
 {% endblock %}
 
 {% block script %}
-  <script type="text/javascript">
-  //   $("#send_value").click(function () {
-  //     var data = $("#value").val();
-  //     var str = "You want to delete " + data + " ?"
-  //     $("#modal_body").html(str);
-  //   });
-  
-  $(document).on("click", ".some-but", function () {
-      var data = $("#dt").val();
-      $(".modal-body #value").val(myBookId);      
-    });
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 {% endblock %}

@@ -44,7 +44,7 @@ Boarding School Experts | Admin Dasboard
                 <div class="row pt-2">
                   <div class="col-md-12 mt-4">
                     <div>
-                      {{ form.schoolName(class="form-control form-select", placeholder="School Name")}}
+                      {{ form.schoolName(class="form-control form-select", placeholder="School Name", style="text-transform: capitalize;")}}
                       {% for error in form.schoolName.errors %}
                       <span style="color: orangered; font-size: 13px;">{{ error }}</span>
                       {% endfor %}

@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Boarding School Experts | Apply Form
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block body %}
+  <div class="bit-dark">
+    <div id="application-form">
+      <div class="container">
+        <div class="row flex-column">
+          <div class="text-md-center">
+            <p class="form-bold mb-0 px-3">Application Information Form</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-9 col-xl-8 mx-auto">
+            <form class="form-container apply-form" method="POST" action="" novalidate>
+              {{ form.hidden_tag() }}
+              
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} text-center text-bold my-3 mb-0">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              <p class="form-section-heading mb-0">Student's Details</p>
+              <div class="row mb-0">
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                    {{ form.sName.label }}
+                    {{ form.sName(class="form-control") }}
+                    {% for error in form.sName.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                    {{ form.fName.label }}
+                    {{ form.fName(class="form-control") }}
+                    {% for error in form.fName.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              
+                <div class="col-md-5 col-lg-4">
+                  <div class="md-form input-with-post-icon datepicker">
+                    {{ form.birthDate.label }}
+                    {{ form.birthDate(class="form-control") }}
+                    {% for error in form.birthDate.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              
+                <div class="col-md-7 col-lg-8">
+                  <div class="md-form mb-0">
+                    {{ form.p_school.label }}
+                    {{ form.p_school(class="form-control") }}
+                    {% for error in form.p_school.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}                    
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form mb-0">
+                    {{ form.home_address.label }}
+                    {{ form.home_address(class="form-control md-textarea", rows="2") }}
+                    {% for error in form.home_address.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <p class="form-section-heading mt-5 mb-0">
+                Parent's/Guardian's Details
+              </p>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form mb-0">
+                    {{ form.full_name.label }}
+                    {{ form.full_name(class="form-control") }}
+                    {% for error in form.full_name.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                    {{ form.email.label }}
+                    {{ form.email(class="form-control") }}
+                    {% for error in form.email.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                    {{ form.phone(class="form-control", id="phone8", onkeypress="return isNumberKey(event)") }}
+                    {% for error in form.phone.errors %}
+                    <div class="mt-2" style="color: orangered; font-size: 13px;">{{ error }}</div>
+                    {% endfor %}
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form">
+                    {{ form.address.label }}
+                    {{ form.address(class="form-control md-textarea", rows="2") }}
+                    {% for error in form.address.errors %}
+                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                    {% endfor %}                    
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row mb-0 mt-2">
+                <div class="px-3">
+                  <div class="g-recaptcha" data-sitekey="6LeDoY8bAAAAAEKbhmJYjyuN0HKO57BpjeqZkDxv"></div>
+                </div>
+                <div class="col-md-12 ml-0 mt-3">
+                  {{ form.submit(class="btn btn-school waves-effect ml-0") }}
+                </div>                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var input8 = document.querySelector("#phone8");
+    window.intlTelInput(input8, {
+        initialCountry: "auto",
+        geoIpLookup: function (callback) {
+          $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+            var countryCode = resp && resp.country ? resp.country : "ng";
+            callback(countryCode);
+          });
+        },
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+      });
+  </script>
+{% endblock %}

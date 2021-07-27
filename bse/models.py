@@ -58,10 +58,10 @@ class Country(db.Model):
 
 class Schools(db.Model):    
     id = db.Column(db.Integer, primary_key=True)
-    colour1 = db.Column(db.String(7), nullable=False)
-    colour2 = db.Column(db.String(7), nullable=False)
+    colour1 = db.Column(db.String(8), nullable=False)
+    colour2 = db.Column(db.String(8), nullable=False)
     schoolName = db.Column(db.String(100), nullable=False, unique=True)
-    schoolType = db.Column(db.String(6), nullable=False)
+    schoolType = db.Column(db.String(20), nullable=False)
     population = db.Column(db.String(100), nullable=False)
     address = db.Column(db.Text, nullable=False)
     website = db.Column(db.String(60), nullable=False)

@@ -117,7 +117,7 @@ Boarding School Experts | Our Schools
               <a href="#" role="button" class="btn btn-colour-1 btn-lg ml-0" id="a-btn" data-toggle="modal" data-target="#apply">APPLY
                 HERE</a>              
             {% elif college.appLink %}
-              <a href="#!" role="button" class="btn btn-colour-1 btn-lg ml-0" id="a-btn">APPLY HERE</a>
+              <a href="/schools/apply/{{ college.schoolName }}" role="button" class="btn btn-colour-1 btn-lg ml-0" id="a-btn">APPLY HERE</a>
             {% endif %}
           </div>
         </div>
@@ -280,10 +280,10 @@ Boarding School Experts | Our Schools
             <div class="d-flex justify-content-center flex-wrap">
               <div class="col-md-6 p-2">
                 {% if docs.appForm %}
-                <a href="#" role="button" class="btn btn-colour-1 btn-lg btn-block ml-0" id="a-btn2" data-toggle="modal" data-target="#apply">APPLY
-                  HERE</a>                  
+                  <a href="#" role="button" class="btn btn-colour-1 btn-lg btn-block ml-0" id="a-btn2" data-toggle="modal" data-target="#apply">APPLY
+                    HERE</a>                  
                 {% elif college.appLink %}
-                <a href="#!" role="button" class="btn btn-colour-1 btn-lg btn-block ml-0" id="a-btn2">APPLY HERE</a>
+                  <a href="/schools/apply/{{ college.schoolName }}" role="button" class="btn btn-colour-1 btn-lg btn-block ml-0" id="a-btn2">APPLY HERE</a>
                 {% endif %}
               </div>
               <div class="col-md-6 p-2">
@@ -301,85 +301,87 @@ Boarding School Experts | Our Schools
       </div>
     </div>
 
-    <div
-      class="modal fade"
-      id="apply"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
+    {% if docs.appForm %}
       <div
-        class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
-        role="document"
+        class="modal fade"
+        id="apply"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
       >
-        <div class="modal-content">
-          <div class="modal-header text-center mb-4">
-            <h4
-              class="modal-title white-text font-weight-bold w-100 py-2 px-5"
-            >
-              Application Form
-            </h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true" class="white-text">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mb-5 mx-2 mx-lg-5">
-            <div>
-              <h5 class="font-weight-bold">How to apply to our schools</h5>
-              <ol>
-                <li class="mb-2" style="font-weight: 400">
-                  Click on the download button below to download the school's
-                  admission form.
-                </li>
-                <li class="mb-2" style="font-weight: 400">
-                  Fill the application form, scan and send back with
-                  supporting documents through the submit form button on the
-                  website menu bar or send by email to
-                  <span style="color: #9fbe49"
-                    >admissions@boardingschoolsexperts.com</span
-                  >.
-                </li>
-              </ol>
+        <div
+          class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header text-center mb-4">
+              <h4
+                class="modal-title white-text font-weight-bold w-100 py-2 px-5"
+              >
+                Application Form
+              </h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
             </div>
-            <div class="pt-4">
-              <h5 class="font-weight-bold">Supporting Documents</h5>
-              <ul>
-                <li class="mb-2" style="font-weight: 400">
-                  Teacher Reference Form.
-                </li>
-                <li class="mb-2" style="font-weight: 400">Report Cards.</li>
-                <li class="mb-2" style="font-weight: 400">
-                  Birth Certificate (for Canadian students).
-                </li>
-                <li class="mb-2" style="font-weight: 400">
-                  Citizenship Document (for international students).
-                </li>
-                <li class="mb-2" style="font-weight: 400">Photograph.</li>
-              </ul>
+            <div class="modal-body mb-5 mx-2 mx-lg-5">
+              <div>
+                <h5 class="font-weight-bold">How to apply to our schools</h5>
+                <ol>
+                  <li class="mb-2" style="font-weight: 400">
+                    Click on the download button below to download the school's
+                    admission form.
+                  </li>
+                  <li class="mb-2" style="font-weight: 400">
+                    Fill the application form, scan and send back with
+                    supporting documents through the submit form button on the
+                    website menu bar or send by email to
+                    <span style="color: #9fbe49"
+                      >admissions@boardingschoolsexperts.com</span
+                    >.
+                  </li>
+                </ol>
+              </div>
+              <div class="pt-4">
+                <h5 class="font-weight-bold">Supporting Documents</h5>
+                <ul>
+                  <li class="mb-2" style="font-weight: 400">
+                    Teacher Reference Form.
+                  </li>
+                  <li class="mb-2" style="font-weight: 400">Report Cards.</li>
+                  <li class="mb-2" style="font-weight: 400">
+                    Birth Certificate (for Canadian students).
+                  </li>
+                  <li class="mb-2" style="font-weight: 400">
+                    Citizenship Document (for international students).
+                  </li>
+                  <li class="mb-2" style="font-weight: 400">Photograph.</li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="modal-footer justify-content-center">
-            <a
-              class="btn btn-school-light waves-effect"
-              href="{{ url_for('uploaded', filename=college.appForm) }}"
-              target="_blank"
-              role="button"
-              rel="noopener noreferrer"
-              >Download Form</a
-            >
-            <button type="button" class="btn btn-dark" data-dismiss="modal">
-              Close
-            </button>
+            <div class="modal-footer justify-content-center">
+              <a
+                class="btn btn-school-light waves-effect"
+                href="{{ url_for('uploaded', filename=docs.appForm) }}"
+                target="_blank"
+                role="button"
+                rel="noopener noreferrer"
+                >Download Form</a
+              >
+              <button type="button" class="btn btn-dark" data-dismiss="modal">
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    {% endif %}
     <footer></footer>
   </main>
 {% endblock %}
