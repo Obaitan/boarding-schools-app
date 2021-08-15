@@ -87,4 +87,5 @@ document
 $(document).ready(function () {
   $("#countries").DataTable();
   $("#schools").DataTable();
+  $('#example').DataTable();
 });

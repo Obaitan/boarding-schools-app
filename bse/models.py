@@ -9,7 +9,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-class User (UserMixin, db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
     password_hash = db.Column(db.String(60), nullable=False)
@@ -21,8 +21,9 @@ class User (UserMixin, db.Model):
 
     @password.setter
     def password(self, plain_text_password):
-        self.password_hash = bcrypt.generate_password_hash(
-            plain_text_password).decode('utf-8')
+        self.password_hash = bcrypt.generate_password_hash(plain_text_password).decode(
+            "utf-8"
+        )
 
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
@@ -33,30 +34,27 @@ class News(db.Model):
     title = db.Column(db.String(150), nullable=False, unique=True)
     excerpt = db.Column(db.String(300), nullable=False, unique=True)
     article = db.Column(db.Text, nullable=False, unique=True)
-    author = db.Column(db.String(40), nullable=False,
-                       default='Unknown')
-    date = db.Column(db.DateTime, nullable=False,
-                     unique=True, default=datetime.utcnow)
+    author = db.Column(db.String(40), nullable=False, default="Unknown")
+    date = db.Column(db.DateTime, nullable=False, unique=True, default=datetime.utcnow)
     imagePath = db.Column(db.String(256), nullable=False)
     image = db.Column(db.Text, nullable=False, unique=True)
 
     def __repr__(self):
-        return f'News {self.id}'
+        return f"News {self.id}"
 
 
-class Country(db.Model):    
+class Country(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), nullable=False,  unique=True)
+    name = db.Column(db.String(30), nullable=False, unique=True)
     flag = db.Column(db.Text, nullable=False, unique=True)
     flagPath = db.Column(db.String(256), nullable=False)
-    date = db.Column(db.DateTime, nullable=False,
-                     unique=True, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, unique=True, default=datetime.utcnow)
 
     def __repr__(self):
-        return f'Country: {self.name}'
+        return f"Country: {self.name}"
 
 
-class Schools(db.Model):    
+class Schools(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     colour1 = db.Column(db.String(8), nullable=False)
     colour2 = db.Column(db.String(8), nullable=False)
@@ -70,8 +68,7 @@ class Schools(db.Model):
     logoPath = db.Column(db.String(256), nullable=False)
     badge = db.Column(db.Text, nullable=False, unique=True)
     badgePath = db.Column(db.String(256), nullable=False)
-    date = db.Column(db.DateTime, nullable=False,
-                     unique=True, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, unique=True, default=datetime.utcnow)
     country = db.Column(db.String(35), nullable=False)
     facilities = db.Column(db.Text, nullable=True)
     academics = db.Column(db.Text, nullable=True)
@@ -93,7 +90,7 @@ class Schools(db.Model):
     feesLink = db.Column(db.String(256), nullable=True)
 
     def __repr__(self):
-        return f'School: {self.schoolName}'
+        return f"School: {self.schoolName}"
 
 
 class Images(db.Model):
@@ -103,7 +100,7 @@ class Images(db.Model):
     schoolPixPath = db.Column(db.String(256), nullable=False)
 
     def __repr__(self):
-        return f'Image {self.id}'
+        return f"Image {self.id}"
 
 
 class Thumbnails(db.Model):
@@ -113,7 +110,7 @@ class Thumbnails(db.Model):
     vidPixPath = db.Column(db.String(256), nullable=False)
 
     def __repr__(self):
-        return f'Thumbnail {self.id}'
+        return f"Thumbnail {self.id}"
 
 
 class Documents(db.Model):
@@ -125,4 +122,4 @@ class Documents(db.Model):
     feesFormsPath = db.Column(db.String(256), nullable=True)
 
     def __repr__(self):
-        return f'Form: {self.name}'
+        return f"Form: {self.name}"

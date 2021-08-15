@@ -5,10 +5,7 @@ Boarding School Experts | Admin Dasboard
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.css"
-  integrity="sha512-joKDvh+eAWoVNKsL6T1spjb9TUTVLKzp9kD+BsfkKmy3RiwKlBK2A0fqSBmPOG0RW9jTvpNDjkX0Z02d3A6jbA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 {% endblock %}
 
 {% block body %}  
@@ -17,32 +14,33 @@ Boarding School Experts | Admin Dasboard
       <div class="row">
         <div class="col-xl-3">
           <div>
-            <a class="btn button-link2 see2" href="{{ url_for('new_school_info') }}">Edit School Info</a>
+            <a class="btn button-link2 see2" href="{{ url_for('edit_school_info', name=school.schoolName) }}">Edit School Info</a>
+          </div>
+          <!-- <div class="mt-2">
+            <a class="btn button-link2" href="">Edit School Images</a>
           </div>
           <div class="mt-2">
-            <a class="btn button-link" href="{{ url_for('new_school_images') }}">Edit School Images</a>
+            <a class="btn button-link2" href="">Edit YouTube Images</a>
           </div>
           <div class="mt-2">
-            <a class="btn button-link" href="{{ url_for('new_school_thumbnails') }}">Edit YouTube Images</a>
-          </div>
-          <div class="mt-2">
-            <a class="btn button-link" href="{{ url_for('new_school_forms') }}">Edit School Forms</a>
-          </div>
+            <a class="btn button-link2" href="">Edit School Forms</a>
+          </div> -->
         </div>
       
         <div class="col-xl-9 mt-5 mt-xl-0">          
           <div class="">            
-              <form action="" method="POST" enctype=multipart/form-data class="admin-forms" id="form1" novalidate>
+              <form action="/admin/schools/edit-info/{{ school.schoolName }}" method="POST" enctype=multipart/form-data
+                class="admin-forms" id="form1" novalidate>
                 {{ form.hidden_tag() }}
               
                 {% with messages = get_flashed_messages(with_categories=true) %}
-                  {% if messages %}
-                    {% for category, message in messages %}
-                      <div class="alert alert-{{ category }} text-center text-bold mb-0">                  
-                        {{ message }}
-                      </div>
-                    {% endfor %}
-                  {% endif %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} text-center text-bold mb-0">
+                  {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
                 {% endwith %}
                 <div class="row">
                   <div class="col-md-6 mt-4">
@@ -52,7 +50,7 @@ Boarding School Experts | Admin Dasboard
                       {% for error in form.schoolName.errors %}
                       <span style="color: orangered; font-size: 13px;">{{ error }}</span>
                       {% endfor %}
-                    </div>                   
+                    </div>
                   </div>
                   <div class="col-md-6 mt-4">
                     <div>
@@ -126,21 +124,21 @@ Boarding School Experts | Admin Dasboard
                   </div>
               
                   <!-- <div class="col-md-12 col-xl-6 mt-5">
-                    <p class="show2 mb-2">Upload School Logo (PNG / JPEG / JPG)</p>
-                    {{ form.logo(class="form-control input-field", id="file-input", accept="image/*") }}
-                    {% for error in form.logo.errors %}
-                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
-                    {% endfor %}
-                    <div id="preview" class="mt-3"></div>
-                  </div> -->
+                                                <p class="show2 mb-2">Upload School Logo (PNG / JPEG / JPG)</p>
+                                                {{ form.logo(class="form-control input-field", id="file-input", accept="image/*") }}
+                                                {% for error in form.logo.errors %}
+                                                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                                                {% endfor %}
+                                                <div id="preview" class="mt-3"></div>
+                                              </div> -->
                   <!-- <div class="col-md-12 col-xl-6 mt-5">
-                    <p class="show2 mb-2">Upload School Badge (PNG / JPEG / JPG)</p>
-                    {{ form.badge(class="form-control input-field", id="file-input2", accept="image/*") }}
-                    {% for error in form.badge.errors %}
-                    <span style="color: orangered; font-size: 13px;">{{ error }}</span>
-                    {% endfor %}
-                    <div id="preview2" class="mt-3"></div>
-                  </div> -->
+                                                <p class="show2 mb-2">Upload School Badge (PNG / JPEG / JPG)</p>
+                                                {{ form.badge(class="form-control input-field", id="file-input2", accept="image/*") }}
+                                                {% for error in form.badge.errors %}
+                                                <span style="color: orangered; font-size: 13px;">{{ error }}</span>
+                                                {% endfor %}
+                                                <div id="preview2" class="mt-3"></div>
+                                              </div> -->
                   <div class="mt-5 text-center">
                     <p class="mb-2 show2">School Programmes</p>
                   </div>
@@ -283,30 +281,25 @@ Boarding School Experts | Admin Dasboard
                       {% endfor %}
                     </div>
                   </div>
-
+              
                   <div class="col-12 col-md-6 mt-4">
                     {{ form.submit(class="btn btn-school btn-block") }}
                   </div>
-                  <div class="col-12 col-md-6 mt-4">                      
+                  <div class="col-12 col-md-6 mt-4">
                     <a class="btn btn-school-light btn-block" style="padding: .625rem 1.5rem .5rem; font-size: .85rem;"
                       href="{{ url_for('admin_schools') }}">
                       Cancel
                     </a>
-                  </div>                  
+                  </div>
                 </div>
               </form>
-            </div>           
+          </div>           
         </div>
-      </div>      
+      </div>
     </div>    
   </div>  
 {% endblock %}
 
 {% block script %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/file-upload-with-preview/4.1.0/file-upload-with-preview.min.js"
-  integrity="sha512-Z41LlJOURucboITRl9uL5Y7GNfyxqS6+i9THsMWsOpvStxQjY/uGmU+5a3+4ddXeHZcUXZTeHI272bZPWkGF3w=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-  var upload = new FileUploadWithPreview('myUniqueUploadId')
-</script>
+
 {% endblock %}
