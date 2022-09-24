@@ -45,5 +45,3 @@ tomli==1.2.1
 Werkzeug==2.0.0
 wrapt==1.12.1
 WTForms==2.3.3
-
-# pip freeze > requirements.txt

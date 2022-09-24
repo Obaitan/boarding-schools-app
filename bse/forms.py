@@ -12,26 +12,20 @@ from wtforms import (
     FileField,
     MultipleFileField,
     SelectField,
-    RadioField,
 )
 from wtforms.validators import (
     Length,
-    EqualTo,
     Email,
     DataRequired,
-    email_validator,
     ValidationError,
     StopValidation,
-    InputRequired,
     URL,
     Optional,
 )
 from wtforms.fields.html5 import TelField, URLField, DateField
-from bse.models import News, User, Country, Schools, Images, Thumbnails, Documents
+from bse.models import News, Country, Schools, Documents
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from werkzeug.utils import secure_filename
-
-from wtforms.widgets import Input
 
 
 class MultiFileAllowed(object):
@@ -42,7 +36,8 @@ class MultiFileAllowed(object):
     def __call__(self, form, field):
 
         if not (
-            all(isinstance(item, FileStorage) for item in field.data) and field.data
+            all(isinstance(item, FileStorage)
+                for item in field.data) and field.data
         ):
             return
 
@@ -76,14 +71,16 @@ class LoginForm(FlaskForm):
 class ContactForm(FlaskForm):
     name = TextField("Name", validators=[DataRequired(), Length(min=3)])
     email = TextField("Email", validators=[DataRequired(), Email()])
-    message = TextAreaField("Message", validators=[DataRequired(), Length(min=50)])
+    message = TextAreaField("Message", validators=[
+                            DataRequired(), Length(min=50)])
     phone = TelField("Phone Number", validators=[DataRequired()])
     recaptcha = RecaptchaField()
     submit = SubmitField("Send")
 
 
 class SchoolsForm(FlaskForm):
-    schoolName = TextField("School Name", validators=[DataRequired(), Length(min=12)])
+    schoolName = TextField("School Name", validators=[
+                           DataRequired(), Length(min=12)])
     title = TextField("Contact's Title", validators=[DataRequired()])
     contactName = TextField(
         "Contact's Full Name", validators=[DataRequired(), Length(min=5)]
@@ -129,14 +126,17 @@ class AgentsForm(FlaskForm):
     group2 = TextField("Group 2")
     group3 = TextField("Group 3")
     group4 = TextField("Group 4")
-    refInstitution = TextField("Name of Institution", validators=[DataRequired()])
+    refInstitution = TextField(
+        "Name of Institution", validators=[DataRequired()])
     refName = TextField("Name of Person", validators=[DataRequired()])
     refPhone = TelField("Phone Number", validators=[DataRequired()])
     refEmail = TextField("Email Address", validators=[DataRequired(), Email()])
-    refInstitution2 = TextField("Name of Institution", validators=[DataRequired()])
+    refInstitution2 = TextField(
+        "Name of Institution", validators=[DataRequired()])
     refName2 = TextField("Name of Person", validators=[DataRequired()])
     refPhone2 = TelField("Phone Number", validators=[DataRequired()])
-    refEmail2 = TextField("Email Address", validators=[DataRequired(), Email()])
+    refEmail2 = TextField("Email Address", validators=[
+                          DataRequired(), Email()])
     checkbox = BooleanField(
         "I declare that the information contained in this application and all supporting doumentation is true and correct.",
         validators=[DataRequired()],
@@ -147,7 +147,8 @@ class AgentsForm(FlaskForm):
 
 class SubmitDocsForm(FlaskForm):
     name = TextField("Full Name", validators=[DataRequired()])
-    school = TextField("Name of School Applied To", validators=[DataRequired()])
+    school = TextField("Name of School Applied To",
+                       validators=[DataRequired()])
     email = TextField("Email", validators=[DataRequired(), Email()])
     phone = TelField("Phone Number", validators=[DataRequired()])
     docs = MultipleFileField(
@@ -165,7 +166,8 @@ class BoardingSchoolsForm(FlaskForm):
         return obj
 
     def validate_schoolName(self, schoolName_to_check):
-        school = Schools.query.filter_by(schoolName=schoolName_to_check.data).first()
+        school = Schools.query.filter_by(
+            schoolName=schoolName_to_check.data).first()
         if school:
             raise ValidationError(
                 "School Already Exists! Please Add A Different School."
@@ -233,7 +235,8 @@ class BoardingSchoolsForm(FlaskForm):
     link5 = URLField("Link 5", validators=[Optional(), URL()])
     tour = URLField("Virtual Tour Link", validators=[Optional(), URL()])
     feesLink = URLField("Link to Fees Form", validators=[Optional(), URL()])
-    appLink = URLField("Link to Application Form", validators=[Optional(), URL()])
+    appLink = URLField("Link to Application Form",
+                       validators=[Optional(), URL()])
     submit = SubmitField("Submit Information")
 
 
@@ -290,7 +293,8 @@ class EditSchoolForm(FlaskForm):
     link5 = URLField("Link 5", validators=[Optional(), URL()])
     tour = URLField("Virtual Tour Link", validators=[Optional(), URL()])
     feesLink = URLField("Link to Fees Form", validators=[Optional(), URL()])
-    appLink = URLField("Link to Application Form", validators=[Optional(), URL()])
+    appLink = URLField("Link to Application Form",
+                       validators=[Optional(), URL()])
     submit = SubmitField("Update Information")
 
 
@@ -438,7 +442,8 @@ class NewsForm(FlaskForm):
         image_to_check = secure_filename(image_to_check.data.filename)
         ig = News.query.filter_by(image=image_to_check).first()
         if ig:
-            raise ValidationError("Image Already Used! Please Use A Different Image.")
+            raise ValidationError(
+                "Image Already Used! Please Use A Different Image.")
 
     title = StringField("Article Title", validators=[DataRequired()])
     excerpt = TextAreaField(
@@ -466,7 +471,8 @@ class ApplyForm(FlaskForm):
     sName = TextField("Surname", validators=[DataRequired()])
     birthDate = DateField("Date of Birth", validators=[DataRequired()])
     p_school = TextField("Present School", validators=[DataRequired()])
-    school = TextField("Name of School Applying To", validators=[DataRequired()])
+    school = TextField("Name of School Applying To",
+                       validators=[DataRequired()])
     home_address = TextAreaField("Home Address", validators=[DataRequired()])
     full_name = TextField("Full Name", validators=[DataRequired()])
     email = TextField("Email", validators=[DataRequired(), Email()])

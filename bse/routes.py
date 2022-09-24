@@ -12,7 +12,6 @@ from flask import (
 )
 from bse.models import News, User, Country, Schools, Images, Thumbnails, Documents
 from werkzeug.utils import secure_filename
-from werkzeug.urls import url_parse
 from bse.forms import (
     LoginForm,
     ContactForm,
@@ -31,11 +30,7 @@ from bse.forms import (
 )
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
-from sqlalchemy import exc
-
 from datetime import timedelta
-import urllib.parse
-
 
 ALLOWED_EXTENSIONS = set(["doc", "docx", "pdf", "png", "jpg", "jpeg"])
 

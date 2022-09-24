@@ -1,7 +1,7 @@
 venv/
 
 *.pyc
-/__pycache__/
+__pycache__/
 
 instance/
 
@@ -16,3 +16,5 @@ build/
 access-information.txt
 
 pylintrc
+
+bse.db
