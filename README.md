@@ -5,9 +5,9 @@ This is a web application built with Flask (Python Web Development Microframewor
 ### Admin Access
 
 Admin Login - [https://boarding-schools.herokuapp.com/admin](https://boarding-schools.herokuapp.com/admin)  
-username: otherUser  
+Username: otherUser  
 Password: simpleMan$2048  
-name: Orifa
+Name: Orifa
 
 ## Installation
 
